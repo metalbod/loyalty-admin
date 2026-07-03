@@ -10,10 +10,14 @@ export const STORAGE_KEYS = {
 
 export const NETWORK_LATENCY_MS = { min: 250, max: 650 };
 
+// `roles` scopes each item to the roles that should see it - a superadmin manages the
+// institutions list only (see SuperAdminRoute) and has no institution-scoped data to view, so
+// it gets a disjoint nav from every other role.
 export const NAV_ITEMS = [
-  { path: '/', label: 'Live Transactions', icon: 'Activity' },
-  { path: '/profiles', label: 'Tier Profiles', icon: 'Users' },
-  { path: '/campaigns', label: 'Campaigns', icon: 'CalendarClock' },
+  { path: '/', label: 'Live Transactions', icon: 'Activity', roles: ['ROLE_ADMIN'] },
+  { path: '/profiles', label: 'Tier Profiles', icon: 'Users', roles: ['ROLE_ADMIN'] },
+  { path: '/campaigns', label: 'Campaigns', icon: 'CalendarClock', roles: ['ROLE_ADMIN'] },
+  { path: '/superadmin/institutions', label: 'Institutions', icon: 'Building2', roles: ['ROLE_SUPERADMIN'] },
 ];
 
 export const TRANSACTION_TYPES = {

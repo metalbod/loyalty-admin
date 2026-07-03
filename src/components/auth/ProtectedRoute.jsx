@@ -11,13 +11,20 @@ import { useAuth } from '../../hooks/useAuth.js';
  * This also transparently handles the "token expired mid-session" case: AuthContext's 401
  * interceptor callback clears `user`, which flips isAuthenticated to false and re-renders
  * this component on its next pass, redirecting to /login with no extra wiring needed here.
+ *
+ * A superadmin has no institution, so every view behind this guard would just 403 against
+ * the backend for them - redirect to their own area instead (symmetric with SuperAdminRoute
+ * redirecting non-superadmins away from /superadmin/**).
  */
 export function ProtectedRoute({ children }) {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const location = useLocation();
 
   if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  if (user.role === 'ROLE_SUPERADMIN') {
+    return <Navigate to="/superadmin/institutions" replace />;
   }
 
   return children;

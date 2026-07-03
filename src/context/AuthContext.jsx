@@ -12,11 +12,17 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [sessionExpired, setSessionExpired] = useState(false);
 
-  const login = useCallback(async (username, password) => {
-    const response = await api.login(username, password);
+  const login = useCallback(async (email, password) => {
+    const response = await api.login(email, password);
     setToken(response.token);
     setSessionExpired(false);
-    const loggedInUser = { username: response.username, role: response.role };
+    // institutionId/institutionName are null for a superadmin, who belongs to no institution.
+    const loggedInUser = {
+      email: response.email,
+      role: response.role,
+      institutionId: response.institutionId,
+      institutionName: response.institutionName,
+    };
     setUser(loggedInUser);
     return loggedInUser;
   }, []);

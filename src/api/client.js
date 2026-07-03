@@ -75,10 +75,10 @@ async function request(path, { method = 'GET', body, adminId } = {}) {
 // Auth
 // ---------------------------------------------------------------------------
 
-export async function login(username, password) {
+export async function login(email, password) {
   return request('/api/auth/login', {
     method: 'POST',
-    body: { username, password },
+    body: { email, password },
   });
 }
 
@@ -190,5 +190,29 @@ export async function createCampaign(payload, adminId) {
       earnMultiplier: Number(earnMultiplier),
       burnDiscountMultiplier: Number(burnDiscountMultiplier),
     },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Institutions (superadmin only)
+// ---------------------------------------------------------------------------
+
+export async function fetchInstitutions() {
+  return request('/api/superadmin/institutions');
+}
+
+export async function createInstitution({ name, slug, adminEmail, adminPassword }, adminId) {
+  return request('/api/superadmin/institutions', {
+    method: 'POST',
+    adminId,
+    body: { name, slug, adminEmail, adminPassword },
+  });
+}
+
+export async function updateInstitutionStatus(institutionId, status, adminId) {
+  return request(`/api/superadmin/institutions/${institutionId}/status`, {
+    method: 'PATCH',
+    adminId,
+    body: { status },
   });
 }

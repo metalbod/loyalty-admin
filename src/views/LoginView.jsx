@@ -12,7 +12,7 @@ export function LoginView() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { run, isSubmitting, error } = useAsyncAction(login);
 
@@ -25,8 +25,11 @@ export function LoginView() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await run(username, password);
-      const redirectTo = location.state?.from?.pathname || '/';
+      const loggedInUser = await run(email, password);
+      // Superadmins have no institution-scoped dashboard to land on - send them straight to
+      // institution management instead of the transactions view.
+      const defaultRoute = loggedInUser.role === 'ROLE_SUPERADMIN' ? '/superadmin/institutions' : '/';
+      const redirectTo = location.state?.from?.pathname || defaultRoute;
       navigate(redirectTo, { replace: true });
     } catch {
       // error is already captured by useAsyncAction and rendered below
@@ -52,12 +55,13 @@ export function LoginView() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            id="username"
-            label="Username"
-            autoComplete="username"
-            value={username}
+            id="email"
+            type="email"
+            label="Email"
+            autoComplete="email"
+            value={email}
             onChange={(e) => {
-              setUsername(e.target.value);
+              setEmail(e.target.value);
               if (sessionExpired) acknowledgeSessionExpired();
             }}
             autoFocus

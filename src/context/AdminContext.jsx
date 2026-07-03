@@ -14,7 +14,7 @@ export function AdminProvider({ children }) {
   // is only ever invoked from views that live behind ProtectedRoute, by which point login()
   // has already populated it.
   const { user } = useAuth();
-  const adminId = user?.username;
+  const adminId = user?.email;
 
   const [metrics, setMetrics] = useState(null);
   const [metricsLoading, setMetricsLoading] = useState(false);

@@ -1,15 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Activity, CalendarClock, LogOut, ShieldCheck, Users } from 'lucide-react';
+import { Activity, Building2, CalendarClock, LogOut, ShieldCheck, Users } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { useAuth } from '../hooks/useAuth.js';
 import { initials } from '../utils/formatters.js';
 
-const ICONS = { Activity, Users, CalendarClock };
+const ICONS = { Activity, Users, CalendarClock, Building2 };
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
 
 export function Sidebar() {
   const { user, logout } = useAuth();
+  const visibleNavItems = NAV_ITEMS.filter((item) => item.roles.includes(user?.role));
 
   return (
     <aside className="flex w-64 shrink-0 flex-col border-r border-slate-800 bg-slate-900/95 px-4 py-5">
@@ -24,7 +25,7 @@ export function Sidebar() {
       </div>
 
       <nav className="flex flex-col gap-1">
-        {NAV_ITEMS.map(({ path, label, icon }) => {
+        {visibleNavItems.map(({ path, label, icon }) => {
           const Icon = ICONS[icon];
           return (
             <NavLink
@@ -51,11 +52,14 @@ export function Sidebar() {
         {user && (
           <div className="flex items-center gap-2.5 rounded-lg border border-slate-800 bg-slate-800/50 px-3 py-2.5">
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-semibold text-emerald-400">
-              {initials(user.username)}
+              {initials(user.email)}
             </span>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-xs font-medium text-slate-200">{user.username}</p>
-              <p className="truncate text-[11px] text-slate-500">{user.role}</p>
+              <p className="truncate text-xs font-medium text-slate-200">{user.email}</p>
+              <p className="truncate text-[11px] text-slate-500">
+                {user.role}
+                {user.institutionName ? ` · ${user.institutionName}` : ''}
+              </p>
             </div>
             <button
               type="button"
