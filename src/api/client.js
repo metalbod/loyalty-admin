@@ -1,0 +1,194 @@
+import { LEDGER_PAGE_SIZE } from '../constants';
+import { getToken, notifyUnauthorized } from './authToken';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+
+// The login endpoint's own 401 (wrong username/password) is a normal, expected error that
+// the login form displays inline - it must NOT trigger the global "session expired" flow
+// below, which is only for a previously-valid token going stale mid-session.
+const AUTH_PATH_PREFIX = '/api/auth/';
+
+// How many of the most recent rows to pull from each of the ledger/audit-log endpoints when
+// building the merged activity feed. The backend has no single "everything, sorted" endpoint,
+// so the feed is assembled client-side from two separately-paginated sources; entries older
+// than this window (per source) won't appear. Fine for an admin console, not for a true
+// unbounded audit export.
+const ACTIVITY_FEED_FETCH_SIZE = 100;
+
+export class ApiError extends Error {
+  constructor(message, status) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+  }
+}
+
+// This function IS the fetch interceptor: every API call in this module goes through it, so
+// attaching the auth header and reacting to 401s here covers the whole app in one place
+// rather than needing every call site to remember to do it.
+async function request(path, { method = 'GET', body, adminId } = {}) {
+  const headers = { 'Content-Type': 'application/json' };
+  const token = getToken();
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  if (adminId) {
+    headers['X-Admin-Id'] = adminId;
+  }
+
+  let response;
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      method,
+      headers,
+      body: body !== undefined ? JSON.stringify(body) : undefined,
+    });
+  } catch {
+    throw new ApiError(
+      `Could not reach the loyalty backend at ${API_BASE_URL}. Is it running?`,
+      0,
+    );
+  }
+
+  if (response.status === 401 && !path.startsWith(AUTH_PATH_PREFIX)) {
+    notifyUnauthorized();
+  }
+
+  if (!response.ok) {
+    let message = response.statusText;
+    try {
+      const errorBody = await response.json();
+      message = errorBody.message || message;
+    } catch {
+      // response body wasn't JSON - fall back to statusText
+    }
+    throw new ApiError(message, response.status);
+  }
+
+  if (response.status === 204) {
+    return null;
+  }
+  return response.json();
+}
+
+// ---------------------------------------------------------------------------
+// Auth
+// ---------------------------------------------------------------------------
+
+export async function login(username, password) {
+  return request('/api/auth/login', {
+    method: 'POST',
+    body: { username, password },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Metrics
+// ---------------------------------------------------------------------------
+
+export async function fetchMetrics() {
+  return request('/api/admin/metrics');
+}
+
+// ---------------------------------------------------------------------------
+// Live activity feed (merged point ledger + admin audit trail)
+// ---------------------------------------------------------------------------
+
+function ledgerEntryToFeedRow(entry) {
+  return {
+    id: `ledger-${entry.ledgerId}`,
+    source: 'TRANSACTION',
+    timestamp: entry.createdAt,
+    action: entry.transactionType,
+    targetEntity: `WALLET #${entry.userId}`,
+    // The backend only ever persists successful transactions - a failed earn/redeem never
+    // reaches point_ledger, so every row here is inherently a success.
+    status: 'SUCCESS',
+    oldValue: { runningBalance: entry.runningBalance - entry.pointsChanged },
+    newValue: { runningBalance: entry.runningBalance, pointsChanged: entry.pointsChanged },
+    referenceId: entry.referenceId,
+  };
+}
+
+function auditLogToFeedRow(entry) {
+  return {
+    id: `audit-${entry.auditId}`,
+    source: 'ADMIN_ACTION',
+    timestamp: entry.createdAt,
+    action: entry.action,
+    targetEntity: `${entry.targetEntity} ${entry.targetId}`,
+    status: 'SUCCESS',
+    oldValue: entry.oldValues,
+    newValue: entry.newValues,
+    referenceId: entry.adminId,
+  };
+}
+
+export async function fetchActivityFeed({ page = 0, pageSize = LEDGER_PAGE_SIZE } = {}) {
+  const [ledgerPage, auditPage] = await Promise.all([
+    request(`/api/admin/ledger?page=0&size=${ACTIVITY_FEED_FETCH_SIZE}`),
+    request(`/api/admin/audit-logs?page=0&size=${ACTIVITY_FEED_FETCH_SIZE}`),
+  ]);
+
+  const merged = [
+    ...ledgerPage.content.map(ledgerEntryToFeedRow),
+    ...auditPage.content.map(auditLogToFeedRow),
+  ].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
+  const totalElements = merged.length;
+  const totalPages = Math.max(1, Math.ceil(totalElements / pageSize));
+  const start = page * pageSize;
+  const content = merged.slice(start, start + pageSize);
+
+  return { content, page, pageSize, totalElements, totalPages };
+}
+
+// ---------------------------------------------------------------------------
+// Profiles & rate configuration
+// ---------------------------------------------------------------------------
+
+export async function fetchProfiles() {
+  return request('/api/v1/admin/profiles');
+}
+
+export async function createProfile({ profileName, description }, adminId) {
+  const created = await request('/api/v1/admin/profiles', {
+    method: 'POST',
+    adminId,
+    body: { profileName, description: description || null },
+  });
+  // The create endpoint returns the bare profile - a fresh tier has no rate override yet
+  // and no members, so normalize to the same shape the list endpoint returns.
+  return { ...created, config: null, memberCount: 0 };
+}
+
+export async function configureProfileRates(profileId, { earnRateCentsPerPoint, burnRatePointsPerCent }, adminId) {
+  return request(`/api/v1/admin/profiles/${profileId}/rates`, {
+    method: 'PUT',
+    adminId,
+    body: { earnRateCentsPerPoint, burnRatePointsPerCent },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Campaigns
+// ---------------------------------------------------------------------------
+
+export async function fetchCampaigns() {
+  return request('/api/admin/campaigns');
+}
+
+export async function createCampaign(payload, adminId) {
+  const { name, startTime, endTime, earnMultiplier, burnDiscountMultiplier } = payload;
+  return request('/api/admin/campaigns', {
+    method: 'POST',
+    adminId,
+    body: {
+      name,
+      startTime: new Date(startTime).toISOString(),
+      endTime: new Date(endTime).toISOString(),
+      earnMultiplier: Number(earnMultiplier),
+      burnDiscountMultiplier: Number(burnDiscountMultiplier),
+    },
+  });
+}
