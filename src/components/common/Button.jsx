@@ -4,7 +4,7 @@ import { Loader2 } from 'lucide-react';
 
 const VARIANT_STYLES = {
   primary:
-    'bg-emerald-500 text-slate-950 hover:bg-emerald-400 focus-visible:outline-emerald-400 disabled:bg-emerald-500/40',
+    'bg-[var(--brand)] text-slate-950 hover:bg-[var(--brand-hover)] focus-visible:outline-[var(--brand)] disabled:bg-[var(--brand-40)]',
   secondary:
     'bg-slate-700/80 text-slate-100 hover:bg-slate-700 focus-visible:outline-slate-400 disabled:bg-slate-700/40',
   ghost:

@@ -5,7 +5,13 @@ import InstitutionCard from './InstitutionCard.jsx';
 import LoadingSpinner from '../common/LoadingSpinner.jsx';
 import EmptyState from '../common/EmptyState.jsx';
 
-export function InstitutionGrid({ institutions, isLoading = false, onToggleStatus, updatingInstitutionId = null }) {
+export function InstitutionGrid({
+  institutions,
+  isLoading = false,
+  onToggleStatus,
+  onEditBranding,
+  updatingInstitutionId = null,
+}) {
   if (isLoading && institutions.length === 0) {
     return <LoadingSpinner label="Loading institutions…" />;
   }
@@ -27,6 +33,7 @@ export function InstitutionGrid({ institutions, isLoading = false, onToggleStatu
           key={institution.institutionId}
           institution={institution}
           onToggleStatus={onToggleStatus}
+          onEditBranding={onEditBranding}
           isUpdating={updatingInstitutionId === institution.institutionId}
         />
       ))}
@@ -43,6 +50,7 @@ InstitutionGrid.propTypes = {
   ).isRequired,
   isLoading: PropTypes.bool,
   onToggleStatus: PropTypes.func.isRequired,
+  onEditBranding: PropTypes.func.isRequired,
   updatingInstitutionId: PropTypes.string,
 };
 

@@ -3,6 +3,7 @@ import { PlusCircle } from 'lucide-react';
 import DashboardLayout from '../layouts/DashboardLayout.jsx';
 import InstitutionGrid from '../components/institutions/InstitutionGrid.jsx';
 import CreateInstitutionModal from '../components/institutions/CreateInstitutionModal.jsx';
+import EditBrandingModal from '../components/institutions/EditBrandingModal.jsx';
 import Button from '../components/common/Button.jsx';
 import { useAuth } from '../hooks/useAuth.js';
 import * as api from '../api/client.js';
@@ -15,6 +16,7 @@ export function InstitutionManagerView() {
   const [institutions, setInstitutions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [brandingInstitution, setBrandingInstitution] = useState(null);
   const [updatingInstitutionId, setUpdatingInstitutionId] = useState(null);
   const [statusError, setStatusError] = useState(null);
 
@@ -36,6 +38,12 @@ export function InstitutionManagerView() {
     const created = await api.createInstitution(payload, user.email);
     setInstitutions((prev) => [...prev, created].sort((a, b) => a.name.localeCompare(b.name)));
     return created;
+  };
+
+  const handleUpdateBranding = async (institutionId, payload) => {
+    const updated = await api.updateInstitutionBranding(institutionId, payload, user.email);
+    setInstitutions((prev) => prev.map((i) => (i.institutionId === updated.institutionId ? updated : i)));
+    return updated;
   };
 
   const handleToggleStatus = async (institution, nextStatus) => {
@@ -72,11 +80,18 @@ export function InstitutionManagerView() {
           institutions={institutions}
           isLoading={isLoading}
           onToggleStatus={handleToggleStatus}
+          onEditBranding={setBrandingInstitution}
           updatingInstitutionId={updatingInstitutionId}
         />
       </div>
 
       <CreateInstitutionModal isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} onCreate={handleCreate} />
+      <EditBrandingModal
+        isOpen={brandingInstitution !== null}
+        onClose={() => setBrandingInstitution(null)}
+        institution={brandingInstitution}
+        onSave={handleUpdateBranding}
+      />
     </DashboardLayout>
   );
 }

@@ -1,4 +1,4 @@
-import { LEDGER_PAGE_SIZE } from '../constants';
+import { LEDGER_PAGE_SIZE, WALLETS_PAGE_SIZE } from '../constants';
 import { getToken, notifyUnauthorized } from './authToken';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
@@ -144,6 +144,22 @@ export async function fetchActivityFeed({ page = 0, pageSize = LEDGER_PAGE_SIZE 
 }
 
 // ---------------------------------------------------------------------------
+// Wallets
+// ---------------------------------------------------------------------------
+
+export async function fetchWallets({ page = 0, size = WALLETS_PAGE_SIZE, sort = 'userId,asc' } = {}) {
+  return request(`/api/admin/wallets?page=${page}&size=${size}&sort=${sort}`);
+}
+
+export async function fetchWallet(userId) {
+  return request(`/api/v1/wallets/${userId}`);
+}
+
+export async function fetchWalletHistory(userId, { page = 0, size = WALLETS_PAGE_SIZE } = {}) {
+  return request(`/api/v1/wallets/${userId}/history?page=${page}&size=${size}&sort=createdAt,desc`);
+}
+
+// ---------------------------------------------------------------------------
 // Profiles & rate configuration
 // ---------------------------------------------------------------------------
 
@@ -214,5 +230,13 @@ export async function updateInstitutionStatus(institutionId, status, adminId) {
     method: 'PATCH',
     adminId,
     body: { status },
+  });
+}
+
+export async function updateInstitutionBranding(institutionId, { name, logoDataUrl, primaryColor }, adminId) {
+  return request(`/api/superadmin/institutions/${institutionId}/branding`, {
+    method: 'PATCH',
+    adminId,
+    body: { name, logoDataUrl, primaryColor },
   });
 }

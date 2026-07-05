@@ -12,6 +12,18 @@
   body {
     @apply bg-slate-900 text-slate-200 antialiased;
   }
+
+  :root {
+    /* Default brand accent (emerald-500) - the look before any institution has configured a
+       custom color, and while nobody is logged in yet (e.g. the login page). Overridden at
+       runtime by utils/theme.js's applyBrandTheme() once a user with institution branding
+       logs in. */
+    --brand: #10b981;
+    --brand-10: rgba(16, 185, 129, 0.1);
+    --brand-20: rgba(16, 185, 129, 0.2);
+    --brand-40: rgba(16, 185, 129, 0.4);
+    --brand-hover: rgba(16, 185, 129, 0.85);
+  }
 }
 
 @layer utilities {

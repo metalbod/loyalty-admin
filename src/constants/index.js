@@ -15,6 +15,7 @@ export const NETWORK_LATENCY_MS = { min: 250, max: 650 };
 // it gets a disjoint nav from every other role.
 export const NAV_ITEMS = [
   { path: '/', label: 'Live Transactions', icon: 'Activity', roles: ['ROLE_ADMIN'] },
+  { path: '/wallets', label: 'Wallets', icon: 'Wallet', roles: ['ROLE_ADMIN'] },
   { path: '/profiles', label: 'Tier Profiles', icon: 'Users', roles: ['ROLE_ADMIN'] },
   { path: '/campaigns', label: 'Campaigns', icon: 'CalendarClock', roles: ['ROLE_ADMIN'] },
   { path: '/superadmin/institutions', label: 'Institutions', icon: 'Building2', roles: ['ROLE_SUPERADMIN'] },
@@ -57,3 +58,4 @@ export const GLOBAL_RATES = {
 };
 
 export const LEDGER_PAGE_SIZE = 8;
+export const WALLETS_PAGE_SIZE = 8;

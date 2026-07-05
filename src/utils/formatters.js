@@ -4,6 +4,13 @@ export function formatPoints(value) {
   return `${sign}${n.toLocaleString()} pts`;
 }
 
+// Unlike formatPoints (a ledger delta, so it's signed), a wallet balance is a plain quantity -
+// no +/- prefix.
+export function formatBalance(value) {
+  const n = Number(value) || 0;
+  return `${n.toLocaleString()} pts`;
+}
+
 export function formatCents(cents) {
   const n = Number(cents) || 0;
   return `RM ${(n / 100).toFixed(2)}`;

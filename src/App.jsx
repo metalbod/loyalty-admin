@@ -1,6 +1,8 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import LiveTransactionsView from './views/LiveTransactionsView.jsx';
+import WalletsListView from './views/WalletsListView.jsx';
+import WalletDetailView from './views/WalletDetailView.jsx';
 import ProfileManagerView from './views/ProfileManagerView.jsx';
 import CampaignEditorView from './views/CampaignEditorView.jsx';
 import InstitutionManagerView from './views/InstitutionManagerView.jsx';
@@ -17,6 +19,22 @@ export function App() {
         element={
           <ProtectedRoute>
             <LiveTransactionsView />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/wallets"
+        element={
+          <ProtectedRoute>
+            <WalletsListView />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/wallets/:userId"
+        element={
+          <ProtectedRoute>
+            <WalletDetailView />
           </ProtectedRoute>
         }
       />

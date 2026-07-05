@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useEffect, useMemo, useState } from 
 import PropTypes from 'prop-types';
 import * as api from '../api/client';
 import { setToken, setUnauthorizedHandler } from '../api/authToken';
+import { applyBrandTheme, resetBrandTheme } from '../utils/theme.js';
 
 export const AuthContext = createContext(null);
 
@@ -16,20 +17,25 @@ export function AuthProvider({ children }) {
     const response = await api.login(email, password);
     setToken(response.token);
     setSessionExpired(false);
-    // institutionId/institutionName are null for a superadmin, who belongs to no institution.
+    // institutionId/institutionName/logoDataUrl/primaryColor are null for a superadmin, who
+    // belongs to no institution.
     const loggedInUser = {
       email: response.email,
       role: response.role,
       institutionId: response.institutionId,
       institutionName: response.institutionName,
+      logoDataUrl: response.logoDataUrl,
+      primaryColor: response.primaryColor,
     };
     setUser(loggedInUser);
+    applyBrandTheme(response.primaryColor);
     return loggedInUser;
   }, []);
 
   const logout = useCallback(() => {
     setToken(null);
     setUser(null);
+    resetBrandTheme();
   }, []);
 
   // Wired to the fetch interceptor: any request that comes back 401 (expired/invalid token)
@@ -39,6 +45,7 @@ export function AuthProvider({ children }) {
     setToken(null);
     setUser(null);
     setSessionExpired(true);
+    resetBrandTheme();
   }, []);
 
   useEffect(() => {

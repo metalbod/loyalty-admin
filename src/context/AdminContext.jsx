@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../api/client';
-import { LEDGER_PAGE_SIZE } from '../constants';
+import { LEDGER_PAGE_SIZE, WALLETS_PAGE_SIZE } from '../constants';
 import { useAuth } from '../hooks/useAuth.js';
 
 export const AdminContext = createContext(null);
@@ -33,6 +33,12 @@ export function AdminProvider({ children }) {
     totalPages: 1,
   });
   const [activityFeedLoading, setActivityFeedLoading] = useState(false);
+
+  const [wallets, setWallets] = useState({
+    content: [],
+    page: { number: 0, totalPages: 1, totalElements: 0 },
+  });
+  const [walletsLoading, setWalletsLoading] = useState(false);
 
   const refreshMetrics = useCallback(async () => {
     setMetricsLoading(true);
@@ -74,6 +80,16 @@ export function AdminProvider({ children }) {
     }
   }, []);
 
+  const loadWalletsPage = useCallback(async (page = 0, sort = 'userId,asc') => {
+    setWalletsLoading(true);
+    try {
+      const data = await api.fetchWallets({ page, size: WALLETS_PAGE_SIZE, sort });
+      setWallets(data);
+    } finally {
+      setWalletsLoading(false);
+    }
+  }, []);
+
   const addProfile = useCallback(async (payload) => {
     const created = await api.createProfile(payload, adminId);
     setProfiles((prev) => [...prev, created].sort((a, b) => a.profileName.localeCompare(b.profileName)));
@@ -110,6 +126,9 @@ export function AdminProvider({ children }) {
       activityFeed,
       activityFeedLoading,
       loadActivityPage,
+      wallets,
+      walletsLoading,
+      loadWalletsPage,
     }),
     [
       adminId,
@@ -128,6 +147,9 @@ export function AdminProvider({ children }) {
       activityFeed,
       activityFeedLoading,
       loadActivityPage,
+      wallets,
+      walletsLoading,
+      loadWalletsPage,
     ],
   );
 
