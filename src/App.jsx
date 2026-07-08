@@ -4,7 +4,10 @@ import LiveTransactionsView from './views/LiveTransactionsView.jsx';
 import WalletsListView from './views/WalletsListView.jsx';
 import WalletDetailView from './views/WalletDetailView.jsx';
 import ProfileManagerView from './views/ProfileManagerView.jsx';
+import PartnerManagerView from './views/PartnerManagerView.jsx';
+import PointsExchangeView from './views/PointsExchangeView.jsx';
 import CampaignEditorView from './views/CampaignEditorView.jsx';
+import GlobalSettingsView from './views/GlobalSettingsView.jsx';
 import InstitutionManagerView from './views/InstitutionManagerView.jsx';
 import LoginView from './views/LoginView.jsx';
 import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
@@ -47,10 +50,34 @@ export function App() {
         }
       />
       <Route
+        path="/partners"
+        element={
+          <ProtectedRoute>
+            <PartnerManagerView />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/points-exchange"
+        element={
+          <ProtectedRoute>
+            <PointsExchangeView />
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/campaigns"
         element={
           <ProtectedRoute>
             <CampaignEditorView />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <GlobalSettingsView />
           </ProtectedRoute>
         }
       />

@@ -22,8 +22,23 @@ export function AdminProvider({ children }) {
   const [profiles, setProfiles] = useState([]);
   const [profilesLoading, setProfilesLoading] = useState(false);
 
+  const [partners, setPartners] = useState([]);
+  const [partnersLoading, setPartnersLoading] = useState(false);
+
+  const [exchangeProviders, setExchangeProviders] = useState([]);
+  const [exchangeProvidersLoading, setExchangeProvidersLoading] = useState(false);
+
+  const [exchangeRequests, setExchangeRequests] = useState({
+    content: [],
+    page: { number: 0, totalPages: 1, totalElements: 0 },
+  });
+  const [exchangeRequestsLoading, setExchangeRequestsLoading] = useState(false);
+
   const [campaigns, setCampaigns] = useState([]);
   const [campaignsLoading, setCampaignsLoading] = useState(false);
+
+  const [configurations, setConfigurations] = useState([]);
+  const [configurationsLoading, setConfigurationsLoading] = useState(false);
 
   const [activityFeed, setActivityFeed] = useState({
     content: [],
@@ -60,6 +75,36 @@ export function AdminProvider({ children }) {
     }
   }, []);
 
+  const refreshPartners = useCallback(async () => {
+    setPartnersLoading(true);
+    try {
+      const data = await api.fetchPartners();
+      setPartners(data);
+    } finally {
+      setPartnersLoading(false);
+    }
+  }, []);
+
+  const refreshExchangeProviders = useCallback(async () => {
+    setExchangeProvidersLoading(true);
+    try {
+      const data = await api.fetchExchangeProviders();
+      setExchangeProviders(data);
+    } finally {
+      setExchangeProvidersLoading(false);
+    }
+  }, []);
+
+  const loadExchangeRequestsPage = useCallback(async (page = 0, status = undefined) => {
+    setExchangeRequestsLoading(true);
+    try {
+      const data = await api.fetchExchangeRequests({ page, status });
+      setExchangeRequests(data);
+    } finally {
+      setExchangeRequestsLoading(false);
+    }
+  }, []);
+
   const refreshCampaigns = useCallback(async () => {
     setCampaignsLoading(true);
     try {
@@ -69,6 +114,22 @@ export function AdminProvider({ children }) {
       setCampaignsLoading(false);
     }
   }, []);
+
+  const refreshConfigurations = useCallback(async () => {
+    setConfigurationsLoading(true);
+    try {
+      const data = await api.fetchConfigurations();
+      setConfigurations(data);
+    } finally {
+      setConfigurationsLoading(false);
+    }
+  }, []);
+
+  const updateConfigurationValue = useCallback(async (configKey, payload) => {
+    const updated = await api.updateConfiguration(configKey, payload, adminId);
+    setConfigurations((prev) => prev.map((c) => (c.configKey === configKey ? updated : c)));
+    return updated;
+  }, [adminId]);
 
   const loadActivityPage = useCallback(async (page = 0) => {
     setActivityFeedLoading(true);
@@ -102,6 +163,34 @@ export function AdminProvider({ children }) {
     return config;
   }, [adminId]);
 
+  const addPartner = useCallback(async (payload) => {
+    const created = await api.createPartner(payload, adminId);
+    setPartners((prev) => [...prev, created].sort((a, b) => a.partnerName.localeCompare(b.partnerName)));
+    return created;
+  }, [adminId]);
+
+  const updatePartnerRates = useCallback(async (partnerId, rates) => {
+    const config = await api.configurePartnerRates(partnerId, rates, adminId);
+    setPartners((prev) => prev.map((p) => (p.partnerId === partnerId ? { ...p, config } : p)));
+    return config;
+  }, [adminId]);
+
+  const createPartnerServiceAccount = useCallback(async (partnerId, payload) => {
+    return api.createPartnerServiceAccount(partnerId, payload, adminId);
+  }, [adminId]);
+
+  const addExchangeProvider = useCallback(async (payload) => {
+    const created = await api.createExchangeProvider(payload, adminId);
+    setExchangeProviders((prev) => [...prev, created].sort((a, b) => a.displayName.localeCompare(b.displayName)));
+    return created;
+  }, [adminId]);
+
+  const updateExchangeProviderConfig = useCallback(async (providerId, payload) => {
+    const updated = await api.updateExchangeProvider(providerId, payload, adminId);
+    setExchangeProviders((prev) => prev.map((p) => (p.providerId === providerId ? updated : p)));
+    return updated;
+  }, [adminId]);
+
   const addCampaign = useCallback(async (payload) => {
     const created = await api.createCampaign(payload, adminId);
     setCampaigns((prev) => [...prev, created].sort((a, b) => new Date(a.startTime) - new Date(b.startTime)));
@@ -119,10 +208,28 @@ export function AdminProvider({ children }) {
       refreshProfiles,
       addProfile,
       updateProfileRates,
+      partners,
+      partnersLoading,
+      refreshPartners,
+      addPartner,
+      updatePartnerRates,
+      createPartnerServiceAccount,
+      exchangeProviders,
+      exchangeProvidersLoading,
+      refreshExchangeProviders,
+      addExchangeProvider,
+      updateExchangeProviderConfig,
+      exchangeRequests,
+      exchangeRequestsLoading,
+      loadExchangeRequestsPage,
       campaigns,
       campaignsLoading,
       refreshCampaigns,
       addCampaign,
+      configurations,
+      configurationsLoading,
+      refreshConfigurations,
+      updateConfigurationValue,
       activityFeed,
       activityFeedLoading,
       loadActivityPage,
@@ -140,10 +247,28 @@ export function AdminProvider({ children }) {
       refreshProfiles,
       addProfile,
       updateProfileRates,
+      partners,
+      partnersLoading,
+      refreshPartners,
+      addPartner,
+      updatePartnerRates,
+      createPartnerServiceAccount,
+      exchangeProviders,
+      exchangeProvidersLoading,
+      refreshExchangeProviders,
+      addExchangeProvider,
+      updateExchangeProviderConfig,
+      exchangeRequests,
+      exchangeRequestsLoading,
+      loadExchangeRequestsPage,
       campaigns,
       campaignsLoading,
       refreshCampaigns,
       addCampaign,
+      configurations,
+      configurationsLoading,
+      refreshConfigurations,
+      updateConfigurationValue,
       activityFeed,
       activityFeedLoading,
       loadActivityPage,

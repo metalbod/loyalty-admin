@@ -16,7 +16,7 @@ function toRateOrNull(value) {
   return Number(value);
 }
 
-export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
+export function PartnerRateConfigModal({ isOpen, onClose, partner = null, onSave }) {
   const [earnRate, setEarnRate] = useState('');
   const [burnRate, setBurnRate] = useState('');
   const [pointsValidityDays, setPointsValidityDays] = useState('');
@@ -24,17 +24,17 @@ export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
   const { run, isSubmitting, error, reset } = useAsyncAction(onSave);
 
   useEffect(() => {
-    if (profile) {
-      setEarnRate(toInputValue(profile.config?.earnRateCentsPerPoint));
-      setBurnRate(toInputValue(profile.config?.burnRatePointsPerCent));
-      setPointsValidityDays(toInputValue(profile.config?.pointsValidityDays));
+    if (partner) {
+      setEarnRate(toInputValue(partner.config?.earnRateCentsPerPoint));
+      setBurnRate(toInputValue(partner.config?.burnRatePointsPerCent));
+      setPointsValidityDays(toInputValue(partner.config?.pointsValidityDays));
       setValidationError(null);
       reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profile]);
+  }, [partner]);
 
-  if (!profile) return null;
+  if (!partner) return null;
 
   const handleClose = () => {
     reset();
@@ -56,7 +56,7 @@ export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
     }
     setValidationError(null);
     try {
-      await run(profile.profileId, {
+      await run(partner.partnerId, {
         earnRateCentsPerPoint: parsedEarn,
         burnRatePointsPerCent: parsedBurn,
         pointsValidityDays: parsedValidity,
@@ -71,12 +71,12 @@ export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
     <Modal
       isOpen={isOpen}
       onClose={handleClose}
-      title={`Configure rates — ${profile.profileName}`}
-      subtitle="Leave a field blank to fall back to the global system rate."
+      title={`Configure rates — ${partner.partnerName}`}
+      subtitle="This rate replaces the wallet's tier rate entirely for transactions through this partner. Leave a field blank to fall back to the global system rate."
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          id="earnRate"
+          id="partnerEarnRate"
           type="number"
           min="1"
           step="1"
@@ -88,7 +88,7 @@ export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
           hint="Cents of spend required to earn 1 point. Lower is more generous."
         />
         <Input
-          id="burnRate"
+          id="partnerBurnRate"
           type="number"
           min="1"
           step="1"
@@ -100,7 +100,7 @@ export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
           hint="Points required to redeem 1 cent of discount. Lower is more generous."
         />
         <Input
-          id="pointsValidityDays"
+          id="partnerPointsValidityDays"
           type="number"
           min="0"
           step="1"
@@ -109,7 +109,7 @@ export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
           suffix="days"
           value={pointsValidityDays}
           onChange={(e) => setPointsValidityDays(e.target.value)}
-          hint="Days earned points stay valid before expiring. 0 means these points never expire."
+          hint="Days points earned through this partner stay valid before expiring. 0 means they never expire."
         />
 
         {validationError && <p className="text-xs text-rose-400">{validationError}</p>}
@@ -128,12 +128,12 @@ export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
   );
 }
 
-RateConfigModal.propTypes = {
+PartnerRateConfigModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  profile: PropTypes.shape({
-    profileId: PropTypes.string.isRequired,
-    profileName: PropTypes.string.isRequired,
+  partner: PropTypes.shape({
+    partnerId: PropTypes.string.isRequired,
+    partnerName: PropTypes.string.isRequired,
     config: PropTypes.shape({
       earnRateCentsPerPoint: PropTypes.number,
       burnRatePointsPerCent: PropTypes.number,
@@ -143,4 +143,4 @@ RateConfigModal.propTypes = {
   onSave: PropTypes.func.isRequired,
 };
 
-export default RateConfigModal;
+export default PartnerRateConfigModal;

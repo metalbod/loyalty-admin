@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Activity, Building2, CalendarClock, LogOut, ShieldCheck, Users, Wallet } from 'lucide-react';
+import { Activity, Building2, CalendarClock, Handshake, LogOut, Repeat, Settings, ShieldCheck, Users, Wallet } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { useAuth } from '../hooks/useAuth.js';
 import { initials } from '../utils/formatters.js';
 
-const ICONS = { Activity, Users, CalendarClock, Building2, Wallet };
+const ICONS = { Activity, Users, CalendarClock, Building2, Wallet, Handshake, Settings, Repeat };
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
 
 export function Sidebar() {

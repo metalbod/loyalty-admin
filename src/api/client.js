@@ -159,6 +159,10 @@ export async function fetchWalletHistory(userId, { page = 0, size = WALLETS_PAGE
   return request(`/api/v1/wallets/${userId}/history?page=${page}&size=${size}&sort=createdAt,desc`);
 }
 
+export async function fetchExpiringSummary(userId) {
+  return request(`/api/v1/wallets/${userId}/expiring-summary`);
+}
+
 // ---------------------------------------------------------------------------
 // Profiles & rate configuration
 // ---------------------------------------------------------------------------
@@ -178,11 +182,95 @@ export async function createProfile({ profileName, description }, adminId) {
   return { ...created, config: null, memberCount: 0 };
 }
 
-export async function configureProfileRates(profileId, { earnRateCentsPerPoint, burnRatePointsPerCent }, adminId) {
+export async function configureProfileRates(profileId,
+    { earnRateCentsPerPoint, burnRatePointsPerCent, pointsValidityDays }, adminId) {
   return request(`/api/v1/admin/profiles/${profileId}/rates`, {
     method: 'PUT',
     adminId,
-    body: { earnRateCentsPerPoint, burnRatePointsPerCent },
+    body: { earnRateCentsPerPoint, burnRatePointsPerCent, pointsValidityDays },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Channel partners, rate configuration & service accounts
+// ---------------------------------------------------------------------------
+
+export async function fetchPartners() {
+  return request('/api/v1/admin/partners');
+}
+
+export async function createPartner({ partnerName, description }, adminId) {
+  const created = await request('/api/v1/admin/partners', {
+    method: 'POST',
+    adminId,
+    body: { partnerName, description: description || null },
+  });
+  // The create endpoint returns the bare partner - a fresh partner has no rate override yet,
+  // so normalize to the same shape the list endpoint returns.
+  return { ...created, config: null };
+}
+
+export async function configurePartnerRates(partnerId,
+    { earnRateCentsPerPoint, burnRatePointsPerCent, pointsValidityDays }, adminId) {
+  return request(`/api/v1/admin/partners/${partnerId}/rates`, {
+    method: 'PUT',
+    adminId,
+    body: { earnRateCentsPerPoint, burnRatePointsPerCent, pointsValidityDays },
+  });
+}
+
+export async function createPartnerServiceAccount(partnerId, { email, password }, adminId) {
+  return request(`/api/v1/admin/partners/${partnerId}/service-account`, {
+    method: 'POST',
+    adminId,
+    body: { email, password },
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Points exchange: provider configuration + request visibility
+// ---------------------------------------------------------------------------
+
+export async function fetchExchangeProviders() {
+  return request('/api/v1/admin/exchange-providers');
+}
+
+export async function createExchangeProvider(
+    { providerCode, displayName, inboundPointsPerExternalUnit, outboundPointsPerExternalUnit }, adminId) {
+  return request('/api/v1/admin/exchange-providers', {
+    method: 'POST',
+    adminId,
+    body: { providerCode, displayName, inboundPointsPerExternalUnit, outboundPointsPerExternalUnit },
+  });
+}
+
+export async function updateExchangeProvider(providerId,
+    { displayName, inboundPointsPerExternalUnit, outboundPointsPerExternalUnit, active }, adminId) {
+  return request(`/api/v1/admin/exchange-providers/${providerId}`, {
+    method: 'PUT',
+    adminId,
+    body: { displayName, inboundPointsPerExternalUnit, outboundPointsPerExternalUnit, active },
+  });
+}
+
+export async function fetchExchangeRequests({ page = 0, size = WALLETS_PAGE_SIZE, status } = {}) {
+  const statusParam = status ? `&status=${status}` : '';
+  return request(`/api/admin/exchange-requests?page=${page}&size=${size}${statusParam}`);
+}
+
+// ---------------------------------------------------------------------------
+// Global system configuration (institution-wide fallback rates + points validity)
+// ---------------------------------------------------------------------------
+
+export async function fetchConfigurations() {
+  return request('/api/admin/configurations');
+}
+
+export async function updateConfiguration(configKey, { configValue, description }, adminId) {
+  return request(`/api/admin/configurations/${configKey}`, {
+    method: 'PUT',
+    adminId,
+    body: { configValue, description: description || null },
   });
 }
 

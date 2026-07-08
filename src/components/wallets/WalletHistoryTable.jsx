@@ -30,6 +30,7 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
               <th className="px-3 py-2.5 font-medium">Type</th>
               <th className="px-3 py-2.5 font-medium">Points</th>
               <th className="px-3 py-2.5 font-medium">Balance after</th>
+              <th className="px-3 py-2.5 font-medium">Points expiry</th>
               <th className="px-3 py-2.5 font-medium">Reference</th>
             </tr>
           </thead>
@@ -51,6 +52,11 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
                     {formatPoints(entry.pointsChanged)}
                   </td>
                   <td className="px-3 py-3 text-xs text-slate-300">{entry.runningBalance.toLocaleString()} pts</td>
+                  <td className="whitespace-nowrap px-3 py-3 text-xs text-slate-400">
+                    {/* Only EARN rows ever carry an expiry - expiresAt is null/absent on
+                        BURN/EXPIRED rows and on EARN rows configured to never expire. */}
+                    {entry.transactionType === 'EARN' ? formatDateTime(entry.expiresAt) : '—'}
+                  </td>
                   <td className="max-w-[220px] truncate px-3 py-3 text-xs text-slate-500" title={entry.referenceId}>
                     {entry.referenceId}
                   </td>

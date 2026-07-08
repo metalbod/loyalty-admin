@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Settings2, Users } from 'lucide-react';
+import { Settings2, UserPlus } from 'lucide-react';
 import Card from '../common/Card.jsx';
 import Badge from '../common/Badge.jsx';
 import Button from '../common/Button.jsx';
-import { GLOBAL_RATES, TIER_ACCENTS } from '../../constants';
+import { GLOBAL_RATES } from '../../constants';
 
 function RateRow({ label, overrideValue = null, globalValue, suffix }) {
   const usingOverride = overrideValue !== null && overrideValue !== undefined;
@@ -59,64 +59,56 @@ ValidityRow.propTypes = {
   globalValue: PropTypes.number.isRequired,
 };
 
-export function ProfileCard({ profile, onConfigureRates }) {
-  const accent = TIER_ACCENTS[profile.profileName] || TIER_ACCENTS.DEFAULT;
-
+export function PartnerCard({ partner, onConfigureRates, onCreateServiceAccount }) {
   return (
-    <Card className={`p-5 ring-1 ${accent.ring}`}>
+    <Card className="p-5 ring-1 ring-indigo-500/40">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2.5">
-          <span className={`h-2.5 w-2.5 rounded-full ${accent.dot}`} />
-          <h3 className={`text-base font-semibold ${accent.text}`}>{profile.profileName}</h3>
+          <span className="h-2.5 w-2.5 rounded-full bg-indigo-500" />
+          <h3 className="text-base font-semibold text-indigo-400">{partner.partnerName}</h3>
         </div>
-        <span className="flex items-center gap-1 text-xs text-slate-500">
-          <Users size={13} />
-          {profile.memberCount}
-        </span>
       </div>
 
       <p className="mt-2 min-h-[2.5rem] text-xs leading-relaxed text-slate-400">
-        {profile.description || 'No description provided.'}
+        {partner.description || 'No description provided.'}
       </p>
 
       <div className="mt-4 space-y-2">
         <RateRow
           label="Earn rate"
-          overrideValue={profile.config?.earnRateCentsPerPoint ?? null}
+          overrideValue={partner.config?.earnRateCentsPerPoint ?? null}
           globalValue={GLOBAL_RATES.earnRateCentsPerPoint}
           suffix="cents / point"
         />
         <RateRow
           label="Burn rate"
-          overrideValue={profile.config?.burnRatePointsPerCent ?? null}
+          overrideValue={partner.config?.burnRatePointsPerCent ?? null}
           globalValue={GLOBAL_RATES.burnRatePointsPerCent}
           suffix="points / cent"
         />
         <ValidityRow
-          overrideValue={profile.config?.pointsValidityDays ?? null}
+          overrideValue={partner.config?.pointsValidityDays ?? null}
           globalValue={GLOBAL_RATES.pointsValidityDays}
         />
       </div>
 
-      <Button
-        variant="secondary"
-        icon={Settings2}
-        fullWidth
-        className="mt-4"
-        onClick={() => onConfigureRates(profile)}
-      >
-        Configure rates
-      </Button>
+      <div className="mt-4 flex gap-2">
+        <Button variant="secondary" icon={Settings2} fullWidth onClick={() => onConfigureRates(partner)}>
+          Configure rates
+        </Button>
+        <Button variant="secondary" icon={UserPlus} fullWidth onClick={() => onCreateServiceAccount(partner)}>
+          Service account
+        </Button>
+      </div>
     </Card>
   );
 }
 
-ProfileCard.propTypes = {
-  profile: PropTypes.shape({
-    profileId: PropTypes.string.isRequired,
-    profileName: PropTypes.string.isRequired,
+PartnerCard.propTypes = {
+  partner: PropTypes.shape({
+    partnerId: PropTypes.string.isRequired,
+    partnerName: PropTypes.string.isRequired,
     description: PropTypes.string,
-    memberCount: PropTypes.number,
     config: PropTypes.shape({
       earnRateCentsPerPoint: PropTypes.number,
       burnRatePointsPerCent: PropTypes.number,
@@ -124,6 +116,7 @@ ProfileCard.propTypes = {
     }),
   }).isRequired,
   onConfigureRates: PropTypes.func.isRequired,
+  onCreateServiceAccount: PropTypes.func.isRequired,
 };
 
-export default ProfileCard;
+export default PartnerCard;

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Wallet } from 'lucide-react';
+import { ArrowLeft, Clock, Wallet } from 'lucide-react';
 import DashboardLayout from '../layouts/DashboardLayout.jsx';
 import Card from '../components/common/Card.jsx';
 import Button from '../components/common/Button.jsx';
@@ -8,7 +8,16 @@ import LoadingSpinner from '../components/common/LoadingSpinner.jsx';
 import WalletHistoryTable from '../components/wallets/WalletHistoryTable.jsx';
 import * as api from '../api/client';
 import { TIER_ACCENTS } from '../constants';
-import { formatBalance } from '../utils/formatters.js';
+import { formatBalance, formatPoints } from '../utils/formatters.js';
+
+const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+  'September', 'October', 'November', 'December'];
+
+function monthName(offsetFromNow) {
+  const date = new Date();
+  date.setMonth(date.getMonth() + offsetFromNow);
+  return MONTH_NAMES[date.getMonth()];
+}
 
 export function WalletDetailView() {
   const { userId } = useParams();
@@ -17,6 +26,8 @@ export function WalletDetailView() {
   const [wallet, setWallet] = useState(null);
   const [walletLoading, setWalletLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [expiringSummary, setExpiringSummary] = useState(null);
 
   const [history, setHistory] = useState(null);
   const [historyLoading, setHistoryLoading] = useState(false);
@@ -40,6 +51,11 @@ export function WalletDetailView() {
         const data = await api.fetchWallet(userId);
         if (cancelled) return;
         setWallet(data);
+        // Best-effort - the wallet balance above is the important part; a failure here
+        // shouldn't block the rest of the page.
+        api.fetchExpiringSummary(userId).then((summary) => {
+          if (!cancelled) setExpiringSummary(summary);
+        }).catch(() => {});
       } catch (err) {
         if (cancelled) return;
         setError(err instanceof api.ApiError ? err.message : 'Something went wrong loading this wallet.');
@@ -79,6 +95,29 @@ export function WalletDetailView() {
                 <span className={`h-2 w-2 rounded-full ${accent.dot}`} />
                 <span className={accent.text}>{wallet.profileName}</span>
               </span>
+            </div>
+          </Card>
+        )}
+
+        {!walletLoading && !error && expiringSummary
+          && (expiringSummary.expiringThisMonth > 0 || expiringSummary.expiringNextMonth > 0) && (
+          <Card className="p-6 ring-1 ring-amber-500/30">
+            <p className="mb-3 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-amber-400">
+              <Clock size={13} /> Expiring soon
+            </p>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-lg font-semibold text-slate-100">
+                  {formatPoints(expiringSummary.expiringThisMonth)}
+                </p>
+                <p className="text-xs text-slate-500">by end of {monthName(0)}</p>
+              </div>
+              <div>
+                <p className="text-lg font-semibold text-slate-100">
+                  {formatPoints(expiringSummary.expiringNextMonth)}
+                </p>
+                <p className="text-xs text-slate-500">by end of {monthName(1)}</p>
+              </div>
             </div>
           </Card>
         )}

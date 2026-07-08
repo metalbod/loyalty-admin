@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import DashboardLayout from '../layouts/DashboardLayout.jsx';
 import MetricsGrid from '../components/ledger/MetricsGrid.jsx';
+import ApiUsageCard from '../components/ledger/ApiUsageCard.jsx';
 import LedgerTable from '../components/ledger/LedgerTable.jsx';
 import { useAdminContext } from '../hooks/useAdminContext.js';
 
@@ -21,6 +22,7 @@ export function LiveTransactionsView() {
     >
       <div className="space-y-6">
         <MetricsGrid metrics={metrics} isLoading={metricsLoading} />
+        <ApiUsageCard metrics={metrics} isLoading={metricsLoading} />
         <LedgerTable feed={activityFeed} isLoading={activityFeedLoading} onPageChange={loadActivityPage} />
       </div>
     </DashboardLayout>
