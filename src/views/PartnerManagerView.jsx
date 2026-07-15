@@ -24,6 +24,7 @@ export function PartnerManagerView() {
 
   useEffect(() => {
     refreshPartners();
+    // Load once on mount; refreshPartners reference changes on each render so can't be in deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

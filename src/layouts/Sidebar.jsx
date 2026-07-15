@@ -13,6 +13,7 @@ export function Sidebar() {
   const { user, logout } = useAuth();
   const { refreshFeatureFlags, isFeatureEnabled } = useAdminContext();
 
+  // Load once on mount; refreshFeatureFlags reference changes on each render so can't be in deps
   // Only institution admins have feature flags to fetch - a superadmin's token has no
   // institution and would 403 against /api/admin/feature-flags (ROLE_ADMIN only).
   useEffect(() => {

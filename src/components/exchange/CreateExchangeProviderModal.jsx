@@ -5,14 +5,10 @@ import Modal from '../common/Modal.jsx';
 import Input from '../common/Input.jsx';
 import Button from '../common/Button.jsx';
 import { useAsyncAction } from '../../hooks/useAsyncAction.js';
+import { toRateOrNull } from '../../utils/formConverters.js';
 
 const MAX_CODE_LENGTH = 50;
 const MAX_NAME_LENGTH = 100;
-
-function toRateOrNull(value) {
-  if (value === '' || value === null || value === undefined) return null;
-  return Number(value);
-}
 
 export function CreateExchangeProviderModal({ isOpen, onClose, onCreate }) {
   const [providerCode, setProviderCode] = useState('');

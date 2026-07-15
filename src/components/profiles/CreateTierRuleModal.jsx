@@ -51,6 +51,7 @@ export function CreateTierRuleModal({ isOpen, onClose, fromProfile = null, profi
       setValidationError(null);
       reset();
     }
+    // Effect should only re-run when fromProfile changes, not on reset function updates (which would cause loops)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fromProfile]);
 

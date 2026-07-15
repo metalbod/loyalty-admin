@@ -5,17 +5,9 @@ import Modal from '../common/Modal.jsx';
 import Input from '../common/Input.jsx';
 import Button from '../common/Button.jsx';
 import { useAsyncAction } from '../../hooks/useAsyncAction.js';
+import { toInputValue, toRateOrNull } from '../../utils/formConverters.js';
 
 const MAX_NAME_LENGTH = 100;
-
-function toInputValue(value) {
-  return value === null || value === undefined ? '' : String(value);
-}
-
-function toRateOrNull(value) {
-  if (value === '' || value === null || value === undefined) return null;
-  return Number(value);
-}
 
 export function EditExchangeProviderModal({ isOpen, onClose, provider = null, onSave }) {
   const [displayName, setDisplayName] = useState('');
@@ -34,6 +26,7 @@ export function EditExchangeProviderModal({ isOpen, onClose, provider = null, on
       setValidationError(null);
       reset();
     }
+    // Effect should only re-run when provider changes, not on reset function updates (which would cause loops)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [provider]);
 

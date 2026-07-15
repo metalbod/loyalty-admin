@@ -26,6 +26,7 @@ function ChangeTierControl({ wallet, onChanged }) {
     if (profiles.length === 0) {
       refreshProfiles();
     }
+    // Load profiles once on mount if not already loaded; refreshProfiles reference changes on each render so can't be in deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -9,6 +9,7 @@ export function CampaignEditorView() {
 
   useEffect(() => {
     refreshCampaigns();
+    // Load once on mount; refreshCampaigns reference changes on each render so can't be in deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

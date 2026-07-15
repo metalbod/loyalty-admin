@@ -18,6 +18,7 @@ export function WalletsListView() {
 
   useEffect(() => {
     loadWalletsPage(0, `${SORT_PROPERTY[sortField]},${sortDirection}`);
+    // Reload page when sort field/direction changes; loadWalletsPage reference changes on each render so can't be in deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortField, sortDirection]);
 

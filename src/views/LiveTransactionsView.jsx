@@ -12,6 +12,7 @@ export function LiveTransactionsView() {
   useEffect(() => {
     refreshMetrics();
     loadActivityPage(0);
+    // Load once on mount; context function references change on each render so can't be in deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

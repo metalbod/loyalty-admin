@@ -21,6 +21,7 @@ export function CreatePartnerServiceAccountModal({ isOpen, onClose, partner = nu
       setCreated(null);
       reset();
     }
+    // Effect should only re-run when partner changes, not on reset function updates (which would cause loops)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partner]);
 

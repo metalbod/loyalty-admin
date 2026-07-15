@@ -40,6 +40,7 @@ function ConfigurationRow({ configuration, onSave }) {
     setValue(String(configuration.configValue));
     setValidationError(null);
     reset();
+    // Effect should only re-run when configValue changes, not on reset function updates (which would cause loops)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [configuration.configValue]);
 
@@ -95,6 +96,7 @@ export function GlobalSettingsView() {
 
   useEffect(() => {
     refreshConfigurations();
+    // Load once on mount; refreshConfigurations reference changes on each render so can't be in deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

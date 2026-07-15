@@ -6,15 +6,7 @@ import Input from '../common/Input.jsx';
 import Button from '../common/Button.jsx';
 import { useAsyncAction } from '../../hooks/useAsyncAction.js';
 import { GLOBAL_RATES } from '../../constants';
-
-function toInputValue(value) {
-  return value === null || value === undefined ? '' : String(value);
-}
-
-function toRateOrNull(value) {
-  if (value === '' || value === null || value === undefined) return null;
-  return Number(value);
-}
+import { toInputValue, toRateOrNull } from '../../utils/formConverters.js';
 
 export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
   const [earnRate, setEarnRate] = useState('');
@@ -31,6 +23,7 @@ export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
       setValidationError(null);
       reset();
     }
+    // Effect should only re-run when profile changes, not on reset function updates (which would cause loops)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
 
