@@ -1,14 +1,72 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Clock, Wallet } from 'lucide-react';
+import { ArrowLeft, Check, Clock, Wallet } from 'lucide-react';
 import DashboardLayout from '../layouts/DashboardLayout.jsx';
 import Card from '../components/common/Card.jsx';
 import Button from '../components/common/Button.jsx';
 import LoadingSpinner from '../components/common/LoadingSpinner.jsx';
 import WalletHistoryTable from '../components/wallets/WalletHistoryTable.jsx';
 import * as api from '../api/client';
+import { useAdminContext } from '../hooks/useAdminContext.js';
+import { useAsyncAction } from '../hooks/useAsyncAction.js';
+import { useAuth } from '../hooks/useAuth.js';
 import { TIER_ACCENTS } from '../constants';
 import { formatBalance, formatPoints } from '../utils/formatters.js';
+
+const SELECT_CLASSNAME = 'rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs text-slate-900 '
+  + 'focus:outline-none focus:ring-2 focus:ring-emerald-500/30';
+
+function ChangeTierControl({ wallet, onChanged }) {
+  const { profiles, refreshProfiles } = useAdminContext();
+  const { user } = useAuth();
+  const [profileId, setProfileId] = useState('');
+  const { run, isSubmitting, error, reset } = useAsyncAction(api.changeWalletProfile);
+
+  useEffect(() => {
+    if (profiles.length === 0) {
+      refreshProfiles();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const otherProfiles = profiles.filter((p) => p.profileName !== wallet.profileName);
+
+  const handleConfirm = async () => {
+    if (!profileId) return;
+    reset();
+    await run(wallet.userId, profileId, user?.email);
+    setProfileId('');
+    onChanged();
+  };
+
+  if (otherProfiles.length === 0) return null;
+
+  return (
+    <div className="flex items-center gap-2">
+      <select
+        value={profileId}
+        onChange={(e) => setProfileId(e.target.value)}
+        className={SELECT_CLASSNAME}
+      >
+        <option value="">Change tier to…</option>
+        {otherProfiles.map((p) => (
+          <option key={p.profileId} value={p.profileId}>{p.profileName}</option>
+        ))}
+      </select>
+      <Button
+        variant="secondary"
+        icon={Check}
+        disabled={!profileId}
+        isLoading={isSubmitting}
+        onClick={handleConfirm}
+        className="!px-2.5 !py-1.5 text-xs"
+      >
+        Confirm
+      </Button>
+      {error && <p className="text-xs text-rose-600">{error}</p>}
+    </div>
+  );
+}
 
 const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
   'September', 'October', 'November', 'December'];
@@ -40,6 +98,11 @@ export function WalletDetailView() {
     } finally {
       setHistoryLoading(false);
     }
+  }, [userId]);
+
+  const loadWallet = useCallback(async () => {
+    const data = await api.fetchWallet(userId);
+    setWallet(data);
   }, [userId]);
 
   useEffect(() => {
@@ -84,18 +147,21 @@ export function WalletDetailView() {
         {!walletLoading && error && <Card className="p-6 text-sm text-rose-600">{error}</Card>}
 
         {!walletLoading && !error && wallet && (
-          <Card className={`flex items-center gap-4 p-6 ring-1 ${accent.ring}`}>
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-emerald-600">
-              <Wallet size={22} />
-            </span>
-            <div>
-              <p className="text-xs text-slate-500">User #{wallet.userId}</p>
-              <p className="text-xl font-semibold text-slate-900">{formatBalance(wallet.currentBalance)}</p>
-              <span className="mt-1 flex items-center gap-1.5 text-xs font-medium">
-                <span className={`h-2 w-2 rounded-full ${accent.dot}`} />
-                <span className={accent.text}>{wallet.profileName}</span>
+          <Card className={`flex flex-wrap items-center justify-between gap-4 p-6 ring-1 ${accent.ring}`}>
+            <div className="flex items-center gap-4">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-emerald-600">
+                <Wallet size={22} />
               </span>
+              <div>
+                <p className="text-xs text-slate-500">User #{wallet.userId}</p>
+                <p className="text-xl font-semibold text-slate-900">{formatBalance(wallet.currentBalance)}</p>
+                <span className="mt-1 flex items-center gap-1.5 text-xs font-medium">
+                  <span className={`h-2 w-2 rounded-full ${accent.dot}`} />
+                  <span className={accent.text}>{wallet.profileName}</span>
+                </span>
+              </div>
             </div>
+            <ChangeTierControl wallet={wallet} onChanged={loadWallet} />
           </Card>
         )}
 

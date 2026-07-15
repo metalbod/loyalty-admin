@@ -8,12 +8,17 @@ import Button from '../components/common/Button.jsx';
 import { useAdminContext } from '../hooks/useAdminContext.js';
 
 export function ProfileManagerView() {
-  const { profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates } = useAdminContext();
+  const { profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates, partners, refreshPartners } =
+    useAdminContext();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [rateConfigProfile, setRateConfigProfile] = useState(null);
 
   useEffect(() => {
     refreshProfiles();
+    // Tier rules can reference a channel partner, so the "From" dropdown on the create-rule
+    // modal needs the partner list too - fetched here rather than by TierRulesSection itself,
+    // same as AdminContext's other lazily-populated lists.
+    refreshPartners();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -31,6 +36,7 @@ export function ProfileManagerView() {
 
         <ProfileGrid
           profiles={profiles}
+          partners={partners}
           isLoading={profilesLoading}
           onConfigureRates={setRateConfigProfile}
         />

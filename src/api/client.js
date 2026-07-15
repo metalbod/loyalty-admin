@@ -192,6 +192,43 @@ export async function configureProfileRates(profileId,
 }
 
 // ---------------------------------------------------------------------------
+// Tier promotion rules - automatic upward tier movement based on EARN activity.
+// There's no automatic demotion; see changeWalletProfile below for the manual path.
+// ---------------------------------------------------------------------------
+
+export async function fetchTierRules(profileId) {
+  return request(`/api/v1/admin/profiles/${profileId}/tier-rules`);
+}
+
+export async function createTierRule(profileId,
+    { toProfileId, metricType, partnerId, threshold, windowDays }, adminId) {
+  return request(`/api/v1/admin/profiles/${profileId}/tier-rules`, {
+    method: 'POST',
+    adminId,
+    body: { toProfileId, metricType, partnerId: partnerId || null, threshold, windowDays },
+  });
+}
+
+export async function deleteTierRule(profileId, ruleId, adminId) {
+  return request(`/api/v1/admin/profiles/${profileId}/tier-rules/${ruleId}`, {
+    method: 'DELETE',
+    adminId,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Manual wallet tier reassignment (admin-only) - the deliberate demotion path.
+// ---------------------------------------------------------------------------
+
+export async function changeWalletProfile(userId, profileId, adminId) {
+  return request(`/api/v1/wallets/${userId}/profile`, {
+    method: 'PUT',
+    adminId,
+    body: { profileId },
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Channel partners, rate configuration & service accounts
 // ---------------------------------------------------------------------------
 

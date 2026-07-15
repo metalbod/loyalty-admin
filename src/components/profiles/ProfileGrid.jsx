@@ -5,7 +5,7 @@ import ProfileCard from './ProfileCard.jsx';
 import LoadingSpinner from '../common/LoadingSpinner.jsx';
 import EmptyState from '../common/EmptyState.jsx';
 
-export function ProfileGrid({ profiles, isLoading = false, onConfigureRates }) {
+export function ProfileGrid({ profiles, partners = [], isLoading = false, onConfigureRates }) {
   if (isLoading && profiles.length === 0) {
     return <LoadingSpinner label="Loading profiles…" />;
   }
@@ -23,7 +23,13 @@ export function ProfileGrid({ profiles, isLoading = false, onConfigureRates }) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {profiles.map((profile) => (
-        <ProfileCard key={profile.profileId} profile={profile} onConfigureRates={onConfigureRates} />
+        <ProfileCard
+          key={profile.profileId}
+          profile={profile}
+          profiles={profiles}
+          partners={partners}
+          onConfigureRates={onConfigureRates}
+        />
       ))}
     </div>
   );
@@ -36,6 +42,12 @@ ProfileGrid.propTypes = {
       profileName: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  partners: PropTypes.arrayOf(
+    PropTypes.shape({
+      partnerId: PropTypes.string.isRequired,
+      partnerName: PropTypes.string.isRequired,
+    }),
+  ),
   isLoading: PropTypes.bool,
   onConfigureRates: PropTypes.func.isRequired,
 };

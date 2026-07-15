@@ -4,6 +4,7 @@ import { Settings2, Users } from 'lucide-react';
 import Card from '../common/Card.jsx';
 import Badge from '../common/Badge.jsx';
 import Button from '../common/Button.jsx';
+import TierRulesSection from './TierRulesSection.jsx';
 import { GLOBAL_RATES, TIER_ACCENTS } from '../../constants';
 
 function RateRow({ label, overrideValue = null, globalValue, suffix }) {
@@ -59,7 +60,7 @@ ValidityRow.propTypes = {
   globalValue: PropTypes.number.isRequired,
 };
 
-export function ProfileCard({ profile, onConfigureRates }) {
+export function ProfileCard({ profile, profiles, partners, onConfigureRates }) {
   const accent = TIER_ACCENTS[profile.profileName] || TIER_ACCENTS.DEFAULT;
 
   return (
@@ -107,6 +108,8 @@ export function ProfileCard({ profile, onConfigureRates }) {
       >
         Configure rates
       </Button>
+
+      <TierRulesSection profile={profile} profiles={profiles} partners={partners} />
     </Card>
   );
 }
@@ -123,6 +126,14 @@ ProfileCard.propTypes = {
       pointsValidityDays: PropTypes.number,
     }),
   }).isRequired,
+  profiles: PropTypes.arrayOf(PropTypes.shape({
+    profileId: PropTypes.string.isRequired,
+    profileName: PropTypes.string.isRequired,
+  })).isRequired,
+  partners: PropTypes.arrayOf(PropTypes.shape({
+    partnerId: PropTypes.string.isRequired,
+    partnerName: PropTypes.string.isRequired,
+  })).isRequired,
   onConfigureRates: PropTypes.func.isRequired,
 };
 
