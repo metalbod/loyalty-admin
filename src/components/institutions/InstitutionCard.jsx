@@ -13,7 +13,7 @@ export function InstitutionCard({ institution, onToggleStatus, onEditBranding, i
     <Card className="p-5">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2.5">
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-sky-500/10 text-sky-400">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-sky-50 text-sky-600">
             {institution.logoDataUrl ? (
               <img src={institution.logoDataUrl} alt="" className="h-full w-full object-contain" />
             ) : (
@@ -21,7 +21,7 @@ export function InstitutionCard({ institution, onToggleStatus, onEditBranding, i
             )}
           </span>
           <div>
-            <h3 className="text-sm font-semibold text-slate-100">{institution.name}</h3>
+            <h3 className="text-sm font-semibold text-slate-900">{institution.name}</h3>
             <p className="text-xs text-slate-500">{institution.slug}</p>
           </div>
         </div>
@@ -32,7 +32,7 @@ export function InstitutionCard({ institution, onToggleStatus, onEditBranding, i
         <p className="text-xs text-slate-500">Created {formatDateTime(institution.createdAt)}</p>
         {institution.primaryColor && (
           <span
-            className="h-3.5 w-3.5 shrink-0 rounded-full border border-slate-600"
+            className="h-3.5 w-3.5 shrink-0 rounded-full border border-slate-300"
             style={{ backgroundColor: institution.primaryColor }}
             title={`Accent color: ${institution.primaryColor}`}
           />

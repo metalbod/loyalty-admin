@@ -37,18 +37,18 @@ export function LoginView() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-900 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
       <Card className="w-full max-w-sm p-6">
         <div className="mb-6 flex flex-col items-center text-center">
-          <span className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-emerald-400">
+          <span className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-600">
             <ShieldCheck size={22} />
           </span>
-          <h1 className="text-base font-semibold text-slate-100">Loyalty Admin</h1>
+          <h1 className="text-base font-semibold text-slate-900">Loyalty Admin</h1>
           <p className="mt-0.5 text-xs text-slate-500">Sign in to the back-office console</p>
         </div>
 
         {sessionExpired && (
-          <p className="mb-4 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-xs text-amber-400">
+          <p className="mb-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-600">
             Your session has expired. Please log in again.
           </p>
         )}
@@ -78,7 +78,7 @@ export function LoginView() {
             }}
           />
 
-          {error && <p className="text-xs text-rose-400">{error}</p>}
+          {error && <p className="text-xs text-rose-600">{error}</p>}
 
           <Button type="submit" icon={LogIn} isLoading={isSubmitting} fullWidth>
             Sign in

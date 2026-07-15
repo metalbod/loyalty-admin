@@ -40,7 +40,7 @@ export function LedgerTable({ feed = null, isLoading = false, onPageChange }) {
       <div className="overflow-x-auto">
         <table className="w-full min-w-[840px] border-collapse text-left text-sm">
           <thead>
-            <tr className="border-b border-slate-700/80 text-xs uppercase tracking-wide text-slate-500">
+            <tr className="border-b border-slate-200 text-xs uppercase tracking-wide text-slate-500">
               <th className="px-5 py-2.5 font-medium">Timestamp</th>
               <th className="px-3 py-2.5 font-medium">Source</th>
               <th className="px-3 py-2.5 font-medium">Action</th>
@@ -54,8 +54,8 @@ export function LedgerTable({ feed = null, isLoading = false, onPageChange }) {
               const actionMeta = ACTION_ICONS[row.action] || { icon: Sparkles, variant: 'slate' };
               const ActionIcon = actionMeta.icon;
               return (
-                <tr key={row.id} className="border-b border-slate-800 last:border-0 hover:bg-slate-800/40">
-                  <td className="whitespace-nowrap px-5 py-3 text-xs text-slate-400">
+                <tr key={row.id} className="border-b border-slate-200 last:border-0 hover:bg-slate-50">
+                  <td className="whitespace-nowrap px-5 py-3 text-xs text-slate-500">
                     {formatDateTime(row.timestamp)}
                   </td>
                   <td className="px-3 py-3">
@@ -66,7 +66,7 @@ export function LedgerTable({ feed = null, isLoading = false, onPageChange }) {
                       {row.action}
                     </Badge>
                   </td>
-                  <td className="px-3 py-3 text-xs font-medium text-slate-200">{row.targetEntity}</td>
+                  <td className="px-3 py-3 text-xs font-medium text-slate-800">{row.targetEntity}</td>
                   <td className="px-3 py-3">
                     <Badge variant={row.status === 'SUCCESS' ? 'emerald' : 'rose'}>{row.status}</Badge>
                   </td>

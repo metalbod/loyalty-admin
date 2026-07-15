@@ -9,10 +9,10 @@ import { GLOBAL_RATES, TIER_ACCENTS } from '../../constants';
 function RateRow({ label, overrideValue = null, globalValue, suffix }) {
   const usingOverride = overrideValue !== null && overrideValue !== undefined;
   return (
-    <div className="flex items-center justify-between rounded-lg bg-slate-900/60 px-3 py-2">
-      <span className="text-xs text-slate-400">{label}</span>
+    <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
+      <span className="text-xs text-slate-500">{label}</span>
       <div className="text-right">
-        <p className="text-sm font-semibold text-slate-100">
+        <p className="text-sm font-semibold text-slate-900">
           {usingOverride ? overrideValue : globalValue} <span className="text-xs font-normal text-slate-500">{suffix}</span>
         </p>
         {usingOverride ? (
@@ -40,10 +40,10 @@ function ValidityRow({ overrideValue = null, globalValue }) {
   const usingOverride = overrideValue !== null && overrideValue !== undefined;
   const effective = usingOverride ? overrideValue : globalValue;
   return (
-    <div className="flex items-center justify-between rounded-lg bg-slate-900/60 px-3 py-2">
-      <span className="text-xs text-slate-400">Points validity</span>
+    <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
+      <span className="text-xs text-slate-500">Points validity</span>
       <div className="text-right">
-        <p className="text-sm font-semibold text-slate-100">{formatValidityDays(effective)}</p>
+        <p className="text-sm font-semibold text-slate-900">{formatValidityDays(effective)}</p>
         {usingOverride ? (
           <Badge variant="emerald" className="mt-0.5">Override</Badge>
         ) : (
@@ -75,7 +75,7 @@ export function ProfileCard({ profile, onConfigureRates }) {
         </span>
       </div>
 
-      <p className="mt-2 min-h-[2.5rem] text-xs leading-relaxed text-slate-400">
+      <p className="mt-2 min-h-[2.5rem] text-xs leading-relaxed text-slate-500">
         {profile.description || 'No description provided.'}
       </p>
 

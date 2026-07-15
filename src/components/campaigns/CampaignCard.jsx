@@ -15,7 +15,7 @@ export function CampaignCard({ campaign, isEffectiveEarn = false, isEffectiveBur
     <Card accent={isHighlighted} className="p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-sm font-semibold text-slate-100">{campaign.name}</h3>
+          <h3 className="text-sm font-semibold text-slate-900">{campaign.name}</h3>
           <p className="mt-1 flex items-center gap-1 text-xs text-slate-500">
             <CalendarClock size={12} />
             {formatDateTime(campaign.startTime)} → {formatDateTime(campaign.endTime)}
@@ -33,22 +33,22 @@ export function CampaignCard({ campaign, isEffectiveEarn = false, isEffectiveBur
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2">
-        <div className="rounded-lg bg-slate-900/60 px-3 py-2">
+        <div className="rounded-lg bg-slate-50 px-3 py-2">
           <p className="flex items-center gap-1 text-[11px] uppercase tracking-wide text-slate-500">
             <TrendingUp size={11} /> Earn
           </p>
-          <p className="mt-0.5 text-sm font-semibold text-slate-100">{formatMultiplier(campaign.earnMultiplier)}</p>
+          <p className="mt-0.5 text-sm font-semibold text-slate-900">{formatMultiplier(campaign.earnMultiplier)}</p>
           {isEffectiveEarn && (
             <Badge variant="emerald" className="mt-1">
               Effective now
             </Badge>
           )}
         </div>
-        <div className="rounded-lg bg-slate-900/60 px-3 py-2">
+        <div className="rounded-lg bg-slate-50 px-3 py-2">
           <p className="flex items-center gap-1 text-[11px] uppercase tracking-wide text-slate-500">
             <TrendingDown size={11} /> Burn discount
           </p>
-          <p className="mt-0.5 text-sm font-semibold text-slate-100">
+          <p className="mt-0.5 text-sm font-semibold text-slate-900">
             {formatMultiplier(campaign.burnDiscountMultiplier)}
           </p>
           {isEffectiveBurn && (

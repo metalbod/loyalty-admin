@@ -59,7 +59,7 @@ function ConfigurationRow({ configuration, onSave }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-end gap-3 border-b border-slate-700/60 px-5 py-4 last:border-b-0">
+    <form onSubmit={handleSubmit} className="flex items-end gap-3 border-b border-slate-200 px-5 py-4 last:border-b-0">
       <div className="flex-1">
         <Input
           id={`config-${configuration.configKey}`}

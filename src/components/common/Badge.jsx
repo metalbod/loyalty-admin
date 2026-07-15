@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const VARIANT_STYLES = {
-  emerald: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/40',
-  amber: 'bg-amber-500/10 text-amber-400 border-amber-500/40',
-  rose: 'bg-rose-500/10 text-rose-400 border-rose-500/40',
-  sky: 'bg-sky-500/10 text-sky-400 border-sky-500/40',
-  slate: 'bg-slate-500/10 text-slate-400 border-slate-500/40',
-  fuchsia: 'bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/40',
+  emerald: 'bg-emerald-50 text-emerald-600 border-emerald-200',
+  amber: 'bg-amber-50 text-amber-600 border-amber-200',
+  rose: 'bg-rose-50 text-rose-600 border-rose-200',
+  sky: 'bg-sky-50 text-sky-600 border-sky-200',
+  slate: 'bg-slate-100 text-slate-600 border-slate-200',
+  fuchsia: 'bg-fuchsia-50 text-fuchsia-600 border-fuchsia-200',
 };
 
 export function Badge({ children, variant = 'slate', icon: Icon = null, className = '' }) {

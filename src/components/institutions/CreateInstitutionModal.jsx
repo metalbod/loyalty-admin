@@ -92,7 +92,7 @@ export function CreateInstitutionModal({ isOpen, onClose, onCreate }) {
           onChange={(e) => setAdminPassword(e.target.value)}
         />
 
-        {(validationError || error) && <p className="text-xs text-rose-400">{validationError || error}</p>}
+        {(validationError || error) && <p className="text-xs text-rose-600">{validationError || error}</p>}
 
         <div className="flex justify-end gap-2 pt-1">
           <Button type="button" variant="ghost" onClick={handleClose}>

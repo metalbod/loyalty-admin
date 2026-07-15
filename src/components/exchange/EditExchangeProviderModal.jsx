@@ -108,18 +108,18 @@ export function EditExchangeProviderModal({ isOpen, onClose, provider = null, on
           value={outboundRate}
           onChange={(e) => setOutboundRate(e.target.value)}
         />
-        <label className="flex items-center gap-2 text-xs text-slate-300">
+        <label className="flex items-center gap-2 text-xs text-slate-600">
           <input
             type="checkbox"
             checked={active}
             onChange={(e) => setActive(e.target.checked)}
-            className="h-4 w-4 rounded border-slate-600 bg-slate-900 text-sky-500 focus:ring-sky-500/50"
+            className="h-4 w-4 rounded border-slate-300 bg-slate-50 text-sky-600 focus:ring-sky-300"
           />
           Active (visible to customers)
         </label>
 
-        {validationError && <p className="text-xs text-rose-400">{validationError}</p>}
-        {error && <p className="text-xs text-rose-400">{error}</p>}
+        {validationError && <p className="text-xs text-rose-600">{validationError}</p>}
+        {error && <p className="text-xs text-rose-600">{error}</p>}
 
         <div className="flex justify-end gap-2 pt-1">
           <Button type="button" variant="ghost" onClick={handleClose}>

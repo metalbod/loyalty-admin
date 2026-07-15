@@ -97,9 +97,9 @@ export function EditBrandingModal({ isOpen, onClose, institution, onSave }) {
         />
 
         <div>
-          <label className="mb-1.5 block text-xs font-medium text-slate-300">Logo</label>
+          <label className="mb-1.5 block text-xs font-medium text-slate-600">Logo</label>
           <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-slate-700 bg-slate-900/70">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-white">
               {logoDataUrl ? (
                 <img src={logoDataUrl} alt="Logo preview" className="h-full w-full object-contain" />
               ) : (
@@ -128,7 +128,7 @@ export function EditBrandingModal({ isOpen, onClose, institution, onSave }) {
         </div>
 
         <div>
-          <label htmlFor="brandingColor" className="mb-1.5 block text-xs font-medium text-slate-300">
+          <label htmlFor="brandingColor" className="mb-1.5 block text-xs font-medium text-slate-600">
             Dashboard accent color
           </label>
           <div className="flex items-center gap-3">
@@ -137,7 +137,7 @@ export function EditBrandingModal({ isOpen, onClose, institution, onSave }) {
               type="color"
               value={HEX_PATTERN.test(primaryColor) ? primaryColor : DEFAULT_COLOR}
               onChange={(e) => setPrimaryColor(e.target.value)}
-              className="h-9 w-14 cursor-pointer rounded-md border border-slate-700 bg-slate-900/70 p-1"
+              className="h-9 w-14 cursor-pointer rounded-md border border-slate-200 bg-white p-1"
             />
             <Input
               id="brandingColorHex"
@@ -149,7 +149,7 @@ export function EditBrandingModal({ isOpen, onClose, institution, onSave }) {
           </div>
         </div>
 
-        {(validationError || error) && <p className="text-xs text-rose-400">{validationError || error}</p>}
+        {(validationError || error) && <p className="text-xs text-rose-600">{validationError || error}</p>}
 
         <div className="flex justify-end gap-2 pt-1">
           <Button type="button" variant="ghost" onClick={handleClose}>

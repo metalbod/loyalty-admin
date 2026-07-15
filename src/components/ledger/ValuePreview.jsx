@@ -22,9 +22,9 @@ export function ValuePreview({ oldValue = null, newValue = null }) {
   return (
     <div className="flex max-w-xs flex-col gap-0.5 text-xs">
       {oldText && (
-        <span className="truncate text-rose-400/80 line-through decoration-rose-500/40">{oldText}</span>
+        <span className="truncate text-rose-500/80 line-through decoration-rose-500/40">{oldText}</span>
       )}
-      {newText && <span className="truncate text-emerald-400">{newText}</span>}
+      {newText && <span className="truncate text-emerald-600">{newText}</span>}
     </div>
   );
 }

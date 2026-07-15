@@ -20,18 +20,18 @@ export function Modal({ isOpen, onClose, title, subtitle = null, children }) {
         type="button"
         aria-label="Close modal"
         onClick={onClose}
-        className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
       />
-      <div className="relative w-full max-w-md rounded-xl border border-slate-700 bg-slate-800 shadow-2xl">
-        <div className="flex items-start justify-between border-b border-slate-700 px-5 py-4">
+      <div className="relative w-full max-w-md rounded-xl border border-slate-200 bg-white shadow-2xl">
+        <div className="flex items-start justify-between border-b border-slate-200 px-5 py-4">
           <div>
-            <h3 className="text-sm font-semibold text-slate-100">{title}</h3>
-            {subtitle && <p className="mt-0.5 text-xs text-slate-400">{subtitle}</p>}
+            <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
+            {subtitle && <p className="mt-0.5 text-xs text-slate-500">{subtitle}</p>}
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md p-1 text-slate-400 transition-colors hover:bg-slate-700 hover:text-slate-100"
+            className="rounded-md p-1 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
           >
             <X size={16} />
           </button>

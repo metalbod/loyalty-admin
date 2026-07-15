@@ -25,7 +25,7 @@ function SortableHeader({ field, label, sortField, sortDirection, onSortChange }
         onClick={() => onSortChange(field)}
         className={[
           'flex items-center gap-1 uppercase tracking-wide transition-colors',
-          isActive ? 'text-emerald-400' : 'text-slate-500 hover:text-slate-300',
+          isActive ? 'text-emerald-600' : 'text-slate-500 hover:text-slate-600',
         ].join(' ')}
       >
         {label}
@@ -64,7 +64,7 @@ export function WalletsTable({
       <div className="overflow-x-auto">
         <table className="w-full min-w-[560px] border-collapse text-left text-sm">
           <thead>
-            <tr className="border-b border-slate-700/80 text-xs uppercase tracking-wide text-slate-500">
+            <tr className="border-b border-slate-200 text-xs uppercase tracking-wide text-slate-500">
               {COLUMNS.map(({ field, label }) => (
                 <SortableHeader
                   key={field}
@@ -84,9 +84,9 @@ export function WalletsTable({
                 <tr
                   key={wallet.userId}
                   onClick={() => navigate(`/wallets/${wallet.userId}`)}
-                  className="cursor-pointer border-b border-slate-800 last:border-0 hover:bg-slate-800/40"
+                  className="cursor-pointer border-b border-slate-200 last:border-0 hover:bg-slate-50"
                 >
-                  <td className="whitespace-nowrap px-5 py-3 text-xs font-medium text-slate-200">
+                  <td className="whitespace-nowrap px-5 py-3 text-xs font-medium text-slate-800">
                     #{wallet.userId}
                   </td>
                   <td className="px-3 py-3">
@@ -95,7 +95,7 @@ export function WalletsTable({
                       <span className={accent.text}>{wallet.profileName}</span>
                     </span>
                   </td>
-                  <td className="px-3 py-3 text-xs font-semibold text-slate-100">
+                  <td className="px-3 py-3 text-xs font-semibold text-slate-900">
                     {formatBalance(wallet.currentBalance)}
                   </td>
                 </tr>

@@ -32,15 +32,15 @@ export function CampaignList({ campaigns, isLoading = false }) {
     <div className="space-y-4">
       {(earnCampaign || burnCampaign) && (
         <Card accent className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2 text-sm text-slate-200">
-            <Layers3 size={16} className="text-emerald-400" />
+          <div className="flex items-center gap-2 text-sm text-slate-800">
+            <Layers3 size={16} className="text-emerald-600" />
             <span>
               Effective rates right now: <strong>{formatMultiplier(earnCampaign?.earnMultiplier)}</strong> earn ·{' '}
               <strong>{formatMultiplier(burnCampaign?.burnDiscountMultiplier)}</strong> burn discount
             </span>
           </div>
           {overlapping && (
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-500">
               {earnCampaign?.campaignId === burnCampaign?.campaignId
                 ? `Driven by "${earnCampaign.name}"`
                 : `Earn from "${earnCampaign?.name}", burn from "${burnCampaign?.name}"`}

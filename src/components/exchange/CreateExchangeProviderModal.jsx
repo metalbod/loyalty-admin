@@ -109,8 +109,8 @@ export function CreateExchangeProviderModal({ isOpen, onClose, onCreate }) {
           hint="Points required per external unit converted OUT. Leave blank to disable this direction."
         />
 
-        {validationError && <p className="text-xs text-rose-400">{validationError}</p>}
-        {error && <p className="text-xs text-rose-400">{error}</p>}
+        {validationError && <p className="text-xs text-rose-600">{validationError}</p>}
+        {error && <p className="text-xs text-rose-600">{error}</p>}
 
         <div className="flex justify-end gap-2 pt-1">
           <Button type="button" variant="ghost" onClick={handleClose}>

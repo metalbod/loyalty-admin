@@ -112,8 +112,8 @@ export function RateConfigModal({ isOpen, onClose, profile = null, onSave }) {
           hint="Days earned points stay valid before expiring. 0 means these points never expire."
         />
 
-        {validationError && <p className="text-xs text-rose-400">{validationError}</p>}
-        {error && <p className="text-xs text-rose-400">{error}</p>}
+        {validationError && <p className="text-xs text-rose-600">{validationError}</p>}
+        {error && <p className="text-xs text-rose-600">{error}</p>}
 
         <div className="flex justify-end gap-2 pt-1">
           <Button type="button" variant="ghost" onClick={handleClose}>

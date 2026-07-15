@@ -68,7 +68,7 @@ export function InstitutionManagerView() {
     >
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          {statusError && <p className="text-xs text-rose-400">{statusError}</p>}
+          {statusError && <p className="text-xs text-rose-600">{statusError}</p>}
           <div className="ml-auto">
             <Button icon={PlusCircle} onClick={() => setIsCreateOpen(true)}>
               Create institution

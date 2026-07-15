@@ -81,16 +81,16 @@ export function WalletDetailView() {
 
         {walletLoading && <LoadingSpinner label="Loading wallet…" />}
 
-        {!walletLoading && error && <Card className="p-6 text-sm text-rose-400">{error}</Card>}
+        {!walletLoading && error && <Card className="p-6 text-sm text-rose-600">{error}</Card>}
 
         {!walletLoading && !error && wallet && (
           <Card className={`flex items-center gap-4 p-6 ring-1 ${accent.ring}`}>
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-900/60 text-emerald-400">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-emerald-600">
               <Wallet size={22} />
             </span>
             <div>
               <p className="text-xs text-slate-500">User #{wallet.userId}</p>
-              <p className="text-xl font-semibold text-slate-100">{formatBalance(wallet.currentBalance)}</p>
+              <p className="text-xl font-semibold text-slate-900">{formatBalance(wallet.currentBalance)}</p>
               <span className="mt-1 flex items-center gap-1.5 text-xs font-medium">
                 <span className={`h-2 w-2 rounded-full ${accent.dot}`} />
                 <span className={accent.text}>{wallet.profileName}</span>
@@ -101,19 +101,19 @@ export function WalletDetailView() {
 
         {!walletLoading && !error && expiringSummary
           && (expiringSummary.expiringThisMonth > 0 || expiringSummary.expiringNextMonth > 0) && (
-          <Card className="p-6 ring-1 ring-amber-500/30">
-            <p className="mb-3 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-amber-400">
+          <Card className="p-6 ring-1 ring-amber-400/40">
+            <p className="mb-3 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-amber-600">
               <Clock size={13} /> Expiring soon
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-lg font-semibold text-slate-100">
+                <p className="text-lg font-semibold text-slate-900">
                   {formatPoints(expiringSummary.expiringThisMonth)}
                 </p>
                 <p className="text-xs text-slate-500">by end of {monthName(0)}</p>
               </div>
               <div>
-                <p className="text-lg font-semibold text-slate-100">
+                <p className="text-lg font-semibold text-slate-900">
                   {formatPoints(expiringSummary.expiringNextMonth)}
                 </p>
                 <p className="text-xs text-slate-500">by end of {monthName(1)}</p>

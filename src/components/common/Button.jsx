@@ -6,11 +6,11 @@ const VARIANT_STYLES = {
   primary:
     'bg-[var(--brand)] text-slate-950 hover:bg-[var(--brand-hover)] focus-visible:outline-[var(--brand)] disabled:bg-[var(--brand-40)]',
   secondary:
-    'bg-slate-700/80 text-slate-100 hover:bg-slate-700 focus-visible:outline-slate-400 disabled:bg-slate-700/40',
+    'bg-slate-100 text-slate-900 hover:bg-slate-200 focus-visible:outline-slate-300 disabled:bg-slate-100 disabled:text-slate-400',
   ghost:
-    'bg-transparent text-slate-300 hover:bg-slate-800 focus-visible:outline-slate-500 disabled:text-slate-600',
+    'bg-transparent text-slate-600 hover:bg-slate-100 focus-visible:outline-slate-400 disabled:text-slate-400',
   danger:
-    'bg-rose-500/90 text-white hover:bg-rose-500 focus-visible:outline-rose-400 disabled:bg-rose-500/40',
+    'bg-rose-600 text-white hover:bg-rose-500 focus-visible:outline-rose-400 disabled:bg-rose-300',
 };
 
 export function Button({

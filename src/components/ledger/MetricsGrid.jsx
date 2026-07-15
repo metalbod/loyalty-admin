@@ -9,28 +9,28 @@ const STAT_CONFIG = [
     key: 'totalIssued',
     label: 'Points Issued',
     icon: TrendingUp,
-    accent: 'text-emerald-400 bg-emerald-500/10',
+    accent: 'text-emerald-600 bg-emerald-50',
     format: (v) => `+${v.toLocaleString()}`,
   },
   {
     key: 'totalBurned',
     label: 'Points Burned',
     icon: TrendingDown,
-    accent: 'text-rose-400 bg-rose-500/10',
+    accent: 'text-rose-600 bg-rose-50',
     format: (v) => `-${v.toLocaleString()}`,
   },
   {
     key: 'activeCampaigns',
     label: 'Active Campaigns',
     icon: CalendarClock,
-    accent: 'text-amber-400 bg-amber-500/10',
+    accent: 'text-amber-600 bg-amber-50',
     format: (v) => v.toLocaleString(),
   },
   {
     key: 'totalWallets',
     label: 'Total Wallets',
     icon: Wallet,
-    accent: 'text-sky-400 bg-sky-500/10',
+    accent: 'text-sky-600 bg-sky-50',
     format: (v) => v.toLocaleString(),
   },
 ];
@@ -53,7 +53,7 @@ export function MetricsGrid({ metrics = null, isLoading = false }) {
               <Icon size={18} />
             </span>
           </div>
-          <p className="mt-3 text-2xl font-semibold text-slate-100">
+          <p className="mt-3 text-2xl font-semibold text-slate-900">
             {metrics ? format(metrics[key] ?? 0) : '—'}
           </p>
           <p className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">{label}</p>

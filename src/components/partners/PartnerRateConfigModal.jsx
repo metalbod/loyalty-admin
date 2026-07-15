@@ -112,8 +112,8 @@ export function PartnerRateConfigModal({ isOpen, onClose, partner = null, onSave
           hint="Days points earned through this partner stay valid before expiring. 0 means they never expire."
         />
 
-        {validationError && <p className="text-xs text-rose-400">{validationError}</p>}
-        {error && <p className="text-xs text-rose-400">{error}</p>}
+        {validationError && <p className="text-xs text-rose-600">{validationError}</p>}
+        {error && <p className="text-xs text-rose-600">{error}</p>}
 
         <div className="flex justify-end gap-2 pt-1">
           <Button type="button" variant="ghost" onClick={handleClose}>
