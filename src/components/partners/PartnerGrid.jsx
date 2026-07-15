@@ -5,7 +5,12 @@ import PartnerCard from './PartnerCard.jsx';
 import LoadingSpinner from '../common/LoadingSpinner.jsx';
 import EmptyState from '../common/EmptyState.jsx';
 
-export function PartnerGrid({ partners, isLoading = false, onConfigureRates, onCreateServiceAccount }) {
+export function PartnerGrid({
+  partners,
+  isLoading = false,
+  onConfigureRates,
+  onCreateServiceAccount,
+}) {
   if (isLoading && partners.length === 0) {
     return <LoadingSpinner label="Loading partners…" />;
   }
@@ -39,7 +44,7 @@ PartnerGrid.propTypes = {
     PropTypes.shape({
       partnerId: PropTypes.string.isRequired,
       partnerName: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   isLoading: PropTypes.bool,
   onConfigureRates: PropTypes.func.isRequired,

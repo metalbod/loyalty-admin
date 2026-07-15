@@ -5,7 +5,9 @@ import PartnerGrid from '../PartnerGrid.jsx';
 // Mock PartnerCard to avoid deep import.meta dependencies
 jest.mock('../PartnerCard.jsx', () => ({
   __esModule: true,
-  default: ({ partner }) => <div data-testid={`partner-card-${partner.partnerId}`}>{partner.partnerName}</div>,
+  default: ({ partner }) => (
+    <div data-testid={`partner-card-${partner.partnerId}`}>{partner.partnerName}</div>
+  ),
 }));
 
 describe('PartnerGrid', () => {
@@ -32,7 +34,7 @@ describe('PartnerGrid', () => {
         isLoading={true}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Loading partners…')).toBeInTheDocument();
   });
@@ -44,7 +46,7 @@ describe('PartnerGrid', () => {
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('No channel partners yet')).toBeInTheDocument();
     expect(screen.getByText(/Create your first partner/)).toBeInTheDocument();
@@ -57,7 +59,7 @@ describe('PartnerGrid', () => {
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Visa')).toBeInTheDocument();
     expect(screen.getByText('Mastercard')).toBeInTheDocument();
@@ -70,7 +72,7 @@ describe('PartnerGrid', () => {
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(container.querySelector('.grid')).toBeInTheDocument();
   });
@@ -82,7 +84,7 @@ describe('PartnerGrid', () => {
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(container.querySelector('.grid')).toBeInTheDocument();
   });
@@ -94,7 +96,7 @@ describe('PartnerGrid', () => {
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const grid = container.querySelector('.grid');
     expect(grid.className).toContain('grid-cols-1');
@@ -109,7 +111,7 @@ describe('PartnerGrid', () => {
         isLoading={true}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.queryByText('Loading partners…')).not.toBeInTheDocument();
     expect(screen.getByText('Visa')).toBeInTheDocument();
@@ -122,7 +124,7 @@ describe('PartnerGrid', () => {
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const grid = container.querySelector('.grid');
     expect(grid.className).toContain('gap-4');
@@ -135,7 +137,7 @@ describe('PartnerGrid', () => {
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const svg = container.querySelector('svg');
     expect(svg).toBeInTheDocument();
@@ -148,7 +150,7 @@ describe('PartnerGrid', () => {
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Visa')).toBeInTheDocument();
     expect(screen.queryByText('Mastercard')).not.toBeInTheDocument();
@@ -161,7 +163,7 @@ describe('PartnerGrid', () => {
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Visa')).toBeInTheDocument();
     expect(screen.getByText('Mastercard')).toBeInTheDocument();

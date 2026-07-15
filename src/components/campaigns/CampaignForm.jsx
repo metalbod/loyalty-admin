@@ -121,7 +121,13 @@ export function CampaignForm({ onCreate, disabled = false }) {
         {error && <p className="text-xs text-rose-600">{error}</p>}
         {success && <p className="text-xs text-emerald-600">Campaign created successfully.</p>}
 
-        <Button type="submit" icon={CalendarPlus} isLoading={isSubmitting} disabled={disabled} fullWidth>
+        <Button
+          type="submit"
+          icon={CalendarPlus}
+          isLoading={isSubmitting}
+          disabled={disabled}
+          fullWidth
+        >
           Create campaign
         </Button>
       </form>

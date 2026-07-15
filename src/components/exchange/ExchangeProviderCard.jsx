@@ -32,17 +32,29 @@ export function ExchangeProviderCard({ provider, onEdit }) {
     <Card className={`p-5 ring-1 ${provider.active ? 'ring-sky-300' : 'ring-slate-200'}`}>
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2.5">
-          <span className={`h-2.5 w-2.5 rounded-full ${provider.active ? 'bg-sky-600' : 'bg-slate-200'}`} />
+          <span
+            className={`h-2.5 w-2.5 rounded-full ${provider.active ? 'bg-sky-600' : 'bg-slate-200'}`}
+          />
           <h3 className="text-base font-semibold text-sky-600">{provider.displayName}</h3>
         </div>
-        <Badge variant={provider.active ? 'emerald' : 'slate'}>{provider.active ? 'Active' : 'Inactive'}</Badge>
+        <Badge variant={provider.active ? 'emerald' : 'slate'}>
+          {provider.active ? 'Active' : 'Inactive'}
+        </Badge>
       </div>
 
       <p className="mt-2 text-xs text-slate-500">Provider code: {provider.providerCode}</p>
 
       <div className="mt-4 space-y-2">
-        <RateRow label="Inbound (customer → us)" rate={provider.inboundPointsPerExternalUnit} unitLabel="pts / unit" />
-        <RateRow label="Outbound (us → customer)" rate={provider.outboundPointsPerExternalUnit} unitLabel="pts / unit" />
+        <RateRow
+          label="Inbound (customer → us)"
+          rate={provider.inboundPointsPerExternalUnit}
+          unitLabel="pts / unit"
+        />
+        <RateRow
+          label="Outbound (us → customer)"
+          rate={provider.outboundPointsPerExternalUnit}
+          unitLabel="pts / unit"
+        />
       </div>
 
       <div className="mt-4">

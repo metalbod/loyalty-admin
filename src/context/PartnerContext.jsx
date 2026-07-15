@@ -25,10 +25,12 @@ export function PartnerProvider({ children }) {
   const addPartner = useCallback(
     async (payload) => {
       const created = await api.createPartner(payload, adminId);
-      setPartners((prev) => [...prev, created].sort((a, b) => a.partnerName.localeCompare(b.partnerName)));
+      setPartners((prev) =>
+        [...prev, created].sort((a, b) => a.partnerName.localeCompare(b.partnerName))
+      );
       return created;
     },
-    [adminId],
+    [adminId]
   );
 
   const updatePartnerRates = useCallback(
@@ -37,14 +39,14 @@ export function PartnerProvider({ children }) {
       setPartners((prev) => prev.map((p) => (p.partnerId === partnerId ? { ...p, config } : p)));
       return config;
     },
-    [adminId],
+    [adminId]
   );
 
   const createPartnerServiceAccount = useCallback(
     async (partnerId, payload) => {
       return api.createPartnerServiceAccount(partnerId, payload, adminId);
     },
-    [adminId],
+    [adminId]
   );
 
   const value = useMemo(
@@ -56,7 +58,14 @@ export function PartnerProvider({ children }) {
       updatePartnerRates,
       createPartnerServiceAccount,
     }),
-    [partners, partnersLoading, refreshPartners, addPartner, updatePartnerRates, createPartnerServiceAccount],
+    [
+      partners,
+      partnersLoading,
+      refreshPartners,
+      addPartner,
+      updatePartnerRates,
+      createPartnerServiceAccount,
+    ]
   );
 
   return <PartnerContext.Provider value={value}>{children}</PartnerContext.Provider>;

@@ -28,7 +28,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Visa')).toBeInTheDocument();
   });
@@ -39,7 +39,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Credit card partner')).toBeInTheDocument();
   });
@@ -51,7 +51,7 @@ describe('PartnerCard', () => {
         partner={partnerWithoutDesc}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('No description provided.')).toBeInTheDocument();
   });
@@ -62,7 +62,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Earn rate')).toBeInTheDocument();
     expect(screen.getByText(/12/)).toBeInTheDocument();
@@ -74,7 +74,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Burn rate')).toBeInTheDocument();
     expect(screen.getByText('6')).toBeInTheDocument();
@@ -86,7 +86,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Points validity')).toBeInTheDocument();
     expect(screen.getByText('730 days')).toBeInTheDocument();
@@ -98,7 +98,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const overrideBadges = screen.getAllByText('Override');
     expect(overrideBadges.length).toBeGreaterThan(0);
@@ -118,7 +118,7 @@ describe('PartnerCard', () => {
         partner={partnerNoOverrides}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const fallbackBadges = screen.getAllByText('Global fallback');
     expect(fallbackBadges.length).toBeGreaterThan(0);
@@ -130,7 +130,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Configure rates')).toBeInTheDocument();
   });
@@ -141,7 +141,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Service account')).toBeInTheDocument();
   });
@@ -153,7 +153,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const button = screen.getByText('Configure rates');
     await user.click(button);
@@ -167,7 +167,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const button = screen.getByText('Service account');
     await user.click(button);
@@ -187,7 +187,7 @@ describe('PartnerCard', () => {
         partner={partnerNeverExpires}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText('Never expires')).toBeInTheDocument();
   });
@@ -198,7 +198,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const card = container.querySelector('[class*="ring-indigo"]');
     expect(card).toBeInTheDocument();
@@ -210,7 +210,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const dot = container.querySelector('[class*="bg-indigo"]');
     expect(dot).toBeInTheDocument();
@@ -222,7 +222,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     const heading = screen.getByText('Visa');
     expect(heading.className).toContain('text-indigo-600');
@@ -234,7 +234,7 @@ describe('PartnerCard', () => {
         partner={mockPartner}
         onConfigureRates={mockOnConfigureRates}
         onCreateServiceAccount={mockOnCreateServiceAccount}
-      />,
+      />
     );
     expect(screen.getByText(/cents \/ point/)).toBeInTheDocument();
     expect(screen.getByText(/points \/ cent/)).toBeInTheDocument();

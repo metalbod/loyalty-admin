@@ -9,7 +9,8 @@ import { useProfileContext } from '../hooks/useProfileContext.js';
 import { usePartnerContext } from '../hooks/usePartnerContext.js';
 
 export function ProfileManagerView() {
-  const { profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates } = useProfileContext();
+  const { profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates } =
+    useProfileContext();
   const { partners, refreshPartners } = usePartnerContext();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [rateConfigProfile, setRateConfigProfile] = useState(null);

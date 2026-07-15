@@ -13,58 +13,44 @@ describe('CreatePartnerModal', () => {
 
   it('returns null when isOpen is false', () => {
     const { container } = render(
-      <CreatePartnerModal isOpen={false} onClose={mockOnClose} onCreate={mockOnCreate} />,
+      <CreatePartnerModal isOpen={false} onClose={mockOnClose} onCreate={mockOnCreate} />
     );
     expect(container.firstChild).toBeNull();
   });
 
   it('renders modal when isOpen is true', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     expect(screen.getByText('Create channel partner')).toBeInTheDocument();
   });
 
   it('renders subtitle about default rates', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     expect(screen.getByText(/default to the global/)).toBeInTheDocument();
   });
 
   it('renders partner name input field', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     expect(screen.getByLabelText('Partner name')).toBeInTheDocument();
   });
 
   it('renders description textarea', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     expect(screen.getByLabelText('Description')).toBeInTheDocument();
   });
 
   it('renders cancel button', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     expect(screen.getByText('Cancel')).toBeInTheDocument();
   });
 
   it('renders create partner button', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     expect(screen.getByText('Create partner')).toBeInTheDocument();
   });
 
   it('calls onClose when cancel button clicked', async () => {
     const user = userEvent.setup();
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const cancelButton = screen.getByText('Cancel');
     await user.click(cancelButton);
     expect(mockOnClose).toHaveBeenCalled();
@@ -72,9 +58,7 @@ describe('CreatePartnerModal', () => {
 
   it('calls onClose when close button clicked', async () => {
     const user = userEvent.setup();
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const closeButton = screen.getByLabelText('Close modal');
     await user.click(closeButton);
     expect(mockOnClose).toHaveBeenCalled();
@@ -82,9 +66,7 @@ describe('CreatePartnerModal', () => {
 
   it('validates that partner name is required', async () => {
     const user = userEvent.setup();
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const submitButton = screen.getByText('Create partner');
     await user.click(submitButton);
     expect(screen.getByText('partnerName is required')).toBeInTheDocument();
@@ -93,9 +75,7 @@ describe('CreatePartnerModal', () => {
 
   it('accepts partner name input', async () => {
     const user = userEvent.setup();
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const input = screen.getByLabelText('Partner name');
     await user.type(input, 'Visa Inc');
     expect(input).toHaveValue('Visa Inc');
@@ -103,9 +83,7 @@ describe('CreatePartnerModal', () => {
 
   it('accepts description input', async () => {
     const user = userEvent.setup();
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const textarea = screen.getByLabelText('Description');
     await user.type(textarea, 'Credit card transactions');
     expect(textarea).toHaveValue('Credit card transactions');
@@ -114,9 +92,7 @@ describe('CreatePartnerModal', () => {
   it('calls onCreate with partner data when submitted', async () => {
     const user = userEvent.setup();
     const onCreateMock = jest.fn(() => Promise.resolve());
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={onCreateMock} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={onCreateMock} />);
     const nameInput = screen.getByLabelText('Partner name');
     const descriptionTextarea = screen.getByLabelText('Description');
     const submitButton = screen.getByText('Create partner');
@@ -135,9 +111,7 @@ describe('CreatePartnerModal', () => {
     const user = userEvent.setup();
     const onCreateMock = jest.fn(() => Promise.resolve());
     const onCloseMock = jest.fn();
-    render(
-      <CreatePartnerModal isOpen={true} onClose={onCloseMock} onCreate={onCreateMock} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={onCloseMock} onCreate={onCreateMock} />);
     const nameInput = screen.getByLabelText('Partner name');
     const descriptionTextarea = screen.getByLabelText('Description');
     const submitButton = screen.getByText('Create partner');
@@ -152,9 +126,7 @@ describe('CreatePartnerModal', () => {
   it('clears validation error on successful submission', async () => {
     const user = userEvent.setup();
     const onCreateMock = jest.fn(() => Promise.resolve());
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={onCreateMock} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={onCreateMock} />);
     const submitButton = screen.getByText('Create partner');
 
     // First attempt without name
@@ -172,9 +144,7 @@ describe('CreatePartnerModal', () => {
 
   it('enforces max length on partner name input', async () => {
     const user = userEvent.setup();
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const nameInput = screen.getByLabelText('Partner name');
     const longName = 'A'.repeat(60);
     await user.type(nameInput, longName);
@@ -183,9 +153,7 @@ describe('CreatePartnerModal', () => {
 
   it('enforces max length on description textarea', async () => {
     const user = userEvent.setup();
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const textarea = screen.getByLabelText('Description');
     const longDescription = 'B'.repeat(600);
     await user.type(textarea, longDescription);
@@ -193,17 +161,13 @@ describe('CreatePartnerModal', () => {
   });
 
   it('renders partner name input with correct placeholder', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const nameInput = screen.getByLabelText('Partner name');
     expect(nameInput).toHaveAttribute('placeholder', 'e.g. Acme Merchant');
   });
 
   it('renders description textarea with correct placeholder', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const textarea = screen.getByLabelText('Description');
     expect(textarea).toHaveAttribute('placeholder', 'What transactions come through this partner?');
   });
@@ -211,9 +175,7 @@ describe('CreatePartnerModal', () => {
   it('displays error message from onCreate failure', async () => {
     const user = userEvent.setup();
     const onCreateMock = jest.fn(() => Promise.reject(new Error('Partner name already exists')));
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={onCreateMock} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={onCreateMock} />);
     const nameInput = screen.getByLabelText('Partner name');
     const submitButton = screen.getByText('Create partner');
 
@@ -224,25 +186,19 @@ describe('CreatePartnerModal', () => {
   });
 
   it('renders partner name as first input field', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const nameInput = screen.getByLabelText('Partner name');
     expect(nameInput).toBeInTheDocument();
   });
 
   it('has description textarea with 3 rows', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const textarea = screen.getByLabelText('Description');
     expect(textarea).toHaveAttribute('rows', '3');
   });
 
   it('does not allow description textarea to be resized', () => {
-    render(
-      <CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />,
-    );
+    render(<CreatePartnerModal isOpen={true} onClose={mockOnClose} onCreate={mockOnCreate} />);
     const textarea = screen.getByLabelText('Description');
     expect(textarea.className).toContain('resize-none');
   });

@@ -21,15 +21,23 @@ export function CampaignCard({ campaign, isEffectiveEarn = false, isEffectiveBur
             {formatDateTime(campaign.startTime)} → {formatDateTime(campaign.endTime)}
           </p>
         </div>
-        <span className={`shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide ${CAMPAIGN_STATUS_STYLES[status]}`}>
+        <span
+          className={`shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide ${CAMPAIGN_STATUS_STYLES[status]}`}
+        >
           {status}
         </span>
       </div>
 
       <div className="mt-3 flex items-center gap-1.5 text-xs text-slate-500">
         <Clock size={12} />
-        {status === CAMPAIGN_STATUS.EXPIRED ? 'Ended' : status === CAMPAIGN_STATUS.UPCOMING ? 'Starts' : 'Ends'}{' '}
-        {formatRelativeToNow(status === CAMPAIGN_STATUS.UPCOMING ? campaign.startTime : campaign.endTime)}
+        {status === CAMPAIGN_STATUS.EXPIRED
+          ? 'Ended'
+          : status === CAMPAIGN_STATUS.UPCOMING
+            ? 'Starts'
+            : 'Ends'}{' '}
+        {formatRelativeToNow(
+          status === CAMPAIGN_STATUS.UPCOMING ? campaign.startTime : campaign.endTime
+        )}
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2">
@@ -37,7 +45,9 @@ export function CampaignCard({ campaign, isEffectiveEarn = false, isEffectiveBur
           <p className="flex items-center gap-1 text-[11px] uppercase tracking-wide text-slate-500">
             <TrendingUp size={11} /> Earn
           </p>
-          <p className="mt-0.5 text-sm font-semibold text-slate-900">{formatMultiplier(campaign.earnMultiplier)}</p>
+          <p className="mt-0.5 text-sm font-semibold text-slate-900">
+            {formatMultiplier(campaign.earnMultiplier)}
+          </p>
           {isEffectiveEarn && (
             <Badge variant="emerald" className="mt-1">
               Effective now

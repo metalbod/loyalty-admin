@@ -8,7 +8,14 @@ import { useAsyncAction } from '../../hooks/useAsyncAction.js';
 import { GLOBAL_RATES } from '../../constants';
 import { toInputValue, toRateOrNull } from '../../utils/formConverters.js';
 
-export function RateConfigModal({ isOpen, onClose, entity = null, entityType = 'profile', onSave, subtitle = null }) {
+export function RateConfigModal({
+  isOpen,
+  onClose,
+  entity = null,
+  entityType = 'profile',
+  onSave,
+  subtitle = null,
+}) {
   const [earnRate, setEarnRate] = useState('');
   const [burnRate, setBurnRate] = useState('');
   const [pointsValidityDays, setPointsValidityDays] = useState('');
@@ -22,7 +29,7 @@ export function RateConfigModal({ isOpen, onClose, entity = null, entityType = '
 
   const defaultSubtitle =
     entityType === 'partner'
-      ? 'This rate replaces the wallet\'s tier rate entirely for transactions through this partner. Leave a field blank to fall back to the global system rate.'
+      ? "This rate replaces the wallet's tier rate entirely for transactions through this partner. Leave a field blank to fall back to the global system rate."
       : 'Leave a field blank to fall back to the global system rate.';
 
   useEffect(() => {

@@ -29,9 +29,7 @@ describe('ProfileCard', () => {
     { profileId: 'profile-2', profileName: 'Silver' },
   ];
 
-  const mockPartners = [
-    { partnerId: 'partner-1', partnerName: 'Visa' },
-  ];
+  const mockPartners = [{ partnerId: 'partner-1', partnerName: 'Visa' }];
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -44,7 +42,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('Gold')).toBeInTheDocument();
   });
@@ -56,7 +54,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('245')).toBeInTheDocument();
   });
@@ -68,7 +66,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('Premium tier members')).toBeInTheDocument();
   });
@@ -81,7 +79,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('No description provided.')).toBeInTheDocument();
   });
@@ -93,7 +91,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('Earn rate')).toBeInTheDocument();
     expect(screen.getByText(/10/)).toBeInTheDocument();
@@ -106,7 +104,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('Burn rate')).toBeInTheDocument();
     expect(screen.getAllByText('5')[0]).toBeInTheDocument();
@@ -119,7 +117,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('Points validity')).toBeInTheDocument();
     expect(screen.getByText('365 days')).toBeInTheDocument();
@@ -132,7 +130,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     const overrideBadges = screen.getAllByText('Override');
     expect(overrideBadges.length).toBeGreaterThan(0);
@@ -153,7 +151,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     const fallbackBadges = screen.getAllByText('Global fallback');
     expect(fallbackBadges.length).toBeGreaterThan(0);
@@ -166,7 +164,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('Configure rates')).toBeInTheDocument();
   });
@@ -179,7 +177,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     const button = screen.getByText('Configure rates');
     await user.click(button);
@@ -193,7 +191,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByTestId('tier-rules-section')).toBeInTheDocument();
   });
@@ -212,7 +210,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('Never expires')).toBeInTheDocument();
   });
@@ -224,7 +222,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     const card = container.querySelector('[class*="ring-"]');
     expect(card).toBeInTheDocument();
@@ -237,7 +235,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     const svg = container.querySelector('svg');
     expect(svg).toBeInTheDocument();
@@ -250,7 +248,7 @@ describe('ProfileCard', () => {
         profiles={mockProfiles}
         partners={mockPartners}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText(/cents \/ point/)).toBeInTheDocument();
     expect(screen.getByText(/points \/ cent/)).toBeInTheDocument();

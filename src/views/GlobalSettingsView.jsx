@@ -31,7 +31,10 @@ const KEY_METADATA = {
 };
 
 function ConfigurationRow({ configuration, onSave }) {
-  const metadata = KEY_METADATA[configuration.configKey] || { label: configuration.configKey, suffix: '' };
+  const metadata = KEY_METADATA[configuration.configKey] || {
+    label: configuration.configKey,
+    suffix: '',
+  };
   const [value, setValue] = useState(String(configuration.configValue));
   const [validationError, setValidationError] = useState(null);
   const { run, isSubmitting, error, reset } = useAsyncAction(onSave);
@@ -53,14 +56,20 @@ function ConfigurationRow({ configuration, onSave }) {
     }
     setValidationError(null);
     try {
-      await run(configuration.configKey, { configValue: parsed, description: configuration.description });
+      await run(configuration.configKey, {
+        configValue: parsed,
+        description: configuration.description,
+      });
     } catch {
       // error surfaced via useAsyncAction's error state
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-end gap-3 border-b border-slate-200 px-5 py-4 last:border-b-0">
+    <form
+      onSubmit={handleSubmit}
+      className="flex items-end gap-3 border-b border-slate-200 px-5 py-4 last:border-b-0"
+    >
       <div className="flex-1">
         <Input
           id={`config-${configuration.configKey}`}
@@ -92,7 +101,8 @@ ConfigurationRow.propTypes = {
 };
 
 export function GlobalSettingsView() {
-  const { configurations, configurationsLoading, refreshConfigurations, updateConfigurationValue } = useAdminContext();
+  const { configurations, configurationsLoading, refreshConfigurations, updateConfigurationValue } =
+    useAdminContext();
 
   useEffect(() => {
     refreshConfigurations();

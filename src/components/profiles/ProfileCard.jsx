@@ -14,12 +14,17 @@ function RateRow({ label, overrideValue = null, globalValue, suffix }) {
       <span className="text-xs text-slate-500">{label}</span>
       <div className="text-right">
         <p className="text-sm font-semibold text-slate-900">
-          {usingOverride ? overrideValue : globalValue} <span className="text-xs font-normal text-slate-500">{suffix}</span>
+          {usingOverride ? overrideValue : globalValue}{' '}
+          <span className="text-xs font-normal text-slate-500">{suffix}</span>
         </p>
         {usingOverride ? (
-          <Badge variant="emerald" className="mt-0.5">Override</Badge>
+          <Badge variant="emerald" className="mt-0.5">
+            Override
+          </Badge>
         ) : (
-          <Badge variant="slate" className="mt-0.5">Global fallback</Badge>
+          <Badge variant="slate" className="mt-0.5">
+            Global fallback
+          </Badge>
         )}
       </div>
     </div>
@@ -46,9 +51,13 @@ function ValidityRow({ overrideValue = null, globalValue }) {
       <div className="text-right">
         <p className="text-sm font-semibold text-slate-900">{formatValidityDays(effective)}</p>
         {usingOverride ? (
-          <Badge variant="emerald" className="mt-0.5">Override</Badge>
+          <Badge variant="emerald" className="mt-0.5">
+            Override
+          </Badge>
         ) : (
-          <Badge variant="slate" className="mt-0.5">Global fallback</Badge>
+          <Badge variant="slate" className="mt-0.5">
+            Global fallback
+          </Badge>
         )}
       </div>
     </div>
@@ -126,14 +135,18 @@ ProfileCard.propTypes = {
       pointsValidityDays: PropTypes.number,
     }),
   }).isRequired,
-  profiles: PropTypes.arrayOf(PropTypes.shape({
-    profileId: PropTypes.string.isRequired,
-    profileName: PropTypes.string.isRequired,
-  })).isRequired,
-  partners: PropTypes.arrayOf(PropTypes.shape({
-    partnerId: PropTypes.string.isRequired,
-    partnerName: PropTypes.string.isRequired,
-  })).isRequired,
+  profiles: PropTypes.arrayOf(
+    PropTypes.shape({
+      profileId: PropTypes.string.isRequired,
+      profileName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  partners: PropTypes.arrayOf(
+    PropTypes.shape({
+      partnerId: PropTypes.string.isRequired,
+      partnerName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   onConfigureRates: PropTypes.func.isRequired,
 };
 

@@ -41,33 +41,31 @@ jest.mock('../../components/profiles/ProfileGrid.jsx', () => ({
 // Mock CreateProfileModal
 jest.mock('../../components/profiles/CreateProfileModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen, onClose, onCreate }) => (
+  default: ({ isOpen, onClose, onCreate }) =>
     isOpen ? (
       <div data-testid="create-profile-modal">
         <h2>Create Profile</h2>
-        <button onClick={() => onCreate({ profileName: 'Test', description: '' }).then(() => onClose())}>
+        <button
+          onClick={() => onCreate({ profileName: 'Test', description: '' }).then(() => onClose())}
+        >
           Create
         </button>
         <button onClick={onClose}>Cancel</button>
       </div>
-    ) : null
-  ),
+    ) : null,
 }));
 
 // Mock RateConfigModal
 jest.mock('../../components/common/RateConfigModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen, entity, onClose, onSave }) => (
+  default: ({ isOpen, entity, onClose, onSave }) =>
     isOpen && entity ? (
       <div data-testid="rate-config-modal">
         <h2>Configure Rates for {entity.profileName}</h2>
-        <button onClick={() => onSave(entity.profileId, {}).then(() => onClose())}>
-          Save
-        </button>
+        <button onClick={() => onSave(entity.profileId, {}).then(() => onClose())}>Save</button>
         <button onClick={onClose}>Cancel</button>
       </div>
-    ) : null
-  ),
+    ) : null,
 }));
 
 // Mock context hooks
@@ -98,9 +96,7 @@ describe('ProfileManagerView', () => {
     },
   ];
 
-  const mockPartners = [
-    { partnerId: 'partner-1', partnerName: 'Visa' },
-  ];
+  const mockPartners = [{ partnerId: 'partner-1', partnerName: 'Visa' }];
 
   const mockRefreshProfiles = jest.fn();
   const mockRefreshPartners = jest.fn();

@@ -101,13 +101,22 @@ export function EditBrandingModal({ isOpen, onClose, institution, onSave }) {
           <div className="flex items-center gap-3">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-white">
               {logoDataUrl ? (
-                <img src={logoDataUrl} alt="Logo preview" className="h-full w-full object-contain" />
+                <img
+                  src={logoDataUrl}
+                  alt="Logo preview"
+                  className="h-full w-full object-contain"
+                />
               ) : (
                 <Upload size={16} className="text-slate-600" />
               )}
             </span>
             <div className="flex gap-2">
-              <Button type="button" variant="secondary" icon={Upload} onClick={() => fileInputRef.current?.click()}>
+              <Button
+                type="button"
+                variant="secondary"
+                icon={Upload}
+                onClick={() => fileInputRef.current?.click()}
+              >
                 {logoDataUrl ? 'Replace' : 'Upload'}
               </Button>
               {logoDataUrl && (
@@ -128,7 +137,10 @@ export function EditBrandingModal({ isOpen, onClose, institution, onSave }) {
         </div>
 
         <div>
-          <label htmlFor="brandingColor" className="mb-1.5 block text-xs font-medium text-slate-600">
+          <label
+            htmlFor="brandingColor"
+            className="mb-1.5 block text-xs font-medium text-slate-600"
+          >
             Dashboard accent color
           </label>
           <div className="flex items-center gap-3">
@@ -149,7 +161,9 @@ export function EditBrandingModal({ isOpen, onClose, institution, onSave }) {
           </div>
         </div>
 
-        {(validationError || error) && <p className="text-xs text-rose-600">{validationError || error}</p>}
+        {(validationError || error) && (
+          <p className="text-xs text-rose-600">{validationError || error}</p>
+        )}
 
         <div className="flex justify-end gap-2 pt-1">
           <Button type="button" variant="ghost" onClick={handleClose}>

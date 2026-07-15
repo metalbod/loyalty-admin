@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import PartnerManagerView from '../PartnerManagerView.jsx';
 
 // Mock DashboardLayout
@@ -42,39 +41,37 @@ jest.mock('../../components/partners/PartnerGrid.jsx', () => ({
 // Mock CreatePartnerModal
 jest.mock('../../components/partners/CreatePartnerModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen, onClose, onCreate }) => (
+  default: ({ isOpen, onClose, onCreate }) =>
     isOpen ? (
       <div data-testid="create-partner-modal">
         <h2>Create Partner</h2>
-        <button onClick={() => onCreate({ partnerName: 'Test', description: '' }).then(() => onClose())}>
+        <button
+          onClick={() => onCreate({ partnerName: 'Test', description: '' }).then(() => onClose())}
+        >
           Create
         </button>
         <button onClick={onClose}>Cancel</button>
       </div>
-    ) : null
-  ),
+    ) : null,
 }));
 
 // Mock RateConfigModal
 jest.mock('../../components/common/RateConfigModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen, entity, onClose, onSave }) => (
+  default: ({ isOpen, entity, onClose, onSave }) =>
     isOpen && entity ? (
       <div data-testid="rate-config-modal">
         <h2>Configure Rates for {entity.partnerName}</h2>
-        <button onClick={() => onSave(entity.partnerId, {}).then(() => onClose())}>
-          Save
-        </button>
+        <button onClick={() => onSave(entity.partnerId, {}).then(() => onClose())}>Save</button>
         <button onClick={onClose}>Cancel</button>
       </div>
-    ) : null
-  ),
+    ) : null,
 }));
 
 // Mock CreatePartnerServiceAccountModal
 jest.mock('../../components/partners/CreatePartnerServiceAccountModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen, partner, onClose, onCreate }) => (
+  default: ({ isOpen, partner, onClose, onCreate }) =>
     isOpen && partner ? (
       <div data-testid="service-account-modal">
         <h2>Create Service Account for {partner.partnerName}</h2>
@@ -83,8 +80,7 @@ jest.mock('../../components/partners/CreatePartnerServiceAccountModal.jsx', () =
         </button>
         <button onClick={onClose}>Cancel</button>
       </div>
-    ) : null
-  ),
+    ) : null,
 }));
 
 // Mock context hooks

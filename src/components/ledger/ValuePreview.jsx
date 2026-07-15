@@ -22,7 +22,9 @@ export function ValuePreview({ oldValue = null, newValue = null }) {
   return (
     <div className="flex max-w-xs flex-col gap-0.5 text-xs">
       {oldText && (
-        <span className="truncate text-rose-500/80 line-through decoration-rose-500/40">{oldText}</span>
+        <span className="truncate text-rose-500/80 line-through decoration-rose-500/40">
+          {oldText}
+        </span>
       )}
       {newText && <span className="truncate text-emerald-600">{newText}</span>}
     </div>
@@ -30,9 +32,8 @@ export function ValuePreview({ oldValue = null, newValue = null }) {
 }
 
 ValuePreview.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   oldValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
-  // eslint-disable-next-line react/forbid-prop-types
+
   newValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
 };
 

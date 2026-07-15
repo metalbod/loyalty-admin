@@ -21,7 +21,10 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
 
   return (
     <Card>
-      <CardHeader title="Transaction history" subtitle="Every earn/redeem entry for this wallet, most recent first." />
+      <CardHeader
+        title="Transaction history"
+        subtitle="Every earn/redeem entry for this wallet, most recent first."
+      />
       <div className="overflow-x-auto">
         <table className="w-full min-w-[720px] border-collapse text-left text-sm">
           <thead>
@@ -39,7 +42,10 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
               const meta = TYPE_META[entry.transactionType] || { icon: History, variant: 'slate' };
               const TypeIcon = meta.icon;
               return (
-                <tr key={entry.ledgerId} className="border-b border-slate-200 last:border-0 hover:bg-slate-50">
+                <tr
+                  key={entry.ledgerId}
+                  className="border-b border-slate-200 last:border-0 hover:bg-slate-50"
+                >
                   <td className="whitespace-nowrap px-5 py-3 text-xs text-slate-500">
                     {formatDateTime(entry.createdAt)}
                   </td>
@@ -51,13 +57,18 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
                   <td className="px-3 py-3 text-xs font-semibold text-slate-900">
                     {formatPoints(entry.pointsChanged)}
                   </td>
-                  <td className="px-3 py-3 text-xs text-slate-600">{entry.runningBalance.toLocaleString()} pts</td>
+                  <td className="px-3 py-3 text-xs text-slate-600">
+                    {entry.runningBalance.toLocaleString()} pts
+                  </td>
                   <td className="whitespace-nowrap px-3 py-3 text-xs text-slate-500">
                     {/* Only EARN rows ever carry an expiry - expiresAt is null/absent on
                         BURN/EXPIRED rows and on EARN rows configured to never expire. */}
                     {entry.transactionType === 'EARN' ? formatDateTime(entry.expiresAt) : '—'}
                   </td>
-                  <td className="max-w-[220px] truncate px-3 py-3 text-xs text-slate-500" title={entry.referenceId}>
+                  <td
+                    className="max-w-[220px] truncate px-3 py-3 text-xs text-slate-500"
+                    title={entry.referenceId}
+                  >
                     {entry.referenceId}
                   </td>
                 </tr>
@@ -67,7 +78,11 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
         </table>
         {isLoading && <LoadingSpinner label="Loading history…" />}
         {!isLoading && rows.length === 0 && (
-          <EmptyState icon={History} title="No transactions yet" description="Earn and redeem activity for this wallet will appear here." />
+          <EmptyState
+            icon={History}
+            title="No transactions yet"
+            description="Earn and redeem activity for this wallet will appear here."
+          />
         )}
       </div>
       {rows.length > 0 && (

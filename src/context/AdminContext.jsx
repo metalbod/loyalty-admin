@@ -66,7 +66,7 @@ export function AdminProvider({ children }) {
       setConfigurations((prev) => prev.map((c) => (c.configKey === configKey ? updated : c)));
       return updated;
     },
-    [adminId],
+    [adminId]
   );
 
   const refreshFeatureFlags = useCallback(async () => {
@@ -82,9 +82,10 @@ export function AdminProvider({ children }) {
   // Missing entries default to enabled, same as the backend's FeatureFlagService.isEnabled -
   // featureFlags stays [] for a superadmin session (nothing ever calls refreshFeatureFlags
   // for that role), so this is harmlessly always-true there too.
-  const isFeatureEnabled = useCallback((featureKey) => featureFlags.find((f) => f.featureKey === featureKey)?.enabled ?? true, [
-    featureFlags,
-  ]);
+  const isFeatureEnabled = useCallback(
+    (featureKey) => featureFlags.find((f) => f.featureKey === featureKey)?.enabled ?? true,
+    [featureFlags]
+  );
 
   const loadActivityPage = useCallback(async (page = 0) => {
     setActivityFeedLoading(true);
@@ -146,7 +147,7 @@ export function AdminProvider({ children }) {
       wallets,
       walletsLoading,
       loadWalletsPage,
-    ],
+    ]
   );
 
   return <AdminContext.Provider value={value}>{children}</AdminContext.Provider>;

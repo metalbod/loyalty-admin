@@ -23,28 +23,43 @@ describe('RateConfigModal', () => {
 
   it('returns null when entity is not provided', () => {
     const { container } = render(
-      <RateConfigModal isOpen={true} entity={null} onClose={mockOnClose} onSave={mockOnSave} />,
+      <RateConfigModal isOpen={true} entity={null} onClose={mockOnClose} onSave={mockOnSave} />
     );
     expect(container.firstChild).toBeNull();
   });
 
   it('renders when entity and isOpen are provided', () => {
     render(
-      <RateConfigModal isOpen={true} entity={mockEntity} onClose={mockOnClose} onSave={mockOnSave} />,
+      <RateConfigModal
+        isOpen={true}
+        entity={mockEntity}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+      />
     );
     expect(screen.getByText(/Configure rates/)).toBeInTheDocument();
   });
 
   it('displays entity name in title', () => {
     render(
-      <RateConfigModal isOpen={true} entity={mockEntity} onClose={mockOnClose} onSave={mockOnSave} />,
+      <RateConfigModal
+        isOpen={true}
+        entity={mockEntity}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+      />
     );
     expect(screen.getByText('Configure rates — Gold')).toBeInTheDocument();
   });
 
   it('renders form inputs for earn rate, burn rate, and validity days', () => {
     render(
-      <RateConfigModal isOpen={true} entity={mockEntity} onClose={mockOnClose} onSave={mockOnSave} />,
+      <RateConfigModal
+        isOpen={true}
+        entity={mockEntity}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+      />
     );
     expect(screen.getByLabelText(/Earn rate/)).toBeInTheDocument();
     expect(screen.getByLabelText(/Burn rate/)).toBeInTheDocument();
@@ -53,7 +68,12 @@ describe('RateConfigModal', () => {
 
   it('populates form with entity config values', () => {
     render(
-      <RateConfigModal isOpen={true} entity={mockEntity} onClose={mockOnClose} onSave={mockOnSave} />,
+      <RateConfigModal
+        isOpen={true}
+        entity={mockEntity}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+      />
     );
     expect(screen.getByLabelText(/Earn rate/)).toHaveValue(10);
     expect(screen.getByLabelText(/Burn rate/)).toHaveValue(5);
@@ -63,7 +83,12 @@ describe('RateConfigModal', () => {
   it('calls onClose when close button is clicked', async () => {
     const user = userEvent.setup();
     render(
-      <RateConfigModal isOpen={true} entity={mockEntity} onClose={mockOnClose} onSave={mockOnSave} />,
+      <RateConfigModal
+        isOpen={true}
+        entity={mockEntity}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+      />
     );
 
     const closeButton = screen.getByLabelText('Close modal');
@@ -74,7 +99,12 @@ describe('RateConfigModal', () => {
   it('validates that rates must be positive', async () => {
     const user = userEvent.setup();
     render(
-      <RateConfigModal isOpen={true} entity={mockEntity} onClose={mockOnClose} onSave={mockOnSave} />,
+      <RateConfigModal
+        isOpen={true}
+        entity={mockEntity}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+      />
     );
 
     const earnRateInput = screen.getByLabelText(/Earn rate/);
@@ -91,7 +121,12 @@ describe('RateConfigModal', () => {
   it('validates that validity days must not be negative', async () => {
     const user = userEvent.setup();
     render(
-      <RateConfigModal isOpen={true} entity={mockEntity} onClose={mockOnClose} onSave={mockOnSave} />,
+      <RateConfigModal
+        isOpen={true}
+        entity={mockEntity}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+      />
     );
 
     const validityInput = screen.getByLabelText(/Points validity/);
@@ -113,7 +148,7 @@ describe('RateConfigModal', () => {
         entityType="partner"
         onClose={mockOnClose}
         onSave={mockOnSave}
-      />,
+      />
     );
     expect(screen.getByText(/This rate replaces the wallet/)).toBeInTheDocument();
   });
@@ -126,7 +161,7 @@ describe('RateConfigModal', () => {
         entityType="profile"
         onClose={mockOnClose}
         onSave={mockOnSave}
-      />,
+      />
     );
     expect(screen.getByText(/Leave a field blank to fall back/)).toBeInTheDocument();
   });
@@ -136,7 +171,12 @@ describe('RateConfigModal', () => {
     const onSaveMock = jest.fn(() => Promise.resolve());
 
     render(
-      <RateConfigModal isOpen={true} entity={mockEntity} onClose={mockOnClose} onSave={onSaveMock} />,
+      <RateConfigModal
+        isOpen={true}
+        entity={mockEntity}
+        onClose={mockOnClose}
+        onSave={onSaveMock}
+      />
     );
 
     const earnRateInput = screen.getByLabelText(/Earn rate/);
@@ -156,7 +196,7 @@ describe('RateConfigModal', () => {
         onClose={mockOnClose}
         onSave={mockOnSave}
         subtitle="Custom subtitle text"
-      />,
+      />
     );
     expect(screen.getByText('Custom subtitle text')).toBeInTheDocument();
   });

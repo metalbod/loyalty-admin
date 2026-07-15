@@ -34,7 +34,7 @@ ExchangeProviderGrid.propTypes = {
     PropTypes.shape({
       providerId: PropTypes.string.isRequired,
       displayName: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   isLoading: PropTypes.bool,
   onEdit: PropTypes.func.isRequired,

@@ -11,7 +11,7 @@ import { resolveEffectiveCampaigns } from '../../utils/dateUtils.js';
 export function CampaignList({ campaigns, isLoading = false }) {
   const { earnCampaign, burnCampaign, overlapping } = useMemo(
     () => resolveEffectiveCampaigns(campaigns),
-    [campaigns],
+    [campaigns]
   );
 
   if (isLoading && campaigns.length === 0) {
@@ -31,12 +31,17 @@ export function CampaignList({ campaigns, isLoading = false }) {
   return (
     <div className="space-y-4">
       {(earnCampaign || burnCampaign) && (
-        <Card accent className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <Card
+          accent
+          className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between"
+        >
           <div className="flex items-center gap-2 text-sm text-slate-800">
             <Layers3 size={16} className="text-emerald-600" />
             <span>
-              Effective rates right now: <strong>{formatMultiplier(earnCampaign?.earnMultiplier)}</strong> earn ·{' '}
-              <strong>{formatMultiplier(burnCampaign?.burnDiscountMultiplier)}</strong> burn discount
+              Effective rates right now:{' '}
+              <strong>{formatMultiplier(earnCampaign?.earnMultiplier)}</strong> earn ·{' '}
+              <strong>{formatMultiplier(burnCampaign?.burnDiscountMultiplier)}</strong> burn
+              discount
             </span>
           </div>
           {overlapping && (
@@ -67,7 +72,7 @@ CampaignList.propTypes = {
   campaigns: PropTypes.arrayOf(
     PropTypes.shape({
       campaignId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    }),
+    })
   ).isRequired,
   isLoading: PropTypes.bool,
 };

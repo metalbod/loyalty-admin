@@ -18,7 +18,7 @@ describe('Card', () => {
     const { container } = render(
       <Card as="section">
         <p>Section content</p>
-      </Card>,
+      </Card>
     );
     expect(container.querySelector('section')).toBeInTheDocument();
   });
@@ -64,7 +64,7 @@ describe('Card', () => {
     const { container } = render(
       <Card data-testid="custom-card" id="my-card">
         Card
-      </Card>,
+      </Card>
     );
     const card = container.querySelector('[data-testid="custom-card"]');
     expect(card).toHaveAttribute('id', 'my-card');
@@ -94,12 +94,7 @@ describe('CardHeader', () => {
   });
 
   it('renders action content when provided', () => {
-    render(
-      <CardHeader
-        title="Title"
-        action={<button>Action</button>}
-      />,
-    );
+    render(<CardHeader title="Title" action={<button>Action</button>} />);
     expect(screen.getByText('Action')).toBeInTheDocument();
   });
 

@@ -25,10 +25,12 @@ export function CampaignProvider({ children }) {
   const addCampaign = useCallback(
     async (payload) => {
       const created = await api.createCampaign(payload, adminId);
-      setCampaigns((prev) => [...prev, created].sort((a, b) => new Date(a.startTime) - new Date(b.startTime)));
+      setCampaigns((prev) =>
+        [...prev, created].sort((a, b) => new Date(a.startTime) - new Date(b.startTime))
+      );
       return created;
     },
-    [adminId],
+    [adminId]
   );
 
   const value = useMemo(
@@ -38,7 +40,7 @@ export function CampaignProvider({ children }) {
       refreshCampaigns,
       addCampaign,
     }),
-    [campaigns, campaignsLoading, refreshCampaigns, addCampaign],
+    [campaigns, campaignsLoading, refreshCampaigns, addCampaign]
   );
 
   return <CampaignContext.Provider value={value}>{children}</CampaignContext.Provider>;

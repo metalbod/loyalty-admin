@@ -61,8 +61,9 @@ export function CreatePartnerServiceAccountModal({ isOpen, onClose, partner = nu
       {created ? (
         <div className="space-y-4">
           <p className="text-sm text-slate-600">
-            Service account <span className="font-semibold text-slate-900">{created.email}</span> created. Share the
-            password you chose directly with the integration owner - it isn't stored anywhere else.
+            Service account <span className="font-semibold text-slate-900">{created.email}</span>{' '}
+            created. Share the password you chose directly with the integration owner - it isn't
+            stored anywhere else.
           </p>
           <div className="flex justify-end">
             <Button type="button" onClick={handleClose}>
@@ -92,7 +93,9 @@ export function CreatePartnerServiceAccountModal({ isOpen, onClose, partner = nu
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          {(validationError || error) && <p className="text-xs text-rose-600">{validationError || error}</p>}
+          {(validationError || error) && (
+            <p className="text-xs text-rose-600">{validationError || error}</p>
+          )}
 
           <div className="flex justify-end gap-2 pt-1">
             <Button type="button" variant="ghost" onClick={handleClose}>

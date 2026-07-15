@@ -68,7 +68,11 @@ describe('Button', () => {
   });
 
   it('shows loading spinner instead of icon when isLoading', () => {
-    const { container } = render(<Button icon={Heart} isLoading>Loading</Button>);
+    const { container } = render(
+      <Button icon={Heart} isLoading>
+        Loading
+      </Button>
+    );
     const svgs = container.querySelectorAll('svg');
     // Should have spinner SVG, not Heart icon
     expect(svgs.length).toBeGreaterThan(0);
@@ -89,7 +93,11 @@ describe('Button', () => {
   it('does not call onClick when disabled', async () => {
     const handleClick = jest.fn();
     const user = userEvent.setup();
-    render(<Button onClick={handleClick} disabled>Disabled</Button>);
+    render(
+      <Button onClick={handleClick} disabled>
+        Disabled
+      </Button>
+    );
 
     await user.click(screen.getByRole('button'));
     expect(handleClick).not.toHaveBeenCalled();
@@ -98,7 +106,11 @@ describe('Button', () => {
   it('does not call onClick when isLoading', async () => {
     const handleClick = jest.fn();
     const user = userEvent.setup();
-    render(<Button onClick={handleClick} isLoading>Loading</Button>);
+    render(
+      <Button onClick={handleClick} isLoading>
+        Loading
+      </Button>
+    );
 
     await user.click(screen.getByRole('button'));
     expect(handleClick).not.toHaveBeenCalled();

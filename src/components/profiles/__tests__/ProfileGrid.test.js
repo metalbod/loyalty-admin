@@ -5,7 +5,9 @@ import ProfileGrid from '../ProfileGrid.jsx';
 // Mock ProfileCard to avoid import.meta issues in dependencies
 jest.mock('../ProfileCard.jsx', () => ({
   __esModule: true,
-  default: ({ profile }) => <div data-testid={`profile-card-${profile.profileId}`}>{profile.profileName}</div>,
+  default: ({ profile }) => (
+    <div data-testid={`profile-card-${profile.profileId}`}>{profile.profileName}</div>
+  ),
 }));
 
 describe('ProfileGrid', () => {
@@ -22,31 +24,17 @@ describe('ProfileGrid', () => {
     },
   ];
 
-  const mockPartners = [
-    { partnerId: 'partner-1', partnerName: 'Visa' },
-  ];
+  const mockPartners = [{ partnerId: 'partner-1', partnerName: 'Visa' }];
 
   const mockOnConfigureRates = jest.fn();
 
   it('renders loading spinner when isLoading is true and profiles are empty', () => {
-    render(
-      <ProfileGrid
-        profiles={[]}
-        isLoading={true}
-        onConfigureRates={mockOnConfigureRates}
-      />,
-    );
+    render(<ProfileGrid profiles={[]} isLoading={true} onConfigureRates={mockOnConfigureRates} />);
     expect(screen.getByText('Loading profiles…')).toBeInTheDocument();
   });
 
   it('renders empty state when no profiles exist and not loading', () => {
-    render(
-      <ProfileGrid
-        profiles={[]}
-        isLoading={false}
-        onConfigureRates={mockOnConfigureRates}
-      />,
-    );
+    render(<ProfileGrid profiles={[]} isLoading={false} onConfigureRates={mockOnConfigureRates} />);
     expect(screen.getByText('No tiers yet')).toBeInTheDocument();
     expect(screen.getByText(/Create your first profile tier/)).toBeInTheDocument();
   });
@@ -57,7 +45,7 @@ describe('ProfileGrid', () => {
         profiles={mockProfiles}
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('Silver')).toBeInTheDocument();
     expect(screen.getByText('Gold')).toBeInTheDocument();
@@ -69,7 +57,7 @@ describe('ProfileGrid', () => {
         profiles={mockProfiles}
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     // Verify the grid structure is rendered
     expect(container.querySelector('.grid')).toBeInTheDocument();
@@ -82,7 +70,7 @@ describe('ProfileGrid', () => {
         partners={mockPartners}
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     // Verify profiles are rendered with partners available
     expect(screen.getByText('Silver')).toBeInTheDocument();
@@ -95,7 +83,7 @@ describe('ProfileGrid', () => {
         profiles={mockProfiles}
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     const grid = container.querySelector('.grid');
     expect(grid.className).toContain('grid-cols-1');
@@ -109,7 +97,7 @@ describe('ProfileGrid', () => {
         profiles={mockProfiles}
         isLoading={true}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.queryByText('Loading profiles…')).not.toBeInTheDocument();
     expect(screen.getByText('Silver')).toBeInTheDocument();
@@ -121,7 +109,7 @@ describe('ProfileGrid', () => {
         profiles={mockProfiles}
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     expect(screen.getByText('Silver')).toBeInTheDocument();
   });
@@ -132,7 +120,7 @@ describe('ProfileGrid', () => {
         profiles={mockProfiles}
         isLoading={false}
         onConfigureRates={mockOnConfigureRates}
-      />,
+      />
     );
     const grid = container.querySelector('.grid');
     expect(grid.className).toContain('gap-4');

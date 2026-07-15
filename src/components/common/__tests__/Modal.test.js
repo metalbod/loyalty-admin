@@ -8,7 +8,7 @@ describe('Modal', () => {
     const { container } = render(
       <Modal isOpen={false} onClose={() => {}} title="Test Modal">
         Content
-      </Modal>,
+      </Modal>
     );
     expect(container.firstChild).toBeNull();
   });
@@ -17,7 +17,7 @@ describe('Modal', () => {
     render(
       <Modal isOpen={true} onClose={() => {}} title="Test Modal">
         Content
-      </Modal>,
+      </Modal>
     );
     expect(screen.getByText('Test Modal')).toBeInTheDocument();
   });
@@ -26,7 +26,7 @@ describe('Modal', () => {
     render(
       <Modal isOpen={true} onClose={() => {}} title="My Title">
         Content
-      </Modal>,
+      </Modal>
     );
     expect(screen.getByText('My Title')).toBeInTheDocument();
   });
@@ -35,7 +35,7 @@ describe('Modal', () => {
     render(
       <Modal isOpen={true} onClose={() => {}} title="Title" subtitle="Subtitle">
         Content
-      </Modal>,
+      </Modal>
     );
     expect(screen.getByText('Subtitle')).toBeInTheDocument();
   });
@@ -44,7 +44,7 @@ describe('Modal', () => {
     render(
       <Modal isOpen={true} onClose={() => {}} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
     expect(screen.queryByText('Subtitle')).not.toBeInTheDocument();
   });
@@ -53,7 +53,7 @@ describe('Modal', () => {
     render(
       <Modal isOpen={true} onClose={() => {}} title="Title">
         <p>Modal Content</p>
-      </Modal>,
+      </Modal>
     );
     expect(screen.getByText('Modal Content')).toBeInTheDocument();
   });
@@ -64,7 +64,7 @@ describe('Modal', () => {
     render(
       <Modal isOpen={true} onClose={handleClose} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     const closeButton = screen.getByLabelText('Close modal');
@@ -78,11 +78,13 @@ describe('Modal', () => {
     const { container } = render(
       <Modal isOpen={true} onClose={handleClose} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     // The backdrop is a button element with absolute inset-0
-    const backdrop = container.querySelector('button[aria-label="Close modal"]').parentElement.querySelector('button:first-child');
+    const backdrop = container
+      .querySelector('button[aria-label="Close modal"]')
+      .parentElement.querySelector('button:first-child');
     await user.click(backdrop);
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
@@ -93,7 +95,7 @@ describe('Modal', () => {
     render(
       <Modal isOpen={true} onClose={handleClose} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     await user.keyboard('{Escape}');
@@ -106,7 +108,7 @@ describe('Modal', () => {
     render(
       <Modal isOpen={true} onClose={handleClose} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     await user.keyboard('a');
@@ -119,14 +121,14 @@ describe('Modal', () => {
     const { rerender } = render(
       <Modal isOpen={true} onClose={handleClose} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     // Close modal
     rerender(
       <Modal isOpen={false} onClose={handleClose} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     // Press Escape
@@ -141,13 +143,13 @@ describe('Modal', () => {
     const { rerender } = render(
       <Modal isOpen={true} onClose={handleClose} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     rerender(
       <Modal isOpen={true} onClose={handleClose} title="Title Updated">
         Content
-      </Modal>,
+      </Modal>
     );
 
     expect(handleClose).not.toHaveBeenCalled();
@@ -157,7 +159,7 @@ describe('Modal', () => {
     const { container } = render(
       <Modal isOpen={true} onClose={() => {}} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     const backdrop = container.querySelector('.backdrop-blur-sm');
@@ -168,7 +170,7 @@ describe('Modal', () => {
     const { container } = render(
       <Modal isOpen={true} onClose={() => {}} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     const wrapper = container.querySelector('.fixed');
@@ -181,7 +183,7 @@ describe('Modal', () => {
     const { container } = render(
       <Modal isOpen={true} onClose={() => {}} title="Title">
         Content
-      </Modal>,
+      </Modal>
     );
 
     const modal = container.querySelector('.max-w-md');

@@ -5,8 +5,20 @@ import Card, { CardHeader } from '../common/Card.jsx';
 import LoadingSpinner from '../common/LoadingSpinner.jsx';
 import EmptyState from '../common/EmptyState.jsx';
 
-const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-  'September', 'October', 'November', 'December'];
+const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 function formatMonthLabel(yearMonth) {
   const [year, month] = yearMonth.split('-').map(Number);
@@ -37,7 +49,11 @@ export function ApiUsageCard({ metrics = null, isLoading = false }) {
 
   return (
     <Card>
-      <CardHeader title="API Usage" subtitle="Billable calls to the integration API (/api/v1/**)" icon={Activity} />
+      <CardHeader
+        title="API Usage"
+        subtitle="Billable calls to the integration API (/api/v1/**)"
+        icon={Activity}
+      />
       <div className="overflow-x-auto">
         <table className="w-full min-w-[640px] border-collapse text-left text-sm">
           <thead>
@@ -52,7 +68,10 @@ export function ApiUsageCard({ metrics = null, isLoading = false }) {
           </thead>
           <tbody>
             {monthRows.map((row) => (
-              <tr key={row.yearMonth} className="border-b border-slate-200 last:border-0 hover:bg-slate-50">
+              <tr
+                key={row.yearMonth}
+                className="border-b border-slate-200 last:border-0 hover:bg-slate-50"
+              >
                 <td className="whitespace-nowrap px-5 py-3 text-xs font-medium text-slate-800">
                   {formatMonthLabel(row.yearMonth)}
                 </td>
@@ -60,7 +79,9 @@ export function ApiUsageCard({ metrics = null, isLoading = false }) {
                 <td className="px-3 py-3 text-slate-600">{row.post.toLocaleString()}</td>
                 <td className="px-3 py-3 text-slate-600">{row.put.toLocaleString()}</td>
                 <td className="px-3 py-3 text-slate-600">{row.delete.toLocaleString()}</td>
-                <td className="px-3 py-3 font-semibold text-slate-900">{row.total.toLocaleString()}</td>
+                <td className="px-3 py-3 font-semibold text-slate-900">
+                  {row.total.toLocaleString()}
+                </td>
               </tr>
             ))}
             {allTime && (
@@ -68,17 +89,30 @@ export function ApiUsageCard({ metrics = null, isLoading = false }) {
                 <td className="whitespace-nowrap px-5 py-3 text-xs font-semibold uppercase tracking-wide text-emerald-600">
                   All-time{since ? ` (since ${since})` : ''}
                 </td>
-                <td className="px-3 py-3 font-semibold text-slate-900">{allTime.get.toLocaleString()}</td>
-                <td className="px-3 py-3 font-semibold text-slate-900">{allTime.post.toLocaleString()}</td>
-                <td className="px-3 py-3 font-semibold text-slate-900">{allTime.put.toLocaleString()}</td>
-                <td className="px-3 py-3 font-semibold text-slate-900">{allTime.delete.toLocaleString()}</td>
-                <td className="px-3 py-3 font-semibold text-emerald-600">{allTime.total.toLocaleString()}</td>
+                <td className="px-3 py-3 font-semibold text-slate-900">
+                  {allTime.get.toLocaleString()}
+                </td>
+                <td className="px-3 py-3 font-semibold text-slate-900">
+                  {allTime.post.toLocaleString()}
+                </td>
+                <td className="px-3 py-3 font-semibold text-slate-900">
+                  {allTime.put.toLocaleString()}
+                </td>
+                <td className="px-3 py-3 font-semibold text-slate-900">
+                  {allTime.delete.toLocaleString()}
+                </td>
+                <td className="px-3 py-3 font-semibold text-emerald-600">
+                  {allTime.total.toLocaleString()}
+                </td>
               </tr>
             )}
           </tbody>
         </table>
         {!isLoading && monthRows.length === 0 && (
-          <EmptyState title="No API usage yet" description="Calls to the integration API will appear here." />
+          <EmptyState
+            title="No API usage yet"
+            description="Calls to the integration API will appear here."
+          />
         )}
       </div>
     </Card>

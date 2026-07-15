@@ -6,13 +6,16 @@ import Input from '../common/Input.jsx';
 import Button from '../common/Button.jsx';
 import { useAsyncAction } from '../../hooks/useAsyncAction.js';
 
-const SELECT_CLASSNAME = 'w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 '
-  + 'focus:outline-none focus:ring-2 focus:ring-emerald-500/30';
+const SELECT_CLASSNAME =
+  'w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 ' +
+  'focus:outline-none focus:ring-2 focus:ring-emerald-500/30';
 
 function Select({ id, label, value, onChange, children, hint = null }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-xs font-medium text-slate-600">{label}</label>
+      <label htmlFor={id} className="mb-1.5 block text-xs font-medium text-slate-600">
+        {label}
+      </label>
       <select id={id} value={value} onChange={onChange} className={SELECT_CLASSNAME}>
         {children}
       </select>
@@ -30,7 +33,14 @@ Select.propTypes = {
   hint: PropTypes.node,
 };
 
-export function CreateTierRuleModal({ isOpen, onClose, fromProfile = null, profiles, partners, onCreate }) {
+export function CreateTierRuleModal({
+  isOpen,
+  onClose,
+  fromProfile = null,
+  profiles,
+  partners,
+  onCreate,
+}) {
   const [toProfileId, setToProfileId] = useState('');
   const [metricType, setMetricType] = useState('TRANSACTION_COUNT');
   const [partnerId, setPartnerId] = useState('');
@@ -101,13 +111,25 @@ export function CreateTierRuleModal({ isOpen, onClose, fromProfile = null, profi
       subtitle="Automatically move a wallet to a higher tier once its EARN activity crosses this threshold."
     >
       <form onSubmit={handleSubmit} className="space-y-4">
-        <Select id="toProfileId" label="Promote to" value={toProfileId} onChange={(e) => setToProfileId(e.target.value)}>
+        <Select
+          id="toProfileId"
+          label="Promote to"
+          value={toProfileId}
+          onChange={(e) => setToProfileId(e.target.value)}
+        >
           {targetOptions.map((p) => (
-            <option key={p.profileId} value={p.profileId}>{p.profileName}</option>
+            <option key={p.profileId} value={p.profileId}>
+              {p.profileName}
+            </option>
           ))}
         </Select>
 
-        <Select id="metricType" label="Based on" value={metricType} onChange={(e) => setMetricType(e.target.value)}>
+        <Select
+          id="metricType"
+          label="Based on"
+          value={metricType}
+          onChange={(e) => setMetricType(e.target.value)}
+        >
           <option value="TRANSACTION_COUNT">Number of EARN transactions</option>
           <option value="CUMULATIVE_POINTS">Cumulative points earned</option>
         </Select>
@@ -121,7 +143,9 @@ export function CreateTierRuleModal({ isOpen, onClose, fromProfile = null, profi
         >
           <option value="">Any partner (or direct)</option>
           {partners.map((p) => (
-            <option key={p.partnerId} value={p.partnerId}>{p.partnerName}</option>
+            <option key={p.partnerId} value={p.partnerId}>
+              {p.partnerName}
+            </option>
           ))}
         </Select>
 
@@ -170,14 +194,18 @@ CreateTierRuleModal.propTypes = {
     profileId: PropTypes.string.isRequired,
     profileName: PropTypes.string.isRequired,
   }),
-  profiles: PropTypes.arrayOf(PropTypes.shape({
-    profileId: PropTypes.string.isRequired,
-    profileName: PropTypes.string.isRequired,
-  })).isRequired,
-  partners: PropTypes.arrayOf(PropTypes.shape({
-    partnerId: PropTypes.string.isRequired,
-    partnerName: PropTypes.string.isRequired,
-  })).isRequired,
+  profiles: PropTypes.arrayOf(
+    PropTypes.shape({
+      profileId: PropTypes.string.isRequired,
+      profileName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  partners: PropTypes.arrayOf(
+    PropTypes.shape({
+      partnerId: PropTypes.string.isRequired,
+      partnerName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   onCreate: PropTypes.func.isRequired,
 };
 

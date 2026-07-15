@@ -10,7 +10,7 @@ const FEATURE_LABELS = {
   CAMPAIGNS: { title: ‘Campaigns’, description: ‘Promotional earn/burn rate multipliers.’ },
   AUTOMATIC_TIER_PROMOTION: {
     title: ‘Automatic Tier Promotion’,
-    description: ‘Auto-promotes a wallet when its EARN activity crosses a tier rule’s threshold. Manual ‘
+    description: ‘Auto-promotes a wallet when its EARN activity crosses a tier rule\’s threshold. Manual ‘
       + ‘tier changes on a wallet always stay available regardless of this setting.’,
   },
   GIFT_REWARDS: {

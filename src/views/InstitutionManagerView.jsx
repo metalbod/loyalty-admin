@@ -46,13 +46,17 @@ export function InstitutionManagerView() {
 
   const handleUpdateBranding = async (institutionId, payload) => {
     const updated = await api.updateInstitutionBranding(institutionId, payload, user.email);
-    setInstitutions((prev) => prev.map((i) => (i.institutionId === updated.institutionId ? updated : i)));
+    setInstitutions((prev) =>
+      prev.map((i) => (i.institutionId === updated.institutionId ? updated : i))
+    );
     return updated;
   };
 
   const handleUpdateDetails = async (institutionId, payload) => {
     const updated = await api.updateInstitutionDetails(institutionId, payload, user.email);
-    setInstitutions((prev) => prev.map((i) => (i.institutionId === updated.institutionId ? updated : i)));
+    setInstitutions((prev) =>
+      prev.map((i) => (i.institutionId === updated.institutionId ? updated : i))
+    );
     return updated;
   };
 
@@ -60,9 +64,13 @@ export function InstitutionManagerView() {
     setStatusError(null);
     setUpdatingInstitutionId(institution.institutionId);
     try {
-      const updated = await api.updateInstitutionStatus(institution.institutionId, nextStatus, user.email);
+      const updated = await api.updateInstitutionStatus(
+        institution.institutionId,
+        nextStatus,
+        user.email
+      );
       setInstitutions((prev) =>
-        prev.map((i) => (i.institutionId === updated.institutionId ? updated : i)),
+        prev.map((i) => (i.institutionId === updated.institutionId ? updated : i))
       );
     } catch (err) {
       setStatusError(err?.message || 'Could not update institution status.');
@@ -97,7 +105,11 @@ export function InstitutionManagerView() {
         />
       </div>
 
-      <CreateInstitutionModal isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} onCreate={handleCreate} />
+      <CreateInstitutionModal
+        isOpen={isCreateOpen}
+        onClose={() => setIsCreateOpen(false)}
+        onCreate={handleCreate}
+      />
       <EditBrandingModal
         isOpen={brandingInstitution !== null}
         onClose={() => setBrandingInstitution(null)}

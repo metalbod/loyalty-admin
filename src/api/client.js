@@ -44,10 +44,7 @@ async function request(path, { method = 'GET', body, adminId } = {}) {
       body: body !== undefined ? JSON.stringify(body) : undefined,
     });
   } catch {
-    throw new ApiError(
-      `Could not reach the loyalty backend at ${API_BASE_URL}. Is it running?`,
-      0,
-    );
+    throw new ApiError(`Could not reach the loyalty backend at ${API_BASE_URL}. Is it running?`, 0);
   }
 
   if (response.status === 401 && !path.startsWith(AUTH_PATH_PREFIX)) {
@@ -147,7 +144,11 @@ export async function fetchActivityFeed({ page = 0, pageSize = LEDGER_PAGE_SIZE 
 // Wallets
 // ---------------------------------------------------------------------------
 
-export async function fetchWallets({ page = 0, size = WALLETS_PAGE_SIZE, sort = 'userId,asc' } = {}) {
+export async function fetchWallets({
+  page = 0,
+  size = WALLETS_PAGE_SIZE,
+  sort = 'userId,asc',
+} = {}) {
   return request(`/api/admin/wallets?page=${page}&size=${size}&sort=${sort}`);
 }
 
@@ -182,8 +183,11 @@ export async function createProfile({ profileName, description }, adminId) {
   return { ...created, config: null, memberCount: 0 };
 }
 
-export async function configureProfileRates(profileId,
-    { earnRateCentsPerPoint, burnRatePointsPerCent, pointsValidityDays }, adminId) {
+export async function configureProfileRates(
+  profileId,
+  { earnRateCentsPerPoint, burnRatePointsPerCent, pointsValidityDays },
+  adminId
+) {
   return request(`/api/v1/admin/profiles/${profileId}/rates`, {
     method: 'PUT',
     adminId,
@@ -200,8 +204,11 @@ export async function fetchTierRules(profileId) {
   return request(`/api/v1/admin/profiles/${profileId}/tier-rules`);
 }
 
-export async function createTierRule(profileId,
-    { toProfileId, metricType, partnerId, threshold, windowDays }, adminId) {
+export async function createTierRule(
+  profileId,
+  { toProfileId, metricType, partnerId, threshold, windowDays },
+  adminId
+) {
   return request(`/api/v1/admin/profiles/${profileId}/tier-rules`, {
     method: 'POST',
     adminId,
@@ -247,8 +254,11 @@ export async function createPartner({ partnerName, description }, adminId) {
   return { ...created, config: null };
 }
 
-export async function configurePartnerRates(partnerId,
-    { earnRateCentsPerPoint, burnRatePointsPerCent, pointsValidityDays }, adminId) {
+export async function configurePartnerRates(
+  partnerId,
+  { earnRateCentsPerPoint, burnRatePointsPerCent, pointsValidityDays },
+  adminId
+) {
   return request(`/api/v1/admin/partners/${partnerId}/rates`, {
     method: 'PUT',
     adminId,
@@ -273,16 +283,26 @@ export async function fetchExchangeProviders() {
 }
 
 export async function createExchangeProvider(
-    { providerCode, displayName, inboundPointsPerExternalUnit, outboundPointsPerExternalUnit }, adminId) {
+  { providerCode, displayName, inboundPointsPerExternalUnit, outboundPointsPerExternalUnit },
+  adminId
+) {
   return request('/api/v1/admin/exchange-providers', {
     method: 'POST',
     adminId,
-    body: { providerCode, displayName, inboundPointsPerExternalUnit, outboundPointsPerExternalUnit },
+    body: {
+      providerCode,
+      displayName,
+      inboundPointsPerExternalUnit,
+      outboundPointsPerExternalUnit,
+    },
   });
 }
 
-export async function updateExchangeProvider(providerId,
-    { displayName, inboundPointsPerExternalUnit, outboundPointsPerExternalUnit, active }, adminId) {
+export async function updateExchangeProvider(
+  providerId,
+  { displayName, inboundPointsPerExternalUnit, outboundPointsPerExternalUnit, active },
+  adminId
+) {
   return request(`/api/v1/admin/exchange-providers/${providerId}`, {
     method: 'PUT',
     adminId,
@@ -367,7 +387,11 @@ export async function updateInstitutionStatus(institutionId, status, adminId) {
   });
 }
 
-export async function updateInstitutionBranding(institutionId, { name, logoDataUrl, primaryColor }, adminId) {
+export async function updateInstitutionBranding(
+  institutionId,
+  { name, logoDataUrl, primaryColor },
+  adminId
+) {
   return request(`/api/superadmin/institutions/${institutionId}/branding`, {
     method: 'PATCH',
     adminId,
@@ -375,7 +399,11 @@ export async function updateInstitutionBranding(institutionId, { name, logoDataU
   });
 }
 
-export async function updateInstitutionDetails(institutionId, { name, adminEmail, adminPassword }, adminId) {
+export async function updateInstitutionDetails(
+  institutionId,
+  { name, adminEmail, adminPassword },
+  adminId
+) {
   return request(`/api/superadmin/institutions/${institutionId}`, {
     method: 'PATCH',
     adminId,
@@ -408,7 +436,8 @@ export async function fetchValidGifts() {
 }
 
 export async function createGift(payload, adminId) {
-  const { name, description, imageUrl, pointCost, quantityAvailable, validFrom, validUntil } = payload;
+  const { name, description, imageUrl, pointCost, quantityAvailable, validFrom, validUntil } =
+    payload;
   return request('/api/v1/admin/gifts', {
     method: 'POST',
     adminId,
@@ -426,7 +455,16 @@ export async function createGift(payload, adminId) {
 }
 
 export async function updateGift(giftId, payload, adminId) {
-  const { name, description, imageUrl, pointCost, quantityAvailable, validFrom, validUntil, active } = payload;
+  const {
+    name,
+    description,
+    imageUrl,
+    pointCost,
+    quantityAvailable,
+    validFrom,
+    validUntil,
+    active,
+  } = payload;
   return request(`/api/v1/admin/gifts/${giftId}`, {
     method: 'PUT',
     adminId,

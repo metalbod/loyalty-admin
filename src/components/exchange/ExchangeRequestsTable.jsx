@@ -47,13 +47,18 @@ export function ExchangeRequestsTable({ requests, isLoading = false, onPageChang
               const directionMeta = DIRECTION_META[row.direction] || DIRECTION_META.IN;
               const DirectionIcon = directionMeta.icon;
               return (
-                <tr key={row.requestId} className="border-b border-slate-200 last:border-0 hover:bg-slate-50">
+                <tr
+                  key={row.requestId}
+                  className="border-b border-slate-200 last:border-0 hover:bg-slate-50"
+                >
                   <td className="whitespace-nowrap px-5 py-3 text-xs text-slate-500">
                     {formatDateTime(row.createdAt)}
                   </td>
                   <td className="px-3 py-3 text-xs font-medium text-slate-800">#{row.userId}</td>
                   <td className="px-3 py-3">
-                    <Badge variant={directionMeta.variant} icon={DirectionIcon}>{directionMeta.label}</Badge>
+                    <Badge variant={directionMeta.variant} icon={DirectionIcon}>
+                      {directionMeta.label}
+                    </Badge>
                   </td>
                   <td className="px-3 py-3 text-xs text-slate-600">{row.externalUnits}</td>
                   <td className="px-3 py-3 text-xs font-semibold text-slate-900">{row.points}</td>
@@ -61,7 +66,7 @@ export function ExchangeRequestsTable({ requests, isLoading = false, onPageChang
                     <Badge variant={STATUS_VARIANT[row.status] || 'slate'}>{row.status}</Badge>
                   </td>
                   <td className="px-3 py-3 text-xs text-slate-500">
-                    {row.status === 'FAILED' ? (row.failureReason || '—') : (row.externalRefId || '—')}
+                    {row.status === 'FAILED' ? row.failureReason || '—' : row.externalRefId || '—'}
                   </td>
                 </tr>
               );

@@ -54,7 +54,7 @@ export default function GiftRulesPanel({ gifts, rules, onAddRule, onUpdateRule, 
   };
 
   const getGiftName = (giftId) => {
-    const gift = gifts.find(g => g.gift_id === giftId);
+    const gift = gifts.find((g) => g.gift_id === giftId);
     return gift ? gift.name : `Gift #${giftId}`;
   };
 
@@ -62,10 +62,7 @@ export default function GiftRulesPanel({ gifts, rules, onAddRule, onUpdateRule, 
     <div className="gift-rules-panel">
       <div className="rules-header">
         <h2>🎯 Reward Rules</h2>
-        <button
-          className="btn-primary btn-small"
-          onClick={() => handleOpenForm()}
-        >
+        <button className="btn-primary btn-small" onClick={() => handleOpenForm()}>
           + Add Rule
         </button>
       </div>
@@ -78,10 +75,12 @@ export default function GiftRulesPanel({ gifts, rules, onAddRule, onUpdateRule, 
               <select
                 id="ruleGiftId"
                 value={formData.giftId}
-                onChange={(e) => setFormData(prev => ({ ...prev, giftId: Number(e.target.value) }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, giftId: Number(e.target.value) }))
+                }
               >
                 <option value="">Choose a gift...</option>
-                {gifts.map(gift => (
+                {gifts.map((gift) => (
                   <option key={gift.gift_id} value={gift.gift_id}>
                     {gift.name} ({gift.pointCost} points)
                   </option>
@@ -95,7 +94,9 @@ export default function GiftRulesPanel({ gifts, rules, onAddRule, onUpdateRule, 
                 type="number"
                 id="ruleTriggerPoints"
                 value={formData.triggerPoints}
-                onChange={(e) => setFormData(prev => ({ ...prev, triggerPoints: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, triggerPoints: e.target.value }))
+                }
                 placeholder="e.g., 10000"
                 min="1"
               />
@@ -117,19 +118,17 @@ export default function GiftRulesPanel({ gifts, rules, onAddRule, onUpdateRule, 
         {rules.length === 0 ? (
           <p className="empty-state">No reward rules configured yet</p>
         ) : (
-          rules.map(rule => (
+          rules.map((rule) => (
             <div key={rule.rule_id} className="rule-item">
               <div className="rule-content">
                 <h4>{getGiftName(rule.gift_id)}</h4>
                 <p className="rule-description">
-                  Award when user reaches <strong>{rule.triggerPoints.toLocaleString()}</strong> points
+                  Award when user reaches <strong>{rule.triggerPoints.toLocaleString()}</strong>{' '}
+                  points
                 </p>
               </div>
               <div className="rule-actions">
-                <button
-                  className="btn-small btn-edit"
-                  onClick={() => handleOpenForm(rule)}
-                >
+                <button className="btn-small btn-edit" onClick={() => handleOpenForm(rule)}>
                   Edit
                 </button>
                 <button

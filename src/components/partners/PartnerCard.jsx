@@ -13,12 +13,17 @@ function RateRow({ label, overrideValue = null, globalValue, suffix }) {
       <span className="text-xs text-slate-500">{label}</span>
       <div className="text-right">
         <p className="text-sm font-semibold text-slate-900">
-          {usingOverride ? overrideValue : globalValue} <span className="text-xs font-normal text-slate-500">{suffix}</span>
+          {usingOverride ? overrideValue : globalValue}{' '}
+          <span className="text-xs font-normal text-slate-500">{suffix}</span>
         </p>
         {usingOverride ? (
-          <Badge variant="emerald" className="mt-0.5">Override</Badge>
+          <Badge variant="emerald" className="mt-0.5">
+            Override
+          </Badge>
         ) : (
-          <Badge variant="slate" className="mt-0.5">Global fallback</Badge>
+          <Badge variant="slate" className="mt-0.5">
+            Global fallback
+          </Badge>
         )}
       </div>
     </div>
@@ -45,9 +50,13 @@ function ValidityRow({ overrideValue = null, globalValue }) {
       <div className="text-right">
         <p className="text-sm font-semibold text-slate-900">{formatValidityDays(effective)}</p>
         {usingOverride ? (
-          <Badge variant="emerald" className="mt-0.5">Override</Badge>
+          <Badge variant="emerald" className="mt-0.5">
+            Override
+          </Badge>
         ) : (
-          <Badge variant="slate" className="mt-0.5">Global fallback</Badge>
+          <Badge variant="slate" className="mt-0.5">
+            Global fallback
+          </Badge>
         )}
       </div>
     </div>
@@ -93,10 +102,20 @@ export function PartnerCard({ partner, onConfigureRates, onCreateServiceAccount 
       </div>
 
       <div className="mt-4 flex gap-2">
-        <Button variant="secondary" icon={Settings2} fullWidth onClick={() => onConfigureRates(partner)}>
+        <Button
+          variant="secondary"
+          icon={Settings2}
+          fullWidth
+          onClick={() => onConfigureRates(partner)}
+        >
           Configure rates
         </Button>
-        <Button variant="secondary" icon={UserPlus} fullWidth onClick={() => onCreateServiceAccount(partner)}>
+        <Button
+          variant="secondary"
+          icon={UserPlus}
+          fullWidth
+          onClick={() => onCreateServiceAccount(partner)}
+        >
           Service account
         </Button>
       </div>

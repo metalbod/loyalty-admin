@@ -50,7 +50,7 @@ InstitutionGrid.propTypes = {
     PropTypes.shape({
       institutionId: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   isLoading: PropTypes.bool,
   onToggleStatus: PropTypes.func.isRequired,

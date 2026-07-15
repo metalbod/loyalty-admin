@@ -41,10 +41,12 @@ export function ExchangeProvider({ children }) {
   const addExchangeProvider = useCallback(
     async (payload) => {
       const created = await api.createExchangeProvider(payload, adminId);
-      setExchangeProviders((prev) => [...prev, created].sort((a, b) => a.displayName.localeCompare(b.displayName)));
+      setExchangeProviders((prev) =>
+        [...prev, created].sort((a, b) => a.displayName.localeCompare(b.displayName))
+      );
       return created;
     },
-    [adminId],
+    [adminId]
   );
 
   const updateExchangeProviderConfig = useCallback(
@@ -53,7 +55,7 @@ export function ExchangeProvider({ children }) {
       setExchangeProviders((prev) => prev.map((p) => (p.providerId === providerId ? updated : p)));
       return updated;
     },
-    [adminId],
+    [adminId]
   );
 
   const value = useMemo(
@@ -76,7 +78,7 @@ export function ExchangeProvider({ children }) {
       exchangeRequests,
       exchangeRequestsLoading,
       loadExchangeRequestsPage,
-    ],
+    ]
   );
 
   return <ExchangeContext.Provider value={value}>{children}</ExchangeContext.Provider>;

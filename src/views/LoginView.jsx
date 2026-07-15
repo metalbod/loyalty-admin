@@ -28,7 +28,8 @@ export function LoginView() {
       const loggedInUser = await run(email, password);
       // Superadmins have no institution-scoped dashboard to land on - send them straight to
       // institution management instead of the transactions view.
-      const defaultRoute = loggedInUser.role === 'ROLE_SUPERADMIN' ? '/superadmin/institutions' : '/';
+      const defaultRoute =
+        loggedInUser.role === 'ROLE_SUPERADMIN' ? '/superadmin/institutions' : '/';
       const redirectTo = location.state?.from?.pathname || defaultRoute;
       navigate(redirectTo, { replace: true });
     } catch {

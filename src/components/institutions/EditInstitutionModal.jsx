@@ -44,12 +44,18 @@ export function EditInstitutionModal({ isOpen, onClose, institution, onSave }) {
       return;
     }
     if (adminPassword && adminPassword.length < 8) {
-      setValidationError('New password must be at least 8 characters, or left blank to keep the current one.');
+      setValidationError(
+        'New password must be at least 8 characters, or left blank to keep the current one.'
+      );
       return;
     }
     setValidationError(null);
     try {
-      await run(institution.institutionId, { name, adminEmail, adminPassword: adminPassword || null });
+      await run(institution.institutionId, {
+        name,
+        adminEmail,
+        adminPassword: adminPassword || null,
+      });
       handleClose();
     } catch {
       // error surfaced via useAsyncAction's error state
@@ -91,7 +97,9 @@ export function EditInstitutionModal({ isOpen, onClose, institution, onSave }) {
           onChange={(e) => setAdminPassword(e.target.value)}
         />
 
-        {(validationError || error) && <p className="text-xs text-rose-600">{validationError || error}</p>}
+        {(validationError || error) && (
+          <p className="text-xs text-rose-600">{validationError || error}</p>
+        )}
 
         <div className="flex justify-end gap-2 pt-1">
           <Button type="button" variant="ghost" onClick={handleClose}>

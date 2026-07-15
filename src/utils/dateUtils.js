@@ -69,9 +69,13 @@ export function resolveEffectiveCampaigns(campaigns, now = new Date()) {
   if (active.length === 0) {
     return { earnCampaign: null, burnCampaign: null, overlapping: false };
   }
-  const earnCampaign = active.reduce((best, c) =>
-    !best || c.earnMultiplier > best.earnMultiplier ? c : best, null);
-  const burnCampaign = active.reduce((best, c) =>
-    !best || c.burnDiscountMultiplier < best.burnDiscountMultiplier ? c : best, null);
+  const earnCampaign = active.reduce(
+    (best, c) => (!best || c.earnMultiplier > best.earnMultiplier ? c : best),
+    null
+  );
+  const burnCampaign = active.reduce(
+    (best, c) => (!best || c.burnDiscountMultiplier < best.burnDiscountMultiplier ? c : best),
+    null
+  );
   return { earnCampaign, burnCampaign, overlapping: active.length > 1 };
 }

@@ -64,7 +64,7 @@ export function AuthProvider({ children }) {
       logout,
       acknowledgeSessionExpired,
     }),
-    [user, sessionExpired, login, logout, acknowledgeSessionExpired],
+    [user, sessionExpired, login, logout, acknowledgeSessionExpired]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -5,7 +5,13 @@ import PropTypes from 'prop-types';
  * The base card container used across every view - white surface, subtle border, optional
  * emerald accent ring for highlighting the "effective"/winning item in a list.
  */
-export function Card({ children = null, className = '', accent = false, as: Component = 'div', ...rest }) {
+export function Card({
+  children = null,
+  className = '',
+  accent = false,
+  as: Component = 'div',
+  ...rest
+}) {
   return (
     <Component
       className={[

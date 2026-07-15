@@ -13,8 +13,9 @@ import { useAuth } from '../hooks/useAuth.js';
 import { TIER_ACCENTS } from '../constants';
 import { formatBalance, formatPoints } from '../utils/formatters.js';
 
-const SELECT_CLASSNAME = 'rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs text-slate-900 '
-  + 'focus:outline-none focus:ring-2 focus:ring-emerald-500/30';
+const SELECT_CLASSNAME =
+  'rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs text-slate-900 ' +
+  'focus:outline-none focus:ring-2 focus:ring-emerald-500/30';
 
 function ChangeTierControl({ wallet, onChanged }) {
   const { profiles, refreshProfiles } = useProfileContext();
@@ -51,7 +52,9 @@ function ChangeTierControl({ wallet, onChanged }) {
       >
         <option value="">Change tier to…</option>
         {otherProfiles.map((p) => (
-          <option key={p.profileId} value={p.profileId}>{p.profileName}</option>
+          <option key={p.profileId} value={p.profileId}>
+            {p.profileName}
+          </option>
         ))}
       </select>
       <Button
@@ -69,8 +72,20 @@ function ChangeTierControl({ wallet, onChanged }) {
   );
 }
 
-const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-  'September', 'October', 'November', 'December'];
+const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 function monthName(offsetFromNow) {
   const date = new Date();
@@ -91,15 +106,18 @@ export function WalletDetailView() {
   const [history, setHistory] = useState(null);
   const [historyLoading, setHistoryLoading] = useState(false);
 
-  const loadHistoryPage = useCallback(async (page = 0) => {
-    setHistoryLoading(true);
-    try {
-      const data = await api.fetchWalletHistory(userId, { page });
-      setHistory(data);
-    } finally {
-      setHistoryLoading(false);
-    }
-  }, [userId]);
+  const loadHistoryPage = useCallback(
+    async (page = 0) => {
+      setHistoryLoading(true);
+      try {
+        const data = await api.fetchWalletHistory(userId, { page });
+        setHistory(data);
+      } finally {
+        setHistoryLoading(false);
+      }
+    },
+    [userId]
+  );
 
   const loadWallet = useCallback(async () => {
     const data = await api.fetchWallet(userId);
@@ -117,12 +135,17 @@ export function WalletDetailView() {
         setWallet(data);
         // Best-effort - the wallet balance above is the important part; a failure here
         // shouldn't block the rest of the page.
-        api.fetchExpiringSummary(userId).then((summary) => {
-          if (!cancelled) setExpiringSummary(summary);
-        }).catch(() => {});
+        api
+          .fetchExpiringSummary(userId)
+          .then((summary) => {
+            if (!cancelled) setExpiringSummary(summary);
+          })
+          .catch(() => {});
       } catch (err) {
         if (cancelled) return;
-        setError(err instanceof api.ApiError ? err.message : 'Something went wrong loading this wallet.');
+        setError(
+          err instanceof api.ApiError ? err.message : 'Something went wrong loading this wallet.'
+        );
       } finally {
         if (!cancelled) setWalletLoading(false);
       }
@@ -134,10 +157,15 @@ export function WalletDetailView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  const accent = wallet ? TIER_ACCENTS[wallet.profileName] || TIER_ACCENTS.DEFAULT : TIER_ACCENTS.DEFAULT;
+  const accent = wallet
+    ? TIER_ACCENTS[wallet.profileName] || TIER_ACCENTS.DEFAULT
+    : TIER_ACCENTS.DEFAULT;
 
   return (
-    <DashboardLayout title={`Wallet #${userId}`} description="Balance and full transaction history for this customer.">
+    <DashboardLayout
+      title={`Wallet #${userId}`}
+      description="Balance and full transaction history for this customer."
+    >
       <div className="space-y-6">
         <Button variant="secondary" icon={ArrowLeft} onClick={() => navigate('/wallets')}>
           Back to wallets
@@ -148,14 +176,18 @@ export function WalletDetailView() {
         {!walletLoading && error && <Card className="p-6 text-sm text-rose-600">{error}</Card>}
 
         {!walletLoading && !error && wallet && (
-          <Card className={`flex flex-wrap items-center justify-between gap-4 p-6 ring-1 ${accent.ring}`}>
+          <Card
+            className={`flex flex-wrap items-center justify-between gap-4 p-6 ring-1 ${accent.ring}`}
+          >
             <div className="flex items-center gap-4">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-emerald-600">
                 <Wallet size={22} />
               </span>
               <div>
                 <p className="text-xs text-slate-500">User #{wallet.userId}</p>
-                <p className="text-xl font-semibold text-slate-900">{formatBalance(wallet.currentBalance)}</p>
+                <p className="text-xl font-semibold text-slate-900">
+                  {formatBalance(wallet.currentBalance)}
+                </p>
                 <span className="mt-1 flex items-center gap-1.5 text-xs font-medium">
                   <span className={`h-2 w-2 rounded-full ${accent.dot}`} />
                   <span className={accent.text}>{wallet.profileName}</span>
@@ -166,31 +198,37 @@ export function WalletDetailView() {
           </Card>
         )}
 
-        {!walletLoading && !error && expiringSummary
-          && (expiringSummary.expiringThisMonth > 0 || expiringSummary.expiringNextMonth > 0) && (
-          <Card className="p-6 ring-1 ring-amber-400/40">
-            <p className="mb-3 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-amber-600">
-              <Clock size={13} /> Expiring soon
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-lg font-semibold text-slate-900">
-                  {formatPoints(expiringSummary.expiringThisMonth)}
-                </p>
-                <p className="text-xs text-slate-500">by end of {monthName(0)}</p>
+        {!walletLoading &&
+          !error &&
+          expiringSummary &&
+          (expiringSummary.expiringThisMonth > 0 || expiringSummary.expiringNextMonth > 0) && (
+            <Card className="p-6 ring-1 ring-amber-400/40">
+              <p className="mb-3 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-amber-600">
+                <Clock size={13} /> Expiring soon
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-lg font-semibold text-slate-900">
+                    {formatPoints(expiringSummary.expiringThisMonth)}
+                  </p>
+                  <p className="text-xs text-slate-500">by end of {monthName(0)}</p>
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-slate-900">
+                    {formatPoints(expiringSummary.expiringNextMonth)}
+                  </p>
+                  <p className="text-xs text-slate-500">by end of {monthName(1)}</p>
+                </div>
               </div>
-              <div>
-                <p className="text-lg font-semibold text-slate-900">
-                  {formatPoints(expiringSummary.expiringNextMonth)}
-                </p>
-                <p className="text-xs text-slate-500">by end of {monthName(1)}</p>
-              </div>
-            </div>
-          </Card>
-        )}
+            </Card>
+          )}
 
         {!walletLoading && !error && (
-          <WalletHistoryTable history={history} isLoading={historyLoading} onPageChange={loadHistoryPage} />
+          <WalletHistoryTable
+            history={history}
+            isLoading={historyLoading}
+            onPageChange={loadHistoryPage}
+          />
         )}
       </div>
     </DashboardLayout>

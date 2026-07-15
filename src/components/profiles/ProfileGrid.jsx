@@ -40,13 +40,13 @@ ProfileGrid.propTypes = {
     PropTypes.shape({
       profileId: PropTypes.string.isRequired,
       profileName: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   partners: PropTypes.arrayOf(
     PropTypes.shape({
       partnerId: PropTypes.string.isRequired,
       partnerName: PropTypes.string.isRequired,
-    }),
+    })
   ),
   isLoading: PropTypes.bool,
   onConfigureRates: PropTypes.func.isRequired,

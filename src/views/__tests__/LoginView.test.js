@@ -27,7 +27,11 @@ jest.mock('../../hooks/useAsyncAction.js', () => ({
 // Mock Card component
 jest.mock('../../components/common/Card.jsx', () => ({
   __esModule: true,
-  default: ({ children, className }) => <div data-testid="card" className={className}>{children}</div>,
+  default: ({ children, className }) => (
+    <div data-testid="card" className={className}>
+      {children}
+    </div>
+  ),
 }));
 
 // Mock Input component
@@ -36,13 +40,7 @@ jest.mock('../../components/common/Input.jsx', () => ({
   default: ({ id, type, label, value, onChange, autoFocus }) => (
     <div data-testid={`input-${id}`}>
       <label htmlFor={id}>{label}</label>
-      <input
-        id={id}
-        type={type}
-        value={value}
-        onChange={onChange}
-        autoFocus={autoFocus}
-      />
+      <input id={id} type={type} value={value} onChange={onChange} autoFocus={autoFocus} />
     </div>
   ),
 }));

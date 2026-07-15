@@ -7,7 +7,12 @@ import Button from '../common/Button.jsx';
 import { formatDateTime } from '../../utils/dateUtils.js';
 
 export function InstitutionCard({
-  institution, onToggleStatus, onEditBranding, onEditDetails, onEditFeatures, isUpdating = false,
+  institution,
+  onToggleStatus,
+  onEditBranding,
+  onEditDetails,
+  onEditFeatures,
+  isUpdating = false,
 }) {
   const isActive = institution.status === 'ACTIVE';
 
@@ -42,13 +47,28 @@ export function InstitutionCard({
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2">
-        <Button variant="secondary" icon={PencilLine} fullWidth onClick={() => onEditDetails(institution)}>
+        <Button
+          variant="secondary"
+          icon={PencilLine}
+          fullWidth
+          onClick={() => onEditDetails(institution)}
+        >
           Edit
         </Button>
-        <Button variant="secondary" icon={Palette} fullWidth onClick={() => onEditBranding(institution)}>
+        <Button
+          variant="secondary"
+          icon={Palette}
+          fullWidth
+          onClick={() => onEditBranding(institution)}
+        >
           Branding
         </Button>
-        <Button variant="secondary" icon={ToggleLeft} fullWidth onClick={() => onEditFeatures(institution)}>
+        <Button
+          variant="secondary"
+          icon={ToggleLeft}
+          fullWidth
+          onClick={() => onEditFeatures(institution)}
+        >
           Features
         </Button>
         <Button

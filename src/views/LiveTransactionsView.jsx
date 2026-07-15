@@ -6,8 +6,14 @@ import LedgerTable from '../components/ledger/LedgerTable.jsx';
 import { useAdminContext } from '../hooks/useAdminContext.js';
 
 export function LiveTransactionsView() {
-  const { metrics, metricsLoading, refreshMetrics, activityFeed, activityFeedLoading, loadActivityPage } =
-    useAdminContext();
+  const {
+    metrics,
+    metricsLoading,
+    refreshMetrics,
+    activityFeed,
+    activityFeedLoading,
+    loadActivityPage,
+  } = useAdminContext();
 
   useEffect(() => {
     refreshMetrics();
@@ -24,7 +30,11 @@ export function LiveTransactionsView() {
       <div className="space-y-6">
         <MetricsGrid metrics={metrics} isLoading={metricsLoading} />
         <ApiUsageCard metrics={metrics} isLoading={metricsLoading} />
-        <LedgerTable feed={activityFeed} isLoading={activityFeedLoading} onPageChange={loadActivityPage} />
+        <LedgerTable
+          feed={activityFeed}
+          isLoading={activityFeedLoading}
+          onPageChange={loadActivityPage}
+        />
       </div>
     </DashboardLayout>
   );

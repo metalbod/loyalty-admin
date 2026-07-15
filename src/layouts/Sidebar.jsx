@@ -1,6 +1,17 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Activity, Building2, CalendarClock, Handshake, LogOut, Repeat, Settings, ShieldCheck, Users, Wallet } from 'lucide-react';
+import {
+  Activity,
+  Building2,
+  CalendarClock,
+  Handshake,
+  LogOut,
+  Repeat,
+  Settings,
+  ShieldCheck,
+  Users,
+  Wallet,
+} from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { useAdminContext } from '../hooks/useAdminContext.js';
 import { useAuth } from '../hooks/useAuth.js';
@@ -24,7 +35,8 @@ export function Sidebar() {
   }, [user?.role]);
 
   const visibleNavItems = NAV_ITEMS.filter(
-    (item) => item.roles.includes(user?.role) && (!item.featureKey || isFeatureEnabled(item.featureKey)),
+    (item) =>
+      item.roles.includes(user?.role) && (!item.featureKey || isFeatureEnabled(item.featureKey))
   );
 
   return (

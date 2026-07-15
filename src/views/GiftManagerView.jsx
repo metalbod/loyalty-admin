@@ -30,10 +30,7 @@ export default function GiftManagerView() {
   const loadData = async () => {
     try {
       setLoading(true);
-      const [giftsData, rulesData] = await Promise.all([
-        fetchGifts(),
-        fetchGiftRules(),
-      ]);
+      const [giftsData, rulesData] = await Promise.all([fetchGifts(), fetchGiftRules()]);
       setGifts(giftsData);
       setRules(rulesData);
       setError(null);
@@ -48,7 +45,7 @@ export default function GiftManagerView() {
     try {
       if (editingGift) {
         const updated = await updateGift(editingGift.gift_id, formData, adminId);
-        setGifts(gifts.map(g => g.gift_id === updated.gift_id ? updated : g));
+        setGifts(gifts.map((g) => (g.gift_id === updated.gift_id ? updated : g)));
       } else {
         const created = await createGift(formData, adminId);
         setGifts([...gifts, created]);
@@ -64,8 +61,8 @@ export default function GiftManagerView() {
     if (window.confirm('Delete this gift? This action cannot be undone.')) {
       try {
         await deleteGift(giftId, adminId);
-        setGifts(gifts.filter(g => g.gift_id !== giftId));
-        setRules(rules.filter(r => r.gift_id !== giftId));
+        setGifts(gifts.filter((g) => g.gift_id !== giftId));
+        setRules(rules.filter((r) => r.gift_id !== giftId));
       } catch (err) {
         setError(err.message);
       }
@@ -94,7 +91,7 @@ export default function GiftManagerView() {
   const handleUpdateRule = async (ruleId, ruleData) => {
     try {
       const updated = await updateGiftRule(ruleId, ruleData, adminId);
-      setRules(rules.map(r => r.rule_id === ruleId ? updated : r));
+      setRules(rules.map((r) => (r.rule_id === ruleId ? updated : r)));
     } catch (err) {
       setError(err.message);
     }
@@ -104,7 +101,7 @@ export default function GiftManagerView() {
     if (window.confirm('Delete this rule?')) {
       try {
         await deleteGiftRule(ruleId, adminId);
-        setRules(rules.filter(r => r.rule_id !== ruleId));
+        setRules(rules.filter((r) => r.rule_id !== ruleId));
       } catch (err) {
         setError(err.message);
       }
@@ -133,11 +130,7 @@ export default function GiftManagerView() {
       {error && <div className="error-message">{error}</div>}
 
       {showForm && (
-        <GiftForm
-          gift={editingGift}
-          onSave={handleSaveGift}
-          onCancel={handleCancelForm}
-        />
+        <GiftForm gift={editingGift} onSave={handleSaveGift} onCancel={handleCancelForm} />
       )}
 
       <div className="gift-manager-content">
@@ -147,15 +140,12 @@ export default function GiftManagerView() {
             {gifts.length === 0 ? (
               <p className="empty-state">No gifts created yet</p>
             ) : (
-              gifts.map(gift => (
+              gifts.map((gift) => (
                 <div key={gift.gift_id} className="gift-card">
                   <div className="gift-header">
                     <h3>{gift.name}</h3>
                     <div className="gift-actions">
-                      <button
-                        className="btn-small btn-edit"
-                        onClick={() => handleEditGift(gift)}
-                      >
+                      <button className="btn-small btn-edit" onClick={() => handleEditGift(gift)}>
                         Edit
                       </button>
                       <button

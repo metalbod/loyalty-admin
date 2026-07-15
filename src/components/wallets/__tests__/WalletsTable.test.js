@@ -35,34 +35,19 @@ describe('WalletsTable', () => {
   const renderTable = (component) => render(component);
 
   it('renders table with header', () => {
-    renderTable(
-      <WalletsTable
-        wallets={mockWallets}
-        onPageChange={mockOnPageChange}
-      />,
-    );
+    renderTable(<WalletsTable wallets={mockWallets} onPageChange={mockOnPageChange} />);
     expect(screen.getByText('Wallets')).toBeInTheDocument();
   });
 
   it('renders column headers', () => {
-    renderTable(
-      <WalletsTable
-        wallets={mockWallets}
-        onPageChange={mockOnPageChange}
-      />,
-    );
+    renderTable(<WalletsTable wallets={mockWallets} onPageChange={mockOnPageChange} />);
     expect(screen.getByText('User ID')).toBeInTheDocument();
     expect(screen.getByText('Tier')).toBeInTheDocument();
     expect(screen.getByText('Balance')).toBeInTheDocument();
   });
 
   it('renders wallet rows', () => {
-    renderTable(
-      <WalletsTable
-        wallets={mockWallets}
-        onPageChange={mockOnPageChange}
-      />,
-    );
+    renderTable(<WalletsTable wallets={mockWallets} onPageChange={mockOnPageChange} />);
     expect(screen.getByText('#1')).toBeInTheDocument();
     expect(screen.getByText('Silver')).toBeInTheDocument();
     expect(screen.getByText('Gold')).toBeInTheDocument();
@@ -73,18 +58,13 @@ describe('WalletsTable', () => {
       <WalletsTable
         wallets={{ content: [], page: { number: 0, totalPages: 1, totalElements: 0 } }}
         onPageChange={mockOnPageChange}
-      />,
+      />
     );
     expect(screen.getByText('Wallets')).toBeInTheDocument();
   });
 
   it('handles undefined wallets object', () => {
-    renderTable(
-      <WalletsTable
-        wallets={undefined}
-        onPageChange={mockOnPageChange}
-      />,
-    );
+    renderTable(<WalletsTable wallets={undefined} onPageChange={mockOnPageChange} />);
     expect(screen.getByText('Wallets')).toBeInTheDocument();
   });
 
@@ -96,7 +76,7 @@ describe('WalletsTable', () => {
         sortField="userId"
         sortDirection="asc"
         onSortChange={mockOnSortChange}
-      />,
+      />
     );
     // Column headers should be rendered
     expect(screen.getByText('User ID')).toBeInTheDocument();
@@ -111,7 +91,7 @@ describe('WalletsTable', () => {
         sortField="userId"
         sortDirection="asc"
         onSortChange={mockOnSortChange}
-      />,
+      />
     );
 
     const tierHeader = screen.getByText('Tier');
@@ -128,7 +108,7 @@ describe('WalletsTable', () => {
         sortField="userId"
         sortDirection="asc"
         onSortChange={mockOnSortChange}
-      />,
+      />
     );
 
     const userIdHeader = screen.getByText('User ID').closest('button');
@@ -136,21 +116,13 @@ describe('WalletsTable', () => {
   });
 
   it('displays CardHeader with subtitle', () => {
-    renderTable(
-      <WalletsTable
-        wallets={mockWallets}
-        onPageChange={mockOnPageChange}
-      />,
-    );
+    renderTable(<WalletsTable wallets={mockWallets} onPageChange={mockOnPageChange} />);
     expect(screen.getByText(/Every customer wallet/)).toBeInTheDocument();
   });
 
   it('renders table with overflow-x-auto for responsiveness', () => {
     const { container } = renderTable(
-      <WalletsTable
-        wallets={mockWallets}
-        onPageChange={mockOnPageChange}
-      />,
+      <WalletsTable wallets={mockWallets} onPageChange={mockOnPageChange} />
     );
     const scrollContainer = container.querySelector('.overflow-x-auto');
     expect(scrollContainer).toBeInTheDocument();
@@ -158,22 +130,14 @@ describe('WalletsTable', () => {
 
   it('renders table with min-width constraint', () => {
     const { container } = renderTable(
-      <WalletsTable
-        wallets={mockWallets}
-        onPageChange={mockOnPageChange}
-      />,
+      <WalletsTable wallets={mockWallets} onPageChange={mockOnPageChange} />
     );
     const table = container.querySelector('table');
     expect(table.className).toContain('min-w-[560px]');
   });
 
   it('uses default sort field and direction', () => {
-    renderTable(
-      <WalletsTable
-        wallets={mockWallets}
-        onPageChange={mockOnPageChange}
-      />,
-    );
+    renderTable(<WalletsTable wallets={mockWallets} onPageChange={mockOnPageChange} />);
     // Should render without errors with default props
     expect(screen.getByText('Wallets')).toBeInTheDocument();
   });

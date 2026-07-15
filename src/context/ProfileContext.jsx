@@ -25,10 +25,12 @@ export function ProfileProvider({ children }) {
   const addProfile = useCallback(
     async (payload) => {
       const created = await api.createProfile(payload, adminId);
-      setProfiles((prev) => [...prev, created].sort((a, b) => a.profileName.localeCompare(b.profileName)));
+      setProfiles((prev) =>
+        [...prev, created].sort((a, b) => a.profileName.localeCompare(b.profileName))
+      );
       return created;
     },
-    [adminId],
+    [adminId]
   );
 
   const updateProfileRates = useCallback(
@@ -37,7 +39,7 @@ export function ProfileProvider({ children }) {
       setProfiles((prev) => prev.map((p) => (p.profileId === profileId ? { ...p, config } : p)));
       return config;
     },
-    [adminId],
+    [adminId]
   );
 
   const value = useMemo(
@@ -48,7 +50,7 @@ export function ProfileProvider({ children }) {
       addProfile,
       updateProfileRates,
     }),
-    [profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates],
+    [profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates]
   );
 
   return <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>;

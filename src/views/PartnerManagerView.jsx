@@ -10,8 +10,14 @@ import { usePartnerContext } from '../hooks/usePartnerContext.js';
 import { useAdminContext } from '../hooks/useAdminContext.js';
 
 export function PartnerManagerView() {
-  const { partners, partnersLoading, refreshPartners, addPartner, updatePartnerRates, createPartnerServiceAccount } =
-    usePartnerContext();
+  const {
+    partners,
+    partnersLoading,
+    refreshPartners,
+    addPartner,
+    updatePartnerRates,
+    createPartnerServiceAccount,
+  } = usePartnerContext();
   const { isFeatureEnabled } = useAdminContext();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [rateConfigPartner, setRateConfigPartner] = useState(null);
@@ -30,8 +36,16 @@ export function PartnerManagerView() {
     >
       <div className="space-y-6">
         <div className="flex justify-end">
-          <span title={isFeatureEnabled('PARTNERS') ? undefined : 'Partners is disabled for this institution'}>
-            <Button icon={PlusCircle} disabled={!isFeatureEnabled('PARTNERS')} onClick={() => setIsCreateOpen(true)}>
+          <span
+            title={
+              isFeatureEnabled('PARTNERS') ? undefined : 'Partners is disabled for this institution'
+            }
+          >
+            <Button
+              icon={PlusCircle}
+              disabled={!isFeatureEnabled('PARTNERS')}
+              onClick={() => setIsCreateOpen(true)}
+            >
               Create partner
             </Button>
           </span>

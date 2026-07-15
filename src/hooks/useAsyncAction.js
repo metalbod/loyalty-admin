@@ -25,7 +25,7 @@ export function useAsyncAction(action) {
         setIsSubmitting(false);
       }
     },
-    [action],
+    [action]
   );
 
   const reset = useCallback(() => {

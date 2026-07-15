@@ -54,7 +54,10 @@ export function LedgerTable({ feed = null, isLoading = false, onPageChange }) {
               const actionMeta = ACTION_ICONS[row.action] || { icon: Sparkles, variant: 'slate' };
               const ActionIcon = actionMeta.icon;
               return (
-                <tr key={row.id} className="border-b border-slate-200 last:border-0 hover:bg-slate-50">
+                <tr
+                  key={row.id}
+                  className="border-b border-slate-200 last:border-0 hover:bg-slate-50"
+                >
                   <td className="whitespace-nowrap px-5 py-3 text-xs text-slate-500">
                     {formatDateTime(row.timestamp)}
                   </td>
@@ -66,9 +69,13 @@ export function LedgerTable({ feed = null, isLoading = false, onPageChange }) {
                       {row.action}
                     </Badge>
                   </td>
-                  <td className="px-3 py-3 text-xs font-medium text-slate-800">{row.targetEntity}</td>
+                  <td className="px-3 py-3 text-xs font-medium text-slate-800">
+                    {row.targetEntity}
+                  </td>
                   <td className="px-3 py-3">
-                    <Badge variant={row.status === 'SUCCESS' ? 'emerald' : 'rose'}>{row.status}</Badge>
+                    <Badge variant={row.status === 'SUCCESS' ? 'emerald' : 'rose'}>
+                      {row.status}
+                    </Badge>
                   </td>
                   <td className="px-3 py-3">
                     <ValuePreview oldValue={row.oldValue} newValue={row.newValue} />
@@ -80,7 +87,10 @@ export function LedgerTable({ feed = null, isLoading = false, onPageChange }) {
         </table>
         {isLoading && <LoadingSpinner label="Refreshing feed…" />}
         {!isLoading && rows.length === 0 && (
-          <EmptyState title="No activity yet" description="Transactions and admin actions will appear here." />
+          <EmptyState
+            title="No activity yet"
+            description="Transactions and admin actions will appear here."
+          />
         )}
       </div>
       {feed && rows.length > 0 && (

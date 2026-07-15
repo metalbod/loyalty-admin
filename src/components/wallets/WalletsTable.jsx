@@ -105,7 +105,11 @@ export function WalletsTable({
         </table>
         {isLoading && <LoadingSpinner label="Loading wallets…" />}
         {!isLoading && rows.length === 0 && (
-          <EmptyState icon={Wallet} title="No wallets yet" description="Wallets appear here once customers earn or redeem points." />
+          <EmptyState
+            icon={Wallet}
+            title="No wallets yet"
+            description="Wallets appear here once customers earn or redeem points."
+          />
         )}
       </div>
       {rows.length > 0 && (

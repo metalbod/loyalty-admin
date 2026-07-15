@@ -54,8 +54,15 @@ export function TierRulesSection({ profile, profiles, partners }) {
   return (
     <div className="mt-4 border-t border-slate-100 pt-4">
       <div className="mb-2 flex items-center justify-between">
-        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Promotion rules</p>
-        <Button variant="ghost" icon={PlusCircle} onClick={() => setIsCreateOpen(true)} className="!px-2 !py-1 text-xs">
+        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+          Promotion rules
+        </p>
+        <Button
+          variant="ghost"
+          icon={PlusCircle}
+          onClick={() => setIsCreateOpen(true)}
+          className="!px-2 !py-1 text-xs"
+        >
           Add
         </Button>
       </div>
@@ -76,10 +83,12 @@ export function TierRulesSection({ profile, profiles, partners }) {
               <span className="flex items-center gap-1.5">
                 <ArrowUpCircle size={13} className="shrink-0 text-emerald-600" />
                 <span>
-                  <span className="font-semibold text-slate-900">{profileName(profiles, rule.toProfileId)}</span> after{' '}
-                  <span className="font-semibold text-slate-900">{rule.threshold}</span>{' '}
-                  {METRIC_LABELS[rule.metricType]} from {partnerName(partners, rule.partnerId)} within{' '}
-                  {rule.windowDays}d
+                  <span className="font-semibold text-slate-900">
+                    {profileName(profiles, rule.toProfileId)}
+                  </span>{' '}
+                  after <span className="font-semibold text-slate-900">{rule.threshold}</span>{' '}
+                  {METRIC_LABELS[rule.metricType]} from {partnerName(partners, rule.partnerId)}{' '}
+                  within {rule.windowDays}d
                 </span>
               </span>
               <button
@@ -111,14 +120,18 @@ TierRulesSection.propTypes = {
   profile: PropTypes.shape({
     profileId: PropTypes.string.isRequired,
   }).isRequired,
-  profiles: PropTypes.arrayOf(PropTypes.shape({
-    profileId: PropTypes.string.isRequired,
-    profileName: PropTypes.string.isRequired,
-  })).isRequired,
-  partners: PropTypes.arrayOf(PropTypes.shape({
-    partnerId: PropTypes.string.isRequired,
-    partnerName: PropTypes.string.isRequired,
-  })).isRequired,
+  profiles: PropTypes.arrayOf(
+    PropTypes.shape({
+      profileId: PropTypes.string.isRequired,
+      profileName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  partners: PropTypes.arrayOf(
+    PropTypes.shape({
+      partnerId: PropTypes.string.isRequired,
+      partnerName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default TierRulesSection;
