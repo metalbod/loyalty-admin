@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1784141094762" clover="3.2.0">
-  <project timestamp="1784141094762" name="All files">
-    <metrics statements="1257" coveredstatements="383" conditionals="856" coveredconditionals="305" methods="391" coveredmethods="105" elements="2504" coveredelements="793" complexity="0" loc="1257" ncloc="1257" packages="17" files="75" classes="75"/>
+<coverage generated="1784141309999" clover="3.2.0">
+  <project timestamp="1784141309999" name="All files">
+    <metrics statements="1257" coveredstatements="403" conditionals="856" coveredconditionals="319" methods="391" coveredmethods="109" elements="2504" coveredelements="831" complexity="0" loc="1257" ncloc="1257" packages="17" files="75" classes="75"/>
     <package name="src">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="App.jsx" path="/Users/kenneth/Claude/Code/loyalty-admin-dashboard/src/App.jsx">
@@ -1295,7 +1295,7 @@
       </file>
     </package>
     <package name="src.views">
-      <metrics statements="208" coveredstatements="33" conditionals="83" coveredconditionals="6" methods="73" coveredmethods="12"/>
+      <metrics statements="208" coveredstatements="53" conditionals="83" coveredconditionals="20" methods="73" coveredmethods="16"/>
       <file name="CampaignEditorView.jsx" path="/Users/kenneth/Claude/Code/loyalty-admin-dashboard/src/views/CampaignEditorView.jsx">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="9" count="0" type="stmt"/>
@@ -1390,27 +1390,27 @@
         <line num="19" count="0" type="stmt"/>
       </file>
       <file name="LoginView.jsx" path="/Users/kenneth/Claude/Code/loyalty-admin-dashboard/src/views/LoginView.jsx">
-        <metrics statements="20" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
-        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="76" count="0" type="stmt"/>
-        <line num="77" count="0" type="cond" truecount="0" falsecount="2"/>
+        <metrics statements="20" coveredstatements="20" conditionals="14" coveredconditionals="14" methods="4" coveredmethods="4"/>
+        <line num="11" count="183" type="stmt"/>
+        <line num="12" count="183" type="stmt"/>
+        <line num="13" count="183" type="stmt"/>
+        <line num="15" count="183" type="stmt"/>
+        <line num="16" count="182" type="stmt"/>
+        <line num="17" count="182" type="stmt"/>
+        <line num="21" count="182" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="25" count="180" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="39" count="180" type="stmt"/>
+        <line num="64" count="104" type="stmt"/>
+        <line num="65" count="104" type="cond" truecount="2" falsecount="0"/>
+        <line num="76" count="55" type="stmt"/>
+        <line num="77" count="55" type="cond" truecount="2" falsecount="0"/>
       </file>
       <file name="PartnerManagerView.jsx" path="/Users/kenneth/Claude/Code/loyalty-admin-dashboard/src/views/PartnerManagerView.jsx">
         <metrics statements="12" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="2"/>
