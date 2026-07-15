@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -136,30 +136,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,14 +170,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -197,29 +197,29 @@ import Button from '../components/common/Button.jsx';
 import { useProfileContext } from '../hooks/useProfileContext.js';
 import { usePartnerContext } from '../hooks/usePartnerContext.js';
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >ProfileManagerView(</span>) {
-  const { profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates } = <span class="cstat-no" title="statement not covered" >useProfileContext();</span>
-  const { partners, refreshPartners } = <span class="cstat-no" title="statement not covered" >usePartnerContext();</span>
-  const [isCreateOpen, setIsCreateOpen] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [rateConfigProfile, setRateConfigProfile] = <span class="cstat-no" title="statement not covered" >useState(null);</span>
+export function ProfileManagerView() {
+  const { profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates } = useProfileContext();
+  const { partners, refreshPartners } = usePartnerContext();
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [rateConfigProfile, setRateConfigProfile] = useState(null);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    refreshProfiles();</span>
+  useEffect(() =&gt; {
+    refreshProfiles();
     // Tier rules can reference a channel partner, so the "From" dropdown on the create-rule
     // modal needs the partner list too - fetched here rather than by TierRulesSection itself,
     // same as AdminContext's other lazily-populated lists.
-<span class="cstat-no" title="statement not covered" >    refreshPartners();</span>
+    refreshPartners();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;DashboardLayout
       title="Profile &amp; Tier Configuration"
       description="Manage loyalty tiers and override earn/burn rates independently per tier."
     &gt;
       &lt;div className="space-y-6"&gt;
         &lt;div className="flex justify-end"&gt;
-          &lt;Button icon={PlusCircle} onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setIsCreateOpen(true)}</span>&gt;
+          &lt;Button icon={PlusCircle} onClick={() =&gt; setIsCreateOpen(true)}&gt;
             Create profile
           &lt;/Button&gt;
         &lt;/div&gt;
@@ -234,14 +234,14 @@ export function <span class="fstat-no" title="function not covered" >ProfileMana
 &nbsp;
       &lt;CreateProfileModal
         isOpen={isCreateOpen}
-        onClose={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setIsCreateOpen(false)}</span>
+        onClose={() =&gt; setIsCreateOpen(false)}
         onCreate={addProfile}
       /&gt;
       &lt;RateConfigModal
         isOpen={Boolean(rateConfigProfile)}
         entity={rateConfigProfile}
         entityType="profile"
-        onClose={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setRateConfigProfile(null)}</span>
+        onClose={() =&gt; setRateConfigProfile(null)}
         onSave={updateProfileRates}
       /&gt;
     &lt;/DashboardLayout&gt;
@@ -256,7 +256,7 @@ export default ProfileManagerView;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:33:23.304Z
+                at 2026-07-15T18:37:52.516Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

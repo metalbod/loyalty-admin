@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>8/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>8/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -146,19 +146,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,21 +214,21 @@ import Button from '../components/common/Button.jsx';
 import { usePartnerContext } from '../hooks/usePartnerContext.js';
 import { useAdminContext } from '../hooks/useAdminContext.js';
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >PartnerManagerView(</span>) {
+export function PartnerManagerView() {
   const { partners, partnersLoading, refreshPartners, addPartner, updatePartnerRates, createPartnerServiceAccount } =
-<span class="cstat-no" title="statement not covered" >    usePartnerContext();</span>
-  const { isFeatureEnabled } = <span class="cstat-no" title="statement not covered" >useAdminContext();</span>
-  const [isCreateOpen, setIsCreateOpen] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [rateConfigPartner, setRateConfigPartner] = <span class="cstat-no" title="statement not covered" >useState(null);</span>
-  const [serviceAccountPartner, setServiceAccountPartner] = <span class="cstat-no" title="statement not covered" >useState(null);</span>
+    usePartnerContext();
+  const { isFeatureEnabled } = useAdminContext();
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [rateConfigPartner, setRateConfigPartner] = useState(null);
+  const [serviceAccountPartner, setServiceAccountPartner] = useState(null);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    refreshPartners();</span>
+  useEffect(() =&gt; {
+    refreshPartners();
     // Load once on mount; refreshPartners reference changes on each render so can't be in deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;DashboardLayout
       title="Channel Partners"
       description="Manage channel partners and override earn/burn rates - and service account logins - independently per partner."
@@ -280,7 +280,7 @@ export default PartnerManagerView;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:33:23.304Z
+                at 2026-07-15T18:37:52.516Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
