@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">93.75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>15/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -173,17 +173,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,9 +200,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">52x</span>
+<span class="cline-any cline-yes">52x</span>
+<span class="cline-any cline-yes">52x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -247,7 +247,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -272,17 +272,17 @@ import EmptyState from '../common/EmptyState.jsx';
 import { formatPoints } from '../../utils/formatters.js';
 import { formatDateTime } from '../../utils/dateUtils.js';
 &nbsp;
-const TYPE_META = <span class="cstat-no" title="statement not covered" >{</span>
+const TYPE_META = {
   EARN: { icon: ArrowUpCircle, variant: 'emerald' },
   BURN: { icon: ArrowDownCircle, variant: 'sky' },
   EXPIRED: { icon: ShieldAlert, variant: 'amber' },
 };
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >WalletHistoryTable(</span>{ history, isLoading = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span> onPageChange }) {
-  const rows = <span class="cstat-no" title="statement not covered" >history?.content ?? [];</span>
-  const page = <span class="cstat-no" title="statement not covered" >history?.page ?? { number: 0, totalPages: 1, totalElements: 0 };</span>
+export function WalletHistoryTable({ history, isLoading = false, onPageChange }) {
+  const rows = history?.content ?? [];
+  const page = history?.page ?? { number: 0, totalPages: 1, totalElements: 0 };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;Card&gt;
       &lt;CardHeader title="Transaction history" subtitle="Every earn/redeem entry for this wallet, most recent first." /&gt;
       &lt;div className="overflow-x-auto"&gt;
@@ -298,10 +298,10 @@ export function <span class="fstat-no" title="function not covered" >WalletHisto
             &lt;/tr&gt;
           &lt;/thead&gt;
           &lt;tbody&gt;
-            {rows.map(<span class="fstat-no" title="function not covered" >(e</span>ntry) =&gt; {
-              const meta = <span class="cstat-no" title="statement not covered" >TYPE_META[entry.transactionType] || { icon: History, variant: 'slate' };</span>
-              const TypeIcon = <span class="cstat-no" title="statement not covered" >meta.icon;</span>
-<span class="cstat-no" title="statement not covered" >              return (</span>
+            {rows.map((entry) =&gt; {
+              const meta = TYPE_META[entry.transactionType] || <span class="branch-1 cbranch-no" title="branch not covered" >{ icon: History, variant: 'slate' };</span>
+              const TypeIcon = meta.icon;
+              return (
                 &lt;tr key={entry.ledgerId} className="border-b border-slate-200 last:border-0 hover:bg-slate-50"&gt;
                   &lt;td className="whitespace-nowrap px-5 py-3 text-xs text-slate-500"&gt;
                     {formatDateTime(entry.createdAt)}
@@ -346,7 +346,7 @@ export function <span class="fstat-no" title="function not covered" >WalletHisto
   );
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >WalletHistoryTable.propTypes = {</span>
+WalletHistoryTable.propTypes = {
   history: PropTypes.shape({
     content: PropTypes.arrayOf(PropTypes.object),
     page: PropTypes.shape({
@@ -367,7 +367,7 @@ export default WalletHistoryTable;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:25:20.091Z
+                at 2026-07-15T18:31:33.336Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
