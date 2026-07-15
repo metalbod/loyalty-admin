@@ -7,6 +7,7 @@ import ProfileManagerView from './views/ProfileManagerView.jsx';
 import PartnerManagerView from './views/PartnerManagerView.jsx';
 import PointsExchangeView from './views/PointsExchangeView.jsx';
 import CampaignEditorView from './views/CampaignEditorView.jsx';
+import GiftManagerView from './views/GiftManagerView.jsx';
 import GlobalSettingsView from './views/GlobalSettingsView.jsx';
 import InstitutionManagerView from './views/InstitutionManagerView.jsx';
 import LoginView from './views/LoginView.jsx';
@@ -70,6 +71,14 @@ export function App() {
         element={
           <ProtectedRoute>
             <CampaignEditorView />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/gifts"
+        element={
+          <ProtectedRoute>
+            <GiftManagerView />
           </ProtectedRoute>
         }
       />

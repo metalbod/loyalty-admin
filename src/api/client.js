@@ -394,3 +394,94 @@ export async function updateInstitutionFeatureFlag(institutionId, featureKey, en
     body: { enabled },
   });
 }
+
+// ---------------------------------------------------------------------------
+// Gift rewards & inventory management
+// ---------------------------------------------------------------------------
+
+export async function fetchGifts() {
+  return request('/api/v1/admin/gifts');
+}
+
+export async function fetchValidGifts() {
+  return request('/api/v1/admin/gifts/available');
+}
+
+export async function createGift(payload, adminId) {
+  const { name, description, imageUrl, pointCost, quantityAvailable, validFrom, validUntil } = payload;
+  return request('/api/v1/admin/gifts', {
+    method: 'POST',
+    adminId,
+    body: {
+      name,
+      description: description || null,
+      image_url: imageUrl || null,
+      point_cost: Number(pointCost),
+      quantity_available: quantityAvailable ? Number(quantityAvailable) : null,
+      valid_from: new Date(validFrom).toISOString(),
+      valid_until: new Date(validUntil).toISOString(),
+      active: true,
+    },
+  });
+}
+
+export async function updateGift(giftId, payload, adminId) {
+  const { name, description, imageUrl, pointCost, quantityAvailable, validFrom, validUntil, active } = payload;
+  return request(`/api/v1/admin/gifts/${giftId}`, {
+    method: 'PUT',
+    adminId,
+    body: {
+      name,
+      description: description || null,
+      image_url: imageUrl || null,
+      point_cost: Number(pointCost),
+      quantity_available: quantityAvailable ? Number(quantityAvailable) : null,
+      valid_from: new Date(validFrom).toISOString(),
+      valid_until: new Date(validUntil).toISOString(),
+      active: active !== undefined ? active : true,
+    },
+  });
+}
+
+export async function deleteGift(giftId, adminId) {
+  return request(`/api/v1/admin/gifts/${giftId}`, {
+    method: 'DELETE',
+    adminId,
+  });
+}
+
+export async function fetchGiftRules() {
+  return request('/api/v1/admin/gifts/rules');
+}
+
+export async function createGiftRule(payload, adminId) {
+  const { giftId, triggerPoints } = payload;
+  return request('/api/v1/admin/gifts/rules', {
+    method: 'POST',
+    adminId,
+    body: {
+      gift_id: Number(giftId),
+      trigger_points: Number(triggerPoints),
+      active: true,
+    },
+  });
+}
+
+export async function updateGiftRule(ruleId, payload, adminId) {
+  const { triggerPoints, active } = payload;
+  return request(`/api/v1/admin/gifts/rules/${ruleId}`, {
+    method: 'PUT',
+    adminId,
+    body: {
+      trigger_points: Number(triggerPoints),
+      active: active !== undefined ? active : true,
+    },
+  });
+}
+
+export async function deleteGiftRule(ruleId, adminId) {
+  return request(`/api/v1/admin/gifts/rules/${ruleId}`, {
+    method: 'DELETE',
+    adminId,
+  });
+}
