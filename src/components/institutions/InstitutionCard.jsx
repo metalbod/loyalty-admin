@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Ban, Building2, Palette, PlayCircle } from 'lucide-react';
+import { Ban, Building2, Palette, PencilLine, PlayCircle } from 'lucide-react';
 import Card from '../common/Card.jsx';
 import Badge from '../common/Badge.jsx';
 import Button from '../common/Button.jsx';
 import { formatDateTime } from '../../utils/dateUtils.js';
 
-export function InstitutionCard({ institution, onToggleStatus, onEditBranding, isUpdating = false }) {
+export function InstitutionCard({ institution, onToggleStatus, onEditBranding, onEditDetails, isUpdating = false }) {
   const isActive = institution.status === 'ACTIVE';
 
   return (
@@ -40,6 +40,9 @@ export function InstitutionCard({ institution, onToggleStatus, onEditBranding, i
       </div>
 
       <div className="mt-4 flex gap-2">
+        <Button variant="secondary" icon={PencilLine} fullWidth onClick={() => onEditDetails(institution)}>
+          Edit
+        </Button>
         <Button variant="secondary" icon={Palette} fullWidth onClick={() => onEditBranding(institution)}>
           Branding
         </Button>
@@ -65,10 +68,12 @@ InstitutionCard.propTypes = {
     status: PropTypes.string.isRequired,
     logoDataUrl: PropTypes.string,
     primaryColor: PropTypes.string,
+    adminEmail: PropTypes.string,
     createdAt: PropTypes.string.isRequired,
   }).isRequired,
   onToggleStatus: PropTypes.func.isRequired,
   onEditBranding: PropTypes.func.isRequired,
+  onEditDetails: PropTypes.func.isRequired,
   isUpdating: PropTypes.bool,
 };
 

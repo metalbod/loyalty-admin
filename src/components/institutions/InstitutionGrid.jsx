@@ -10,6 +10,7 @@ export function InstitutionGrid({
   isLoading = false,
   onToggleStatus,
   onEditBranding,
+  onEditDetails,
   updatingInstitutionId = null,
 }) {
   if (isLoading && institutions.length === 0) {
@@ -34,6 +35,7 @@ export function InstitutionGrid({
           institution={institution}
           onToggleStatus={onToggleStatus}
           onEditBranding={onEditBranding}
+          onEditDetails={onEditDetails}
           isUpdating={updatingInstitutionId === institution.institutionId}
         />
       ))}
@@ -51,6 +53,7 @@ InstitutionGrid.propTypes = {
   isLoading: PropTypes.bool,
   onToggleStatus: PropTypes.func.isRequired,
   onEditBranding: PropTypes.func.isRequired,
+  onEditDetails: PropTypes.func.isRequired,
   updatingInstitutionId: PropTypes.string,
 };
 

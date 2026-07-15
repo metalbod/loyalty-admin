@@ -365,3 +365,11 @@ export async function updateInstitutionBranding(institutionId, { name, logoDataU
     body: { name, logoDataUrl, primaryColor },
   });
 }
+
+export async function updateInstitutionDetails(institutionId, { name, adminEmail, adminPassword }, adminId) {
+  return request(`/api/superadmin/institutions/${institutionId}`, {
+    method: 'PATCH',
+    adminId,
+    body: { name, adminEmail, adminPassword: adminPassword || null },
+  });
+}

@@ -4,6 +4,7 @@ import DashboardLayout from '../layouts/DashboardLayout.jsx';
 import InstitutionGrid from '../components/institutions/InstitutionGrid.jsx';
 import CreateInstitutionModal from '../components/institutions/CreateInstitutionModal.jsx';
 import EditBrandingModal from '../components/institutions/EditBrandingModal.jsx';
+import EditInstitutionModal from '../components/institutions/EditInstitutionModal.jsx';
 import Button from '../components/common/Button.jsx';
 import { useAuth } from '../hooks/useAuth.js';
 import * as api from '../api/client.js';
@@ -17,6 +18,7 @@ export function InstitutionManagerView() {
   const [isLoading, setIsLoading] = useState(false);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [brandingInstitution, setBrandingInstitution] = useState(null);
+  const [detailsInstitution, setDetailsInstitution] = useState(null);
   const [updatingInstitutionId, setUpdatingInstitutionId] = useState(null);
   const [statusError, setStatusError] = useState(null);
 
@@ -42,6 +44,12 @@ export function InstitutionManagerView() {
 
   const handleUpdateBranding = async (institutionId, payload) => {
     const updated = await api.updateInstitutionBranding(institutionId, payload, user.email);
+    setInstitutions((prev) => prev.map((i) => (i.institutionId === updated.institutionId ? updated : i)));
+    return updated;
+  };
+
+  const handleUpdateDetails = async (institutionId, payload) => {
+    const updated = await api.updateInstitutionDetails(institutionId, payload, user.email);
     setInstitutions((prev) => prev.map((i) => (i.institutionId === updated.institutionId ? updated : i)));
     return updated;
   };
@@ -81,6 +89,7 @@ export function InstitutionManagerView() {
           isLoading={isLoading}
           onToggleStatus={handleToggleStatus}
           onEditBranding={setBrandingInstitution}
+          onEditDetails={setDetailsInstitution}
           updatingInstitutionId={updatingInstitutionId}
         />
       </div>
@@ -91,6 +100,12 @@ export function InstitutionManagerView() {
         onClose={() => setBrandingInstitution(null)}
         institution={brandingInstitution}
         onSave={handleUpdateBranding}
+      />
+      <EditInstitutionModal
+        isOpen={detailsInstitution !== null}
+        onClose={() => setDetailsInstitution(null)}
+        institution={detailsInstitution}
+        onSave={handleUpdateDetails}
       />
     </DashboardLayout>
   );
