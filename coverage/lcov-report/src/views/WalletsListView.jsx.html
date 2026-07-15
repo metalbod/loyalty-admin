@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -125,37 +125,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -180,37 +180,37 @@ import { useAdminContext } from '../hooks/useAdminContext.js';
 &nbsp;
 // Maps a column key to the property path the backend actually needs to sort on -
 // profileName lives on the joined Profile entity, not on LoyaltyWallet itself.
-const SORT_PROPERTY = <span class="cstat-no" title="statement not covered" >{</span>
+const SORT_PROPERTY = {
   userId: 'userId',
   currentBalance: 'currentBalance',
   profileName: 'profile.profileName',
 };
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >WalletsListView(</span>) {
-  const { wallets, walletsLoading, loadWalletsPage } = <span class="cstat-no" title="statement not covered" >useAdminContext();</span>
-  const [sortField, setSortField] = <span class="cstat-no" title="statement not covered" >useState('userId');</span>
-  const [sortDirection, setSortDirection] = <span class="cstat-no" title="statement not covered" >useState('asc');</span>
+export function WalletsListView() {
+  const { wallets, walletsLoading, loadWalletsPage } = useAdminContext();
+  const [sortField, setSortField] = useState('userId');
+  const [sortDirection, setSortDirection] = useState('asc');
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    loadWalletsPage(0, `${SORT_PROPERTY[sortField]},${sortDirection}`);</span>
+  useEffect(() =&gt; {
+    loadWalletsPage(0, `${SORT_PROPERTY[sortField]},${sortDirection}`);
     // Reload page when sort field/direction changes; loadWalletsPage reference changes on each render so can't be in deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortField, sortDirection]);
 &nbsp;
-  const handleSortChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(f</span>ield) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (field === sortField) {</span>
-<span class="cstat-no" title="statement not covered" >      setSortDirection(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; (<span class="cstat-no" title="statement not covered" >prev === 'asc' ? 'desc' : 'asc')</span>);</span>
+  const handleSortChange = (field) =&gt; {
+    if (field === sortField) {
+      setSortDirection((prev) =&gt; (prev === 'asc' ? 'desc' : 'asc'));
     } else {
-<span class="cstat-no" title="statement not covered" >      setSortField(field);</span>
-<span class="cstat-no" title="statement not covered" >      setSortDirection('asc');</span>
+      setSortField(field);
+      setSortDirection('asc');
     }
   };
 &nbsp;
-  const handlePageChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(p</span>age) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    loadWalletsPage(page, `${SORT_PROPERTY[sortField]},${sortDirection}`);</span>
+  const handlePageChange = (page) =&gt; {
+    loadWalletsPage(page, `${SORT_PROPERTY[sortField]},${sortDirection}`);
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;DashboardLayout
       title="Wallets"
       description="Browse every wallet in your institution and drill into its transaction history."
@@ -235,7 +235,7 @@ export default WalletsListView;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:37:52.516Z
+                at 2026-07-15T18:44:54.733Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
