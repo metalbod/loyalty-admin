@@ -30,7 +30,7 @@ function FlagRow({ flag, onToggle, isSubmitting }) {
         disabled={isSubmitting}
         onClick={() => onToggle(flag.featureKey, !flag.enabled)}
         className={[
-          'relative mt-0.5 h-6 w-11 shrink-0 rounded-full transition-colors disabled:opacity-60',
+          'relative mt-0.5 h-6 w-11 shrink-0 rounded-full p-0 transition-colors disabled:opacity-60',
           flag.enabled ? 'bg-[var(--brand)]' : 'bg-slate-300',
         ].join(' ')}
       >
@@ -39,8 +39,8 @@ function FlagRow({ flag, onToggle, isSubmitting }) {
         ) : (
           <span
             className={[
-              'absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform',
-              flag.enabled ? 'translate-x-5' : 'translate-x-0.5',
+              'absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform',
+              flag.enabled ? 'translate-x-5' : 'translate-x-0',
             ].join(' ')}
           />
         )}
