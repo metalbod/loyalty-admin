@@ -17,9 +17,12 @@ export const NAV_ITEMS = [
   { path: '/', label: 'Live Transactions', icon: 'Activity', roles: ['ROLE_ADMIN'] },
   { path: '/wallets', label: 'Wallets', icon: 'Wallet', roles: ['ROLE_ADMIN'] },
   { path: '/profiles', label: 'Tier Profiles', icon: 'Users', roles: ['ROLE_ADMIN'] },
-  { path: '/partners', label: 'Partners', icon: 'Handshake', roles: ['ROLE_ADMIN'] },
-  { path: '/points-exchange', label: 'Points Exchange', icon: 'Repeat', roles: ['ROLE_ADMIN'] },
-  { path: '/campaigns', label: 'Campaigns', icon: 'CalendarClock', roles: ['ROLE_ADMIN'] },
+  { path: '/partners', label: 'Partners', icon: 'Handshake', roles: ['ROLE_ADMIN'], featureKey: 'PARTNERS' },
+  {
+    path: '/points-exchange', label: 'Points Exchange', icon: 'Repeat', roles: ['ROLE_ADMIN'],
+    featureKey: 'POINTS_EXCHANGE',
+  },
+  { path: '/campaigns', label: 'Campaigns', icon: 'CalendarClock', roles: ['ROLE_ADMIN'], featureKey: 'CAMPAIGNS' },
   { path: '/settings', label: 'Global Settings', icon: 'Settings', roles: ['ROLE_ADMIN'] },
   { path: '/superadmin/institutions', label: 'Institutions', icon: 'Building2', roles: ['ROLE_SUPERADMIN'] },
 ];

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Activity, Building2, CalendarClock, Handshake, LogOut, Repeat, Settings, ShieldCheck, Users, Wallet } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
+import { useAdminContext } from '../hooks/useAdminContext.js';
 import { useAuth } from '../hooks/useAuth.js';
 import { initials } from '../utils/formatters.js';
 
@@ -10,7 +11,20 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080
 
 export function Sidebar() {
   const { user, logout } = useAuth();
-  const visibleNavItems = NAV_ITEMS.filter((item) => item.roles.includes(user?.role));
+  const { refreshFeatureFlags, isFeatureEnabled } = useAdminContext();
+
+  // Only institution admins have feature flags to fetch - a superadmin's token has no
+  // institution and would 403 against /api/admin/feature-flags (ROLE_ADMIN only).
+  useEffect(() => {
+    if (user?.role === 'ROLE_ADMIN') {
+      refreshFeatureFlags();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.role]);
+
+  const visibleNavItems = NAV_ITEMS.filter(
+    (item) => item.roles.includes(user?.role) && (!item.featureKey || isFeatureEnabled(item.featureKey)),
+  );
 
   return (
     <aside className="flex w-64 shrink-0 flex-col border-r border-slate-200 bg-white/95 px-4 py-5">

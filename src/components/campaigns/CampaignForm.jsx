@@ -25,7 +25,7 @@ function validate(form) {
   return null;
 }
 
-export function CampaignForm({ onCreate }) {
+export function CampaignForm({ onCreate, disabled = false }) {
   const [form, setForm] = useState(INITIAL_FORM);
   const [validationError, setValidationError] = useState(null);
   const { run, isSubmitting, error, success, reset } = useAsyncAction(onCreate);
@@ -114,11 +114,14 @@ export function CampaignForm({ onCreate }) {
           />
         </div>
 
+        {disabled && (
+          <p className="text-xs text-rose-600">Campaigns is disabled for this institution.</p>
+        )}
         {validationError && <p className="text-xs text-rose-600">{validationError}</p>}
         {error && <p className="text-xs text-rose-600">{error}</p>}
         {success && <p className="text-xs text-emerald-600">Campaign created successfully.</p>}
 
-        <Button type="submit" icon={CalendarPlus} isLoading={isSubmitting} fullWidth>
+        <Button type="submit" icon={CalendarPlus} isLoading={isSubmitting} disabled={disabled} fullWidth>
           Create campaign
         </Button>
       </form>
@@ -128,6 +131,7 @@ export function CampaignForm({ onCreate }) {
 
 CampaignForm.propTypes = {
   onCreate: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default CampaignForm;

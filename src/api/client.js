@@ -312,6 +312,15 @@ export async function updateConfiguration(configKey, { configValue, description 
 }
 
 // ---------------------------------------------------------------------------
+// Feature flags (read-only here - only a superadmin can change them, see the
+// Institutions section's fetchInstitutionFeatureFlags/updateInstitutionFeatureFlag below)
+// ---------------------------------------------------------------------------
+
+export async function fetchFeatureFlags() {
+  return request('/api/admin/feature-flags');
+}
+
+// ---------------------------------------------------------------------------
 // Campaigns
 // ---------------------------------------------------------------------------
 
@@ -371,5 +380,17 @@ export async function updateInstitutionDetails(institutionId, { name, adminEmail
     method: 'PATCH',
     adminId,
     body: { name, adminEmail, adminPassword: adminPassword || null },
+  });
+}
+
+export async function fetchInstitutionFeatureFlags(institutionId) {
+  return request(`/api/superadmin/institutions/${institutionId}/feature-flags`);
+}
+
+export async function updateInstitutionFeatureFlag(institutionId, featureKey, enabled, adminId) {
+  return request(`/api/superadmin/institutions/${institutionId}/feature-flags/${featureKey}`, {
+    method: 'PATCH',
+    adminId,
+    body: { enabled },
   });
 }

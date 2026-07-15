@@ -5,6 +5,7 @@ import InstitutionGrid from '../components/institutions/InstitutionGrid.jsx';
 import CreateInstitutionModal from '../components/institutions/CreateInstitutionModal.jsx';
 import EditBrandingModal from '../components/institutions/EditBrandingModal.jsx';
 import EditInstitutionModal from '../components/institutions/EditInstitutionModal.jsx';
+import FeatureFlagsModal from '../components/institutions/FeatureFlagsModal.jsx';
 import Button from '../components/common/Button.jsx';
 import { useAuth } from '../hooks/useAuth.js';
 import * as api from '../api/client.js';
@@ -19,6 +20,7 @@ export function InstitutionManagerView() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [brandingInstitution, setBrandingInstitution] = useState(null);
   const [detailsInstitution, setDetailsInstitution] = useState(null);
+  const [featuresInstitution, setFeaturesInstitution] = useState(null);
   const [updatingInstitutionId, setUpdatingInstitutionId] = useState(null);
   const [statusError, setStatusError] = useState(null);
 
@@ -90,6 +92,7 @@ export function InstitutionManagerView() {
           onToggleStatus={handleToggleStatus}
           onEditBranding={setBrandingInstitution}
           onEditDetails={setDetailsInstitution}
+          onEditFeatures={setFeaturesInstitution}
           updatingInstitutionId={updatingInstitutionId}
         />
       </div>
@@ -106,6 +109,12 @@ export function InstitutionManagerView() {
         onClose={() => setDetailsInstitution(null)}
         institution={detailsInstitution}
         onSave={handleUpdateDetails}
+      />
+      <FeatureFlagsModal
+        isOpen={featuresInstitution !== null}
+        onClose={() => setFeaturesInstitution(null)}
+        institution={featuresInstitution}
+        adminId={user.email}
       />
     </DashboardLayout>
   );

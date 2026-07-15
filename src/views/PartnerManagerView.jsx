@@ -16,6 +16,7 @@ export function PartnerManagerView() {
     addPartner,
     updatePartnerRates,
     createPartnerServiceAccount,
+    isFeatureEnabled,
   } = useAdminContext();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [rateConfigPartner, setRateConfigPartner] = useState(null);
@@ -33,9 +34,11 @@ export function PartnerManagerView() {
     >
       <div className="space-y-6">
         <div className="flex justify-end">
-          <Button icon={PlusCircle} onClick={() => setIsCreateOpen(true)}>
-            Create partner
-          </Button>
+          <span title={isFeatureEnabled('PARTNERS') ? undefined : 'Partners is disabled for this institution'}>
+            <Button icon={PlusCircle} disabled={!isFeatureEnabled('PARTNERS')} onClick={() => setIsCreateOpen(true)}>
+              Create partner
+            </Button>
+          </span>
         </div>
 
         <PartnerGrid

@@ -40,6 +40,9 @@ export function AdminProvider({ children }) {
   const [configurations, setConfigurations] = useState([]);
   const [configurationsLoading, setConfigurationsLoading] = useState(false);
 
+  const [featureFlags, setFeatureFlags] = useState([]);
+  const [featureFlagsLoading, setFeatureFlagsLoading] = useState(false);
+
   const [activityFeed, setActivityFeed] = useState({
     content: [],
     page: 0,
@@ -130,6 +133,24 @@ export function AdminProvider({ children }) {
     setConfigurations((prev) => prev.map((c) => (c.configKey === configKey ? updated : c)));
     return updated;
   }, [adminId]);
+
+  const refreshFeatureFlags = useCallback(async () => {
+    setFeatureFlagsLoading(true);
+    try {
+      const data = await api.fetchFeatureFlags();
+      setFeatureFlags(data);
+    } finally {
+      setFeatureFlagsLoading(false);
+    }
+  }, []);
+
+  // Missing entries default to enabled, same as the backend's FeatureFlagService.isEnabled -
+  // featureFlags stays [] for a superadmin session (nothing ever calls refreshFeatureFlags
+  // for that role), so this is harmlessly always-true there too.
+  const isFeatureEnabled = useCallback(
+    (featureKey) => featureFlags.find((f) => f.featureKey === featureKey)?.enabled ?? true,
+    [featureFlags],
+  );
 
   const loadActivityPage = useCallback(async (page = 0) => {
     setActivityFeedLoading(true);
@@ -230,6 +251,10 @@ export function AdminProvider({ children }) {
       configurationsLoading,
       refreshConfigurations,
       updateConfigurationValue,
+      featureFlags,
+      featureFlagsLoading,
+      refreshFeatureFlags,
+      isFeatureEnabled,
       activityFeed,
       activityFeedLoading,
       loadActivityPage,
@@ -269,6 +294,10 @@ export function AdminProvider({ children }) {
       configurationsLoading,
       refreshConfigurations,
       updateConfigurationValue,
+      featureFlags,
+      featureFlagsLoading,
+      refreshFeatureFlags,
+      isFeatureEnabled,
       activityFeed,
       activityFeedLoading,
       loadActivityPage,
