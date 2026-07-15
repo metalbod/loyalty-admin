@@ -130,14 +130,35 @@ Styling uses Tailwind CSS with a light theme (slate-50/100 backgrounds, slate-90
 
 Theme colors defined in `tailwind.config.js`. To adjust the palette, modify CSS variables or Tailwind config.
 
-## Testing
+## Testing & Quality
 
-**Current status**: No frontend tests (Phase 2 initiative). See tech-debt audit for testing roadmap.
+**Current status**: Phase 2D complete - 463 passing tests (~52% coverage)
+- ✅ Utilities: 83.5% coverage (formatters, dateUtils, formConverters)
+- ✅ Components: 95%+ coverage (all UI primitives)
+- ✅ Hooks: 88% coverage
+- ✅ Tested Views: LoginView (100%), ProfileManagerView (100%), WalletsListView (100%)
+- ⚠️ Untested Views: 7 views at 0% (Phase 2E target: 80% coverage)
 
-When testing is added, run with:
+Run tests:
 ```bash
-npm run test
+npm run test              # Run all tests once
+npm run test:watch       # Run in watch mode
+npm run test:coverage    # Generate coverage report
 ```
+
+### Code Quality
+
+**Phase 0 Complete** (2026-07-16):
+- ✅ ESLint: 38 issues (mostly prop-types validation)
+- ✅ Prettier: Consistent formatting across codebase
+- ✅ npm run lint — Check for linting issues
+- ✅ npm run lint:fix — Auto-fix violations
+- ✅ npm run format — Format with Prettier
+- ✅ npm run format:check — Verify formatting
+
+**Phase 1 Pending**: Dependency updates, CI/CD pipeline, deployment docs (see DEPENDENCY_UPDATE_PLAN.md)
+
+See [TESTING.md](TESTING.md) for testing patterns and [DEPLOYMENT.md](DEPLOYMENT.md) for deployment guide.
 
 ## Common Tasks
 
