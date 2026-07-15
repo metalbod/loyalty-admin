@@ -4,7 +4,7 @@ export default {
   testMatch: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
   moduleFileExtensions: ['js', 'jsx'],
   transform: {
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.jsx?$': ['babel-jest', { babelrc: true }],
   },
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
   collectCoverageFrom: [
@@ -17,4 +17,8 @@ export default {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
   testPathIgnorePatterns: ['/node_modules/'],
+  extensionsToTreatAsEsm: ['.jsx'],
+  transformIgnorePatterns: [
+    'node_modules/(?!(lucide-react)/)',
+  ],
 };
