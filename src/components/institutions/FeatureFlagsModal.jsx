@@ -5,13 +5,17 @@ import Modal from '../common/Modal.jsx';
 import * as api from '../../api/client';
 
 const FEATURE_LABELS = {
-  PARTNERS: { title: 'Partners', description: 'Channel partner management and partner-scoped rates.' },
-  POINTS_EXCHANGE: { title: 'Points Exchange', description: 'Redeeming points to/from an external loyalty provider.' },
-  CAMPAIGNS: { title: 'Campaigns', description: 'Promotional earn/burn rate multipliers.' },
+  PARTNERS: { title: ‘Partners’, description: ‘Channel partner management and partner-scoped rates.’ },
+  POINTS_EXCHANGE: { title: ‘Points Exchange’, description: ‘Redeeming points to/from an external loyalty provider.’ },
+  CAMPAIGNS: { title: ‘Campaigns’, description: ‘Promotional earn/burn rate multipliers.’ },
   AUTOMATIC_TIER_PROMOTION: {
-    title: 'Automatic Tier Promotion',
-    description: 'Auto-promotes a wallet when its EARN activity crosses a tier rule’s threshold. Manual '
-      + 'tier changes on a wallet always stay available regardless of this setting.',
+    title: ‘Automatic Tier Promotion’,
+    description: ‘Auto-promotes a wallet when its EARN activity crosses a tier rule’s threshold. Manual ‘
+      + ‘tier changes on a wallet always stay available regardless of this setting.’,
+  },
+  GIFT_REWARDS: {
+    title: ‘Gift Rewards’,
+    description: ‘Allow users to earn and redeem gifts with configurable validity periods and auto-expiry.’,
   },
 };
 
