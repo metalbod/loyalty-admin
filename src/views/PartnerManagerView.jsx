@@ -3,7 +3,7 @@ import { PlusCircle } from 'lucide-react';
 import DashboardLayout from '../layouts/DashboardLayout.jsx';
 import PartnerGrid from '../components/partners/PartnerGrid.jsx';
 import CreatePartnerModal from '../components/partners/CreatePartnerModal.jsx';
-import PartnerRateConfigModal from '../components/partners/PartnerRateConfigModal.jsx';
+import RateConfigModal from '../components/common/RateConfigModal.jsx';
 import CreatePartnerServiceAccountModal from '../components/partners/CreatePartnerServiceAccountModal.jsx';
 import Button from '../components/common/Button.jsx';
 import { usePartnerContext } from '../hooks/usePartnerContext.js';
@@ -50,9 +50,10 @@ export function PartnerManagerView() {
         onClose={() => setIsCreateOpen(false)}
         onCreate={addPartner}
       />
-      <PartnerRateConfigModal
+      <RateConfigModal
         isOpen={Boolean(rateConfigPartner)}
-        partner={rateConfigPartner}
+        entity={rateConfigPartner}
+        entityType="partner"
         onClose={() => setRateConfigPartner(null)}
         onSave={updatePartnerRates}
       />

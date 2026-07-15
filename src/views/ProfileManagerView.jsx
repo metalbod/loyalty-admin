@@ -3,7 +3,7 @@ import { PlusCircle } from 'lucide-react';
 import DashboardLayout from '../layouts/DashboardLayout.jsx';
 import ProfileGrid from '../components/profiles/ProfileGrid.jsx';
 import CreateProfileModal from '../components/profiles/CreateProfileModal.jsx';
-import RateConfigModal from '../components/profiles/RateConfigModal.jsx';
+import RateConfigModal from '../components/common/RateConfigModal.jsx';
 import Button from '../components/common/Button.jsx';
 import { useProfileContext } from '../hooks/useProfileContext.js';
 import { usePartnerContext } from '../hooks/usePartnerContext.js';
@@ -50,7 +50,8 @@ export function ProfileManagerView() {
       />
       <RateConfigModal
         isOpen={Boolean(rateConfigProfile)}
-        profile={rateConfigProfile}
+        entity={rateConfigProfile}
+        entityType="profile"
         onClose={() => setRateConfigProfile(null)}
         onSave={updateProfileRates}
       />
