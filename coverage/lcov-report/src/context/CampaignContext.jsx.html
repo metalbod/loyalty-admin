@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">52.38% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>11/21</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">57.89% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>11/19</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -117,48 +117,48 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { createContext, useCallback, useMemo, useState } from 'react';
@@ -166,16 +166,16 @@ import PropTypes from 'prop-types';
 import * as api from '../api/client';
 import { useAuth } from '../hooks/useAuth.js';
 &nbsp;
-export const CampaignContext = <span class="cstat-no" title="statement not covered" >createContext(null);</span>
+export const CampaignContext = createContext(null);
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >CampaignProvider(</span>{ children }) {
-  const { user } = <span class="cstat-no" title="statement not covered" >useAuth();</span>
-  const adminId = <span class="cstat-no" title="statement not covered" >user?.email;</span>
+export function CampaignProvider({ children }) {
+  const { user } = useAuth();
+  const adminId = user?.email;
 &nbsp;
-  const [campaigns, setCampaigns] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
-  const [campaignsLoading, setCampaignsLoading] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+  const [campaigns, setCampaigns] = useState([]);
+  const [campaignsLoading, setCampaignsLoading] = useState(false);
 &nbsp;
-  const refreshCampaigns = <span class="cstat-no" title="statement not covered" >useCallback(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+  const refreshCampaigns = useCallback(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
 <span class="cstat-no" title="statement not covered" >    setCampaignsLoading(true);</span>
 <span class="cstat-no" title="statement not covered" >    try {</span>
       const data = <span class="cstat-no" title="statement not covered" >await api.fetchCampaigns();</span>
@@ -185,7 +185,7 @@ export function <span class="fstat-no" title="function not covered" >CampaignPro
     }
   }, []);
 &nbsp;
-  const addCampaign = <span class="cstat-no" title="statement not covered" >useCallback(</span>
+  const addCampaign = useCallback(
 <span class="fstat-no" title="function not covered" >    as</span>ync (payload) =&gt; {
       const created = <span class="cstat-no" title="statement not covered" >await api.createCampaign(payload, adminId);</span>
 <span class="cstat-no" title="statement not covered" >      setCampaigns(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; <span class="cstat-no" title="statement not covered" >[...prev, created].sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >new Date(a.startTime) - new Date(b.startTime))</span>)</span>;</span>
@@ -194,8 +194,8 @@ export function <span class="fstat-no" title="function not covered" >CampaignPro
     [adminId],
   );
 &nbsp;
-  const value = <span class="cstat-no" title="statement not covered" >useMemo(</span>
-<span class="fstat-no" title="function not covered" >    ()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  const value = useMemo(
+    () =&gt; ({
       campaigns,
       campaignsLoading,
       refreshCampaigns,
@@ -204,10 +204,10 @@ export function <span class="fstat-no" title="function not covered" >CampaignPro
     [campaigns, campaignsLoading, refreshCampaigns, addCampaign],
   );
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return &lt;CampaignContext.Provider value={value}&gt;{children}&lt;/CampaignContext.Provider&gt;;</span>
+  return &lt;CampaignContext.Provider value={value}&gt;{children}&lt;/CampaignContext.Provider&gt;;
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >CampaignProvider.propTypes = {</span>
+CampaignProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -217,7 +217,7 @@ export function <span class="fstat-no" title="function not covered" >CampaignPro
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:13:46.828Z
+                at 2026-07-15T18:25:20.091Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

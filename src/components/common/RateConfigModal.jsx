@@ -81,7 +81,6 @@ export function RateConfigModal({ isOpen, onClose, entity = null, entityType = '
         <Input
           id={`${inputIdPrefix}EarnRate`}
           type="number"
-          min="1"
           step="1"
           label="Earn rate override"
           placeholder={`Global: ${GLOBAL_RATES.earnRateCentsPerPoint}`}
@@ -93,7 +92,6 @@ export function RateConfigModal({ isOpen, onClose, entity = null, entityType = '
         <Input
           id={`${inputIdPrefix}BurnRate`}
           type="number"
-          min="1"
           step="1"
           label="Burn rate override"
           placeholder={`Global: ${GLOBAL_RATES.burnRatePointsPerCent}`}
@@ -105,7 +103,6 @@ export function RateConfigModal({ isOpen, onClose, entity = null, entityType = '
         <Input
           id={`${inputIdPrefix}PointsValidityDays`}
           type="number"
-          min="0"
           step="1"
           label="Points validity override"
           placeholder="Falls back to the global default"

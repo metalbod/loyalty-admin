@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -103,7 +103,7 @@
 <a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -113,7 +113,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,7 +129,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -140,7 +140,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import PropTypes from 'prop-types';
 &nbsp;
-const VARIANT_STYLES = <span class="cstat-no" title="statement not covered" >{</span>
+const VARIANT_STYLES = {
   emerald: 'bg-emerald-50 text-emerald-600 border-emerald-200',
   amber: 'bg-amber-50 text-amber-600 border-amber-200',
   rose: 'bg-rose-50 text-rose-600 border-rose-200',
@@ -149,12 +149,12 @@ const VARIANT_STYLES = <span class="cstat-no" title="statement not covered" >{</
   fuchsia: 'bg-fuchsia-50 text-fuchsia-600 border-fuchsia-200',
 };
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >Badge(</span>{ children, variant = <span class="branch-0 cbranch-no" title="branch not covered" >'slate',</span> icon: Icon = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> className = <span class="branch-0 cbranch-no" title="branch not covered" >'' </span>}) {
-<span class="cstat-no" title="statement not covered" >  return (</span>
+export function Badge({ children, variant = 'slate', icon: Icon = null, className = '' }) {
+  return (
     &lt;span
       className={[
         'inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide',
-        VARIANT_STYLES[variant] || VARIANT_STYLES.slate,
+        VARIANT_STYLES[variant] || <span class="branch-1 cbranch-no" title="branch not covered" >VARIANT_STYLES.slate,</span>
         className,
       ]
         .filter(Boolean)
@@ -166,7 +166,7 @@ export function <span class="fstat-no" title="function not covered" >Badge(</spa
   );
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >Badge.propTypes = {</span>
+Badge.propTypes = {
   children: PropTypes.node.isRequired,
   variant: PropTypes.oneOf(Object.keys(VARIANT_STYLES)),
   icon: PropTypes.elementType,
@@ -181,7 +181,7 @@ export default Badge;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:13:46.828Z
+                at 2026-07-15T18:25:20.091Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

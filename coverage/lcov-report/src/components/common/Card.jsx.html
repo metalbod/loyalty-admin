@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">93.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>14/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -129,7 +129,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,7 +145,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,15 +153,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -171,7 +163,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,8 +186,8 @@ import PropTypes from 'prop-types';
  * The base card container used across every view - white surface, subtle border, optional
  * emerald accent ring for highlighting the "effective"/winning item in a list.
  */
-export function <span class="fstat-no" title="function not covered" >Card(</span>{ children = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> className = <span class="branch-0 cbranch-no" title="branch not covered" >'',</span> accent = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span> as: Component = <span class="branch-0 cbranch-no" title="branch not covered" >'div',</span> ...rest }) {
-<span class="cstat-no" title="statement not covered" >  return (</span>
+export function Card({ children = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> className = '', accent = false, as: Component = 'div', ...rest }) {
+  return (
     &lt;Component
       className={[
         'rounded-xl border bg-white shadow-card',
@@ -203,15 +203,15 @@ export function <span class="fstat-no" title="function not covered" >Card(</span
   );
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >Card.propTypes = {</span>
+Card.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   accent: PropTypes.bool,
   as: PropTypes.elementType,
 };
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >CardHeader(</span>{ title, subtitle = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> icon: Icon = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> action = <span class="branch-0 cbranch-no" title="branch not covered" >null </span>}) {
-<span class="cstat-no" title="statement not covered" >  return (</span>
+export function CardHeader({ title, subtitle = null, icon: Icon = null, action = null }) {
+  return (
     &lt;div className="flex items-start justify-between gap-4 border-b border-slate-200 px-5 py-4"&gt;
       &lt;div className="flex items-start gap-3"&gt;
         {Icon &amp;&amp; (
@@ -229,7 +229,7 @@ export function <span class="fstat-no" title="function not covered" >CardHeader(
   );
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >CardHeader.propTypes = {</span>
+CardHeader.propTypes = {
   title: PropTypes.node.isRequired,
   subtitle: PropTypes.node,
   icon: PropTypes.elementType,
@@ -244,7 +244,7 @@ export default Card;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:13:46.828Z
+                at 2026-07-15T18:25:20.091Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

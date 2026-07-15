@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">94.44% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>17/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -128,7 +128,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -150,7 +150,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">77x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,7 +172,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,7 +189,7 @@
 import PropTypes from 'prop-types';
 import { Loader2 } from 'lucide-react';
 &nbsp;
-const VARIANT_STYLES = <span class="cstat-no" title="statement not covered" >{</span>
+const VARIANT_STYLES = {
   primary:
     'bg-[var(--brand)] text-slate-950 hover:bg-[var(--brand-hover)] focus-visible:outline-[var(--brand)] disabled:bg-[var(--brand-40)]',
   secondary:
@@ -200,18 +200,18 @@ const VARIANT_STYLES = <span class="cstat-no" title="statement not covered" >{</
     'bg-rose-600 text-white hover:bg-rose-500 focus-visible:outline-rose-400 disabled:bg-rose-300',
 };
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >Button(</span>{
+export function Button({
   children,
-  onClick = <span class="branch-0 cbranch-no" title="branch not covered" >undefined,</span>
-  type = <span class="branch-0 cbranch-no" title="branch not covered" >'button',</span>
-  variant = <span class="branch-0 cbranch-no" title="branch not covered" >'primary',</span>
-  icon: Icon = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span>
-  isLoading = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span>
-  disabled = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span>
-  className = <span class="branch-0 cbranch-no" title="branch not covered" >'',</span>
-  fullWidth = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span>
+  onClick = undefined,
+  type = 'button',
+  variant = 'primary',
+  icon: Icon = null,
+  isLoading = false,
+  disabled = false,
+  className = '',
+  fullWidth = false,
 }) {
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;button
       type={type}
       onClick={onClick}
@@ -221,7 +221,7 @@ export function <span class="fstat-no" title="function not covered" >Button(</sp
         'transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
         'disabled:cursor-not-allowed',
         fullWidth ? 'w-full' : '',
-        VARIANT_STYLES[variant] || VARIANT_STYLES.primary,
+        VARIANT_STYLES[variant] || <span class="branch-1 cbranch-no" title="branch not covered" >VARIANT_STYLES.primary,</span>
         className,
       ]
         .filter(Boolean)
@@ -233,7 +233,7 @@ export function <span class="fstat-no" title="function not covered" >Button(</sp
   );
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >Button.propTypes = {</span>
+Button.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
@@ -253,7 +253,7 @@ export default Button;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:13:46.828Z
+                at 2026-07-15T18:25:20.091Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
