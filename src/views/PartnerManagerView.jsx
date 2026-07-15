@@ -6,18 +6,13 @@ import CreatePartnerModal from '../components/partners/CreatePartnerModal.jsx';
 import PartnerRateConfigModal from '../components/partners/PartnerRateConfigModal.jsx';
 import CreatePartnerServiceAccountModal from '../components/partners/CreatePartnerServiceAccountModal.jsx';
 import Button from '../components/common/Button.jsx';
+import { usePartnerContext } from '../hooks/usePartnerContext.js';
 import { useAdminContext } from '../hooks/useAdminContext.js';
 
 export function PartnerManagerView() {
-  const {
-    partners,
-    partnersLoading,
-    refreshPartners,
-    addPartner,
-    updatePartnerRates,
-    createPartnerServiceAccount,
-    isFeatureEnabled,
-  } = useAdminContext();
+  const { partners, partnersLoading, refreshPartners, addPartner, updatePartnerRates, createPartnerServiceAccount } =
+    usePartnerContext();
+  const { isFeatureEnabled } = useAdminContext();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [rateConfigPartner, setRateConfigPartner] = useState(null);
   const [serviceAccountPartner, setServiceAccountPartner] = useState(null);

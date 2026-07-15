@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import CampaignForm from '../components/campaigns/CampaignForm.jsx';
 import CampaignList from '../components/campaigns/CampaignList.jsx';
 import DashboardLayout from '../layouts/DashboardLayout.jsx';
+import { useCampaignContext } from '../hooks/useCampaignContext.js';
 import { useAdminContext } from '../hooks/useAdminContext.js';
 
 export function CampaignEditorView() {
-  const { campaigns, campaignsLoading, refreshCampaigns, addCampaign, isFeatureEnabled } = useAdminContext();
+  const { campaigns, campaignsLoading, refreshCampaigns, addCampaign } = useCampaignContext();
+  const { isFeatureEnabled } = useAdminContext();
 
   useEffect(() => {
     refreshCampaigns();

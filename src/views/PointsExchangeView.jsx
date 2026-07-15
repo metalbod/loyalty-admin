@@ -6,7 +6,7 @@ import CreateExchangeProviderModal from '../components/exchange/CreateExchangePr
 import EditExchangeProviderModal from '../components/exchange/EditExchangeProviderModal.jsx';
 import ExchangeRequestsTable from '../components/exchange/ExchangeRequestsTable.jsx';
 import Button from '../components/common/Button.jsx';
-import { useAdminContext } from '../hooks/useAdminContext.js';
+import { useExchangeContext } from '../hooks/useExchangeContext.js';
 
 export function PointsExchangeView() {
   const {
@@ -18,7 +18,7 @@ export function PointsExchangeView() {
     exchangeRequests,
     exchangeRequestsLoading,
     loadExchangeRequestsPage,
-  } = useAdminContext();
+  } = useExchangeContext();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editProvider, setEditProvider] = useState(null);
 

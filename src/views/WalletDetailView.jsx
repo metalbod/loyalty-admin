@@ -7,7 +7,7 @@ import Button from '../components/common/Button.jsx';
 import LoadingSpinner from '../components/common/LoadingSpinner.jsx';
 import WalletHistoryTable from '../components/wallets/WalletHistoryTable.jsx';
 import * as api from '../api/client';
-import { useAdminContext } from '../hooks/useAdminContext.js';
+import { useProfileContext } from '../hooks/useProfileContext.js';
 import { useAsyncAction } from '../hooks/useAsyncAction.js';
 import { useAuth } from '../hooks/useAuth.js';
 import { TIER_ACCENTS } from '../constants';
@@ -17,7 +17,7 @@ const SELECT_CLASSNAME = 'rounded-lg border border-slate-200 bg-white px-2.5 py-
   + 'focus:outline-none focus:ring-2 focus:ring-emerald-500/30';
 
 function ChangeTierControl({ wallet, onChanged }) {
-  const { profiles, refreshProfiles } = useAdminContext();
+  const { profiles, refreshProfiles } = useProfileContext();
   const { user } = useAuth();
   const [profileId, setProfileId] = useState('');
   const { run, isSubmitting, error, reset } = useAsyncAction(api.changeWalletProfile);

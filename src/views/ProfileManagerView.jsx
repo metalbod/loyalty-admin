@@ -5,11 +5,12 @@ import ProfileGrid from '../components/profiles/ProfileGrid.jsx';
 import CreateProfileModal from '../components/profiles/CreateProfileModal.jsx';
 import RateConfigModal from '../components/profiles/RateConfigModal.jsx';
 import Button from '../components/common/Button.jsx';
-import { useAdminContext } from '../hooks/useAdminContext.js';
+import { useProfileContext } from '../hooks/useProfileContext.js';
+import { usePartnerContext } from '../hooks/usePartnerContext.js';
 
 export function ProfileManagerView() {
-  const { profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates, partners, refreshPartners } =
-    useAdminContext();
+  const { profiles, profilesLoading, refreshProfiles, addProfile, updateProfileRates } = useProfileContext();
+  const { partners, refreshPartners } = usePartnerContext();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [rateConfigProfile, setRateConfigProfile] = useState(null);
 
