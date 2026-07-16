@@ -4,7 +4,7 @@ export default {
   testMatch: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
   moduleFileExtensions: ['js', 'jsx'],
   transform: {
-    '^.+\\.jsx?$': ['babel-jest', { babelrc: true }],
+    '^.+\\.jsx?$': 'babel-jest',
   },
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
   collectCoverageFrom: [
