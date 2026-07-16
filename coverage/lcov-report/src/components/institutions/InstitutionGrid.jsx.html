@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -142,27 +142,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,7 +170,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,21 +196,21 @@ import InstitutionCard from './InstitutionCard.jsx';
 import LoadingSpinner from '../common/LoadingSpinner.jsx';
 import EmptyState from '../common/EmptyState.jsx';
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >InstitutionGrid(</span>{
+export function InstitutionGrid({
   institutions,
   isLoading = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span>
   onToggleStatus,
   onEditBranding,
   onEditDetails,
   onEditFeatures,
-  updatingInstitutionId = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span>
+  updatingInstitutionId = null,
 }) {
-<span class="cstat-no" title="statement not covered" >  if (isLoading &amp;&amp; institutions.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >    return &lt;LoadingSpinner label="Loading institutions…" /&gt;;</span>
+  if (isLoading &amp;&amp; institutions.length === 0) {
+    return &lt;LoadingSpinner label="Loading institutions…" /&gt;;
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (!isLoading &amp;&amp; institutions.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
+  if (!isLoading &amp;&amp; institutions.length === 0) {
+    return (
       &lt;EmptyState
         icon={Building2}
         title="No institutions yet"
@@ -219,10 +219,10 @@ export function <span class="fstat-no" title="function not covered" >Institution
     );
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"&gt;
-      {institutions.map(<span class="fstat-no" title="function not covered" >(i</span>nstitution) =&gt; (
-<span class="cstat-no" title="statement not covered" >        &lt;InstitutionCard</span>
+      {institutions.map((institution) =&gt; (
+        &lt;InstitutionCard
           key={institution.institutionId}
           institution={institution}
           onToggleStatus={onToggleStatus}
@@ -236,12 +236,12 @@ export function <span class="fstat-no" title="function not covered" >Institution
   );
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >InstitutionGrid.propTypes = {</span>
+InstitutionGrid.propTypes = {
   institutions: PropTypes.arrayOf(
     PropTypes.shape({
       institutionId: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   isLoading: PropTypes.bool,
   onToggleStatus: PropTypes.func.isRequired,
@@ -259,7 +259,7 @@ export default InstitutionGrid;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:48:29.970Z
+                at 2026-07-16T08:34:13.019Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -102,39 +102,41 @@
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,38 +146,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import PropTypes from 'prop-types';
 &nbsp;
-function <span class="fstat-no" title="function not covered" >stringifyValue(</span>value) {
-<span class="cstat-no" title="statement not covered" >  if (value === null || value === undefined) <span class="cstat-no" title="statement not covered" >return null;</span></span>
-<span class="cstat-no" title="statement not covered" >  if (typeof value === 'object') {</span>
-<span class="cstat-no" title="statement not covered" >    return Object.entries(value)</span>
-      .map(<span class="fstat-no" title="function not covered" >([</span>key, val]) =&gt; <span class="cstat-no" title="statement not covered" >`${key}: ${val}`)</span>
+function stringifyValue(value) {
+  if (value === null || value === undefined) return null;
+  if (typeof value === 'object') {
+    return Object.entries(value)
+      .map(([key, val]) =&gt; `${key}: ${val}`)
       .join(', ');
   }
-<span class="cstat-no" title="statement not covered" >  return String(value);</span>
+  return String(value);
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >ValuePreview(</span>{ oldValue = <span class="branch-0 cbranch-no" title="branch not covered" >null,</span> newValue = <span class="branch-0 cbranch-no" title="branch not covered" >null </span>}) {
-  const oldText = <span class="cstat-no" title="statement not covered" >stringifyValue(oldValue);</span>
-  const newText = <span class="cstat-no" title="statement not covered" >stringifyValue(newValue);</span>
+export function ValuePreview({ oldValue = null, newValue = null }) {
+  const oldText = stringifyValue(oldValue);
+  const newText = stringifyValue(newValue);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (!oldText &amp;&amp; !newText) {</span>
-<span class="cstat-no" title="statement not covered" >    return &lt;span className="text-slate-600"&gt;—&lt;/span&gt;;</span>
+  if (!oldText &amp;&amp; !newText) {
+    return &lt;span className="text-slate-600"&gt;—&lt;/span&gt;;
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className="flex max-w-xs flex-col gap-0.5 text-xs"&gt;
       {oldText &amp;&amp; (
-        &lt;span className="truncate text-rose-500/80 line-through decoration-rose-500/40"&gt;{oldText}&lt;/span&gt;
+        &lt;span className="truncate text-rose-500/80 line-through decoration-rose-500/40"&gt;
+          {oldText}
+        &lt;/span&gt;
       )}
       {newText &amp;&amp; &lt;span className="truncate text-emerald-600"&gt;{newText}&lt;/span&gt;}
     &lt;/div&gt;
   );
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >ValuePreview.propTypes = {</span>
-  // eslint-disable-next-line react/forbid-prop-types
+ValuePreview.propTypes = {
   oldValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
-  // eslint-disable-next-line react/forbid-prop-types
+&nbsp;
   newValue: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
 };
 &nbsp;
@@ -187,7 +190,7 @@ export default ValuePreview;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:48:29.970Z
+                at 2026-07-16T08:34:13.019Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

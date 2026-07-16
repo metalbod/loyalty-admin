@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/25</span>
+                <span class='fraction'>13/26</span>
             </div>
         
             
@@ -130,7 +130,16 @@
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,13 +169,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,12 +177,28 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -224,10 +242,12 @@ export function PartnerProvider({ children }) {
   const addPartner = useCallback(
 <span class="fstat-no" title="function not covered" >    as</span>ync (payload) =&gt; {
       const created = <span class="cstat-no" title="statement not covered" >await api.createPartner(payload, adminId);</span>
-<span class="cstat-no" title="statement not covered" >      setPartners(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; <span class="cstat-no" title="statement not covered" >[...prev, created].sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >a.partnerName.localeCompare(b.partnerName))</span>)</span>;</span>
+<span class="cstat-no" title="statement not covered" >      setPartners(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >        [...prev, created].sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >a.partnerName.localeCompare(b.partnerName))</span></span>
+      );
 <span class="cstat-no" title="statement not covered" >      return created;</span>
     },
-    [adminId],
+    [adminId]
   );
 &nbsp;
   const updatePartnerRates = useCallback(
@@ -236,14 +256,14 @@ export function PartnerProvider({ children }) {
 <span class="cstat-no" title="statement not covered" >      setPartners(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; <span class="cstat-no" title="statement not covered" >prev.map(<span class="fstat-no" title="function not covered" >(p</span>) =&gt; (<span class="cstat-no" title="statement not covered" >p.partnerId === partnerId ? { ...p, config } : p)</span>))</span>;</span>
 <span class="cstat-no" title="statement not covered" >      return config;</span>
     },
-    [adminId],
+    [adminId]
   );
 &nbsp;
   const createPartnerServiceAccount = useCallback(
 <span class="fstat-no" title="function not covered" >    as</span>ync (partnerId, payload) =&gt; {
 <span class="cstat-no" title="statement not covered" >      return api.createPartnerServiceAccount(partnerId, payload, adminId);</span>
     },
-    [adminId],
+    [adminId]
   );
 &nbsp;
   const value = useMemo(
@@ -255,7 +275,14 @@ export function PartnerProvider({ children }) {
       updatePartnerRates,
       createPartnerServiceAccount,
     }),
-    [partners, partnersLoading, refreshPartners, addPartner, updatePartnerRates, createPartnerServiceAccount],
+    [
+      partners,
+      partnersLoading,
+      refreshPartners,
+      addPartner,
+      updatePartnerRates,
+      createPartnerServiceAccount,
+    ]
   );
 &nbsp;
   return &lt;PartnerContext.Provider value={value}&gt;{children}&lt;/PartnerContext.Provider&gt;;
@@ -271,7 +298,7 @@ PartnerProvider.propTypes = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:48:29.970Z
+                at 2026-07-16T08:34:13.019Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

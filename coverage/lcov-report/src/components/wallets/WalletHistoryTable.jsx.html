@@ -162,7 +162,22 @@
 <a name='L97'></a><a href='#L97'>97</a>
 <a name='L98'></a><a href='#L98'>98</a>
 <a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,9 +215,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">52x</span>
 <span class="cline-any cline-yes">52x</span>
 <span class="cline-any cline-yes">52x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -284,7 +314,10 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
 &nbsp;
   return (
     &lt;Card&gt;
-      &lt;CardHeader title="Transaction history" subtitle="Every earn/redeem entry for this wallet, most recent first." /&gt;
+      &lt;CardHeader
+        title="Transaction history"
+        subtitle="Every earn/redeem entry for this wallet, most recent first."
+      /&gt;
       &lt;div className="overflow-x-auto"&gt;
         &lt;table className="w-full min-w-[720px] border-collapse text-left text-sm"&gt;
           &lt;thead&gt;
@@ -302,7 +335,10 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
               const meta = TYPE_META[entry.transactionType] || <span class="branch-1 cbranch-no" title="branch not covered" >{ icon: History, variant: 'slate' };</span>
               const TypeIcon = meta.icon;
               return (
-                &lt;tr key={entry.ledgerId} className="border-b border-slate-200 last:border-0 hover:bg-slate-50"&gt;
+                &lt;tr
+                  key={entry.ledgerId}
+                  className="border-b border-slate-200 last:border-0 hover:bg-slate-50"
+                &gt;
                   &lt;td className="whitespace-nowrap px-5 py-3 text-xs text-slate-500"&gt;
                     {formatDateTime(entry.createdAt)}
                   &lt;/td&gt;
@@ -314,13 +350,18 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
                   &lt;td className="px-3 py-3 text-xs font-semibold text-slate-900"&gt;
                     {formatPoints(entry.pointsChanged)}
                   &lt;/td&gt;
-                  &lt;td className="px-3 py-3 text-xs text-slate-600"&gt;{entry.runningBalance.toLocaleString()} pts&lt;/td&gt;
+                  &lt;td className="px-3 py-3 text-xs text-slate-600"&gt;
+                    {entry.runningBalance.toLocaleString()} pts
+                  &lt;/td&gt;
                   &lt;td className="whitespace-nowrap px-3 py-3 text-xs text-slate-500"&gt;
                     {/* Only EARN rows ever carry an expiry - expiresAt is null/absent on
                         BURN/EXPIRED rows and on EARN rows configured to never expire. */}
                     {entry.transactionType === 'EARN' ? formatDateTime(entry.expiresAt) : '—'}
                   &lt;/td&gt;
-                  &lt;td className="max-w-[220px] truncate px-3 py-3 text-xs text-slate-500" title={entry.referenceId}&gt;
+                  &lt;td
+                    className="max-w-[220px] truncate px-3 py-3 text-xs text-slate-500"
+                    title={entry.referenceId}
+                  &gt;
                     {entry.referenceId}
                   &lt;/td&gt;
                 &lt;/tr&gt;
@@ -330,7 +371,11 @@ export function WalletHistoryTable({ history, isLoading = false, onPageChange })
         &lt;/table&gt;
         {isLoading &amp;&amp; &lt;LoadingSpinner label="Loading history…" /&gt;}
         {!isLoading &amp;&amp; rows.length === 0 &amp;&amp; (
-          &lt;EmptyState icon={History} title="No transactions yet" description="Earn and redeem activity for this wallet will appear here." /&gt;
+          &lt;EmptyState
+            icon={History}
+            title="No transactions yet"
+            description="Earn and redeem activity for this wallet will appear here."
+          /&gt;
         )}
       &lt;/div&gt;
       {rows.length &gt; 0 &amp;&amp; (
@@ -367,7 +412,7 @@ export default WalletHistoryTable;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:48:29.970Z
+                at 2026-07-16T08:34:13.019Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

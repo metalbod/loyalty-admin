@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>8/10</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>8/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -155,25 +155,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -217,7 +217,7 @@ import ExchangeRequestsTable from '../components/exchange/ExchangeRequestsTable.
 import Button from '../components/common/Button.jsx';
 import { useExchangeContext } from '../hooks/useExchangeContext.js';
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >PointsExchangeView(</span>) {
+export function PointsExchangeView() {
   const {
     exchangeProviders,
     exchangeProvidersLoading,
@@ -227,25 +227,25 @@ export function <span class="fstat-no" title="function not covered" >PointsExcha
     exchangeRequests,
     exchangeRequestsLoading,
     loadExchangeRequestsPage,
-  } = <span class="cstat-no" title="statement not covered" >useExchangeContext();</span>
-  const [isCreateOpen, setIsCreateOpen] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [editProvider, setEditProvider] = <span class="cstat-no" title="statement not covered" >useState(null);</span>
+  } = useExchangeContext();
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [editProvider, setEditProvider] = useState(null);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    refreshExchangeProviders();</span>
-<span class="cstat-no" title="statement not covered" >    loadExchangeRequestsPage(0);</span>
+  useEffect(() =&gt; {
+    refreshExchangeProviders();
+    loadExchangeRequestsPage(0);
     // Load once on mount; context function references change on each render so can't be in deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;DashboardLayout
       title="Points Exchange"
       description="Let customers convert points to/from an external loyalty provider, settled in batches - see the request table below for live status."
     &gt;
       &lt;div className="space-y-6"&gt;
         &lt;div className="flex justify-end"&gt;
-          &lt;Button icon={PlusCircle} onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setIsCreateOpen(true)}</span>&gt;
+          &lt;Button icon={PlusCircle} onClick={() =&gt; setIsCreateOpen(true)}&gt;
             Create provider
           &lt;/Button&gt;
         &lt;/div&gt;
@@ -286,7 +286,7 @@ export default PointsExchangeView;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-07-15T18:48:29.970Z
+                at 2026-07-16T08:34:13.019Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
