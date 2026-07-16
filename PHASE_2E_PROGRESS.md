@@ -151,29 +151,28 @@
 
 ---
 
-## Next Steps (Today/This Week)
+## Remaining Work (Sprint 4-5)
 
-### Immediate (Next 2-3 hours)
-- [x] Complete Gift components (2 files, 37 tests)
-- [ ] Start Institution components (6 files, ~50+ tests)
-  - CreateInstitutionModal.test.js (~8 tests)
-  - EditInstitutionModal.test.js (~8 tests)
-  - InstitutionCard.test.js (~8 tests)
-  - InstitutionGrid.test.js (~8 tests)
-  - EditBrandingModal.test.js (~8 tests)
-  - FeatureFlagsModal.test.js (~8 tests)
-- Target: 216+ tests, reach ~50%+ coverage
+### Sprint 4: API Client & Context Tests (Estimated 30-40 tests)
+- [ ] API client tests (queryInstitutions, updateInstitution, etc.)
+- [ ] Auth context tests
+- [ ] Loyalty context tests
+- [ ] Custom hooks tests (useAsyncAction, etc.)
+- Target: 880+ total tests, reach ~55%+ coverage
 
-### This Week (Sprint 2 Completion)
-- [ ] Complete Institution components
-- [ ] Commit Phase 2E work to main
-- [ ] Target: 270+ total tests, reach ~52%+ coverage
+### Sprint 5: Integration & Type Safety (Estimated 30-50 tests)
+- [ ] Integration tests for critical flows
+- [ ] JSDoc type safety validation
+- [ ] Edge case coverage
+- [ ] Performance benchmark tests
+- Target: 910+ total tests, reach **60%+ coverage** ✨
 
-### Next Week (Sprints 3-5)
-- [ ] API client/Context tests
-- [ ] Type safety (JSDoc)
-- [ ] Integration tests
-- [ ] Target: 275+ tests, reach **60%+ coverage** ✨
+### Summary of Completed Work
+- **Phase 2E Sprints 1-3**: 252 new tests created ✅
+- **Component Coverage**: 21 files tested (105% of initial 20-file target)
+- **Test Execution**: 844/844 passing (100%)
+- **All Mocking Patterns**: Established and validated
+- **Zero Flaky Tests**: 0 failures across all runs
 
 ---
 
