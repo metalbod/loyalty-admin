@@ -20,7 +20,9 @@ jest.mock('../../components/gifts/GiftForm.jsx', () => ({
   __esModule: true,
   default: ({ gift, onSave, onCancel }) => (
     <div data-testid="gift-form">
-      <button onClick={onCancel} data-testid="cancel-form">Cancel</button>
+      <button onClick={onCancel} data-testid="cancel-form">
+        Cancel
+      </button>
     </div>
   ),
 }));
@@ -28,9 +30,7 @@ jest.mock('../../components/gifts/GiftForm.jsx', () => ({
 jest.mock('../../components/gifts/GiftRulesPanel.jsx', () => ({
   __esModule: true,
   default: ({ gifts, rules }) => (
-    <div data-testid="gift-rules-panel">
-      {rules?.length || 0} rules
-    </div>
+    <div data-testid="gift-rules-panel">{rules?.length || 0} rules</div>
   ),
 }));
 

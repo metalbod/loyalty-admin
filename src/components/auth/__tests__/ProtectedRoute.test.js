@@ -39,7 +39,14 @@ describe('ProtectedRoute', () => {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/superadmin/institutions" element={<SuperAdminPage />} />
-          <Route path="/dashboard" element={<ProtectedRoute><ProtectedContent /></ProtectedRoute>} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <ProtectedContent />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -58,7 +65,14 @@ describe('ProtectedRoute', () => {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/superadmin/institutions" element={<SuperAdminPage />} />
-          <Route path="/dashboard" element={<ProtectedRoute><ProtectedContent /></ProtectedRoute>} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <ProtectedContent />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -78,7 +92,14 @@ describe('ProtectedRoute', () => {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/superadmin/institutions" element={<SuperAdminPage />} />
-          <Route path="/dashboard" element={<ProtectedRoute><ProtectedContent /></ProtectedRoute>} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <ProtectedContent />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -114,7 +135,14 @@ describe('ProtectedRoute', () => {
       <MemoryRouter initialEntries={['/dashboard']}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<ProtectedRoute><ProtectedContent /></ProtectedRoute>} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <ProtectedContent />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -132,7 +160,14 @@ describe('ProtectedRoute', () => {
       <MemoryRouter initialEntries={['/dashboard']}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<ProtectedRoute><ProtectedContent /></ProtectedRoute>} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <ProtectedContent />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -150,7 +185,14 @@ describe('ProtectedRoute', () => {
       <MemoryRouter initialEntries={['/protected']}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/protected" element={<ProtectedRoute><ProtectedContent /></ProtectedRoute>} />
+          <Route
+            path="/protected"
+            element={
+              <ProtectedRoute>
+                <ProtectedContent />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );

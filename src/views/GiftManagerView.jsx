@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import {
   fetchGifts,
@@ -23,11 +23,7 @@ export default function GiftManagerView() {
   const [editingGift, setEditingGift] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     try {
       setLoading(true);
       const [giftsData, rulesData] = await Promise.all([fetchGifts(), fetchGiftRules()]);
@@ -39,7 +35,11 @@ export default function GiftManagerView() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   const handleSaveGift = async (formData) => {
     try {

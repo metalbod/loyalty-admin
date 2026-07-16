@@ -28,8 +28,8 @@ jest.mock('lucide-react', () => ({
 }));
 
 jest.mock('../../../utils/dateUtils.js', () => ({
-  formatDateTime: (date) => '2024-07-16 12:00 PM',
-  formatRelativeToNow: (date) => 'in 5 days',
+  formatDateTime: (_date) => '2024-07-16 12:00 PM',
+  formatRelativeToNow: (_date) => 'in 5 days',
   getCampaignStatus: jest.fn(() => 'ACTIVE'),
 }));
 
@@ -134,7 +134,9 @@ describe('CampaignCard', () => {
   });
 
   it('hides effectiveness badges when flags are false', () => {
-    render(<CampaignCard campaign={mockCampaign} isEffectiveEarn={false} isEffectiveBurn={false} />);
+    render(
+      <CampaignCard campaign={mockCampaign} isEffectiveEarn={false} isEffectiveBurn={false} />
+    );
     expect(screen.queryByText('Effective now')).not.toBeInTheDocument();
   });
 

@@ -97,7 +97,7 @@ describe('useCampaignContext - Enhanced', () => {
   it('sets loading state during fetch', async () => {
     const { fetchCampaigns } = require('../../api/client');
     fetchCampaigns.mockImplementation(
-      () => new Promise(resolve => setTimeout(() => resolve([]), 100))
+      () => new Promise((resolve) => setTimeout(() => resolve([]), 100))
     );
 
     const wrapper = ({ children }) => (
@@ -248,13 +248,21 @@ describe('useCampaignContext - Enhanced', () => {
   });
 
   it('maintains campaign list across multiple operations', async () => {
-    const campaign1 = { campaignId: '1', name: 'Campaign 1', startTime: '2024-07-01', endTime: '2024-07-31' };
-    const campaign2 = { campaignId: '2', name: 'Campaign 2', startTime: '2024-08-01', endTime: '2024-08-31' };
+    const campaign1 = {
+      campaignId: '1',
+      name: 'Campaign 1',
+      startTime: '2024-07-01',
+      endTime: '2024-07-31',
+    };
+    const campaign2 = {
+      campaignId: '2',
+      name: 'Campaign 2',
+      startTime: '2024-08-01',
+      endTime: '2024-08-31',
+    };
 
     const { createCampaign } = require('../../api/client');
-    createCampaign
-      .mockResolvedValueOnce(campaign1)
-      .mockResolvedValueOnce(campaign2);
+    createCampaign.mockResolvedValueOnce(campaign1).mockResolvedValueOnce(campaign2);
 
     const wrapper = ({ children }) => (
       <AuthProvider>

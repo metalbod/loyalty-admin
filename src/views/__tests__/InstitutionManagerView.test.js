@@ -27,30 +27,26 @@ jest.mock('../../components/institutions/InstitutionGrid.jsx', () => ({
 
 jest.mock('../../components/institutions/CreateInstitutionModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen }) => (
-    isOpen ? <div data-testid="create-institution-modal">Create Modal</div> : null
-  ),
+  default: ({ isOpen }) =>
+    isOpen ? <div data-testid="create-institution-modal">Create Modal</div> : null,
 }));
 
 jest.mock('../../components/institutions/EditBrandingModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen }) => (
-    isOpen ? <div data-testid="edit-branding-modal">Branding Modal</div> : null
-  ),
+  default: ({ isOpen }) =>
+    isOpen ? <div data-testid="edit-branding-modal">Branding Modal</div> : null,
 }));
 
 jest.mock('../../components/institutions/EditInstitutionModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen }) => (
-    isOpen ? <div data-testid="edit-institution-modal">Details Modal</div> : null
-  ),
+  default: ({ isOpen }) =>
+    isOpen ? <div data-testid="edit-institution-modal">Details Modal</div> : null,
 }));
 
 jest.mock('../../components/institutions/FeatureFlagsModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen }) => (
-    isOpen ? <div data-testid="feature-flags-modal">Features Modal</div> : null
-  ),
+  default: ({ isOpen }) =>
+    isOpen ? <div data-testid="feature-flags-modal">Features Modal</div> : null,
 }));
 
 jest.mock('../../components/common/Button.jsx', () => ({

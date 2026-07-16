@@ -18,9 +18,7 @@ jest.mock('../../layouts/DashboardLayout.jsx', () => ({
 jest.mock('../../components/campaigns/CampaignForm.jsx', () => ({
   __esModule: true,
   default: ({ onCreate, disabled }) => (
-    <div data-testid="campaign-form">
-      {disabled ? 'Form disabled' : 'Form enabled'}
-    </div>
+    <div data-testid="campaign-form">{disabled ? 'Form disabled' : 'Form enabled'}</div>
   ),
 }));
 

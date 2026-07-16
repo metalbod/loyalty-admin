@@ -87,12 +87,16 @@ describe('ExchangeProviderGrid', () => {
   });
 
   it('does not show loading spinner when not loading and has providers', () => {
-    render(<ExchangeProviderGrid providers={mockProviders} isLoading={false} onEdit={mockOnEdit} />);
+    render(
+      <ExchangeProviderGrid providers={mockProviders} isLoading={false} onEdit={mockOnEdit} />
+    );
     expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
   });
 
   it('does not show empty state when providers exist', () => {
-    render(<ExchangeProviderGrid providers={mockProviders} isLoading={false} onEdit={mockOnEdit} />);
+    render(
+      <ExchangeProviderGrid providers={mockProviders} isLoading={false} onEdit={mockOnEdit} />
+    );
     expect(screen.queryByTestId('empty-state')).not.toBeInTheDocument();
   });
 

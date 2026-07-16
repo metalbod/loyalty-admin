@@ -11,10 +11,18 @@ describe('theme.js utilities', () => {
       applyBrandTheme('#0066cc');
 
       expect(document.documentElement.style.getPropertyValue('--brand')).toBe('#0066cc');
-      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe('rgba(0, 102, 204, 0.1)');
-      expect(document.documentElement.style.getPropertyValue('--brand-20')).toBe('rgba(0, 102, 204, 0.2)');
-      expect(document.documentElement.style.getPropertyValue('--brand-40')).toBe('rgba(0, 102, 204, 0.4)');
-      expect(document.documentElement.style.getPropertyValue('--brand-hover')).toBe('rgba(0, 102, 204, 0.85)');
+      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe(
+        'rgba(0, 102, 204, 0.1)'
+      );
+      expect(document.documentElement.style.getPropertyValue('--brand-20')).toBe(
+        'rgba(0, 102, 204, 0.2)'
+      );
+      expect(document.documentElement.style.getPropertyValue('--brand-40')).toBe(
+        'rgba(0, 102, 204, 0.4)'
+      );
+      expect(document.documentElement.style.getPropertyValue('--brand-hover')).toBe(
+        'rgba(0, 102, 204, 0.85)'
+      );
     });
 
     it('uses default color for invalid hex code', () => {
@@ -22,7 +30,9 @@ describe('theme.js utilities', () => {
 
       // Default is #10b981 (emerald-500)
       expect(document.documentElement.style.getPropertyValue('--brand')).toBe('#10b981');
-      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe('rgba(16, 185, 129, 0.1)');
+      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe(
+        'rgba(16, 185, 129, 0.1)'
+      );
     });
 
     it('uses default color for null color', () => {
@@ -47,14 +57,18 @@ describe('theme.js utilities', () => {
       applyBrandTheme('#FF0000');
 
       expect(document.documentElement.style.getPropertyValue('--brand')).toBe('#FF0000');
-      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe('rgba(255, 0, 0, 0.1)');
+      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe(
+        'rgba(255, 0, 0, 0.1)'
+      );
     });
 
     it('handles mixed case hex colors', () => {
       applyBrandTheme('#Aa00Bb');
 
       expect(document.documentElement.style.getPropertyValue('--brand')).toBe('#Aa00Bb');
-      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe('rgba(170, 0, 187, 0.1)');
+      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe(
+        'rgba(170, 0, 187, 0.1)'
+      );
     });
 
     it('rejects hex codes with invalid characters', () => {
@@ -86,10 +100,18 @@ describe('theme.js utilities', () => {
       applyBrandTheme('#ff00ff');
 
       expect(document.documentElement.style.getPropertyValue('--brand')).toBe('#ff00ff');
-      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe('rgba(255, 0, 255, 0.1)');
-      expect(document.documentElement.style.getPropertyValue('--brand-20')).toBe('rgba(255, 0, 255, 0.2)');
-      expect(document.documentElement.style.getPropertyValue('--brand-40')).toBe('rgba(255, 0, 255, 0.4)');
-      expect(document.documentElement.style.getPropertyValue('--brand-hover')).toBe('rgba(255, 0, 255, 0.85)');
+      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe(
+        'rgba(255, 0, 255, 0.1)'
+      );
+      expect(document.documentElement.style.getPropertyValue('--brand-20')).toBe(
+        'rgba(255, 0, 255, 0.2)'
+      );
+      expect(document.documentElement.style.getPropertyValue('--brand-40')).toBe(
+        'rgba(255, 0, 255, 0.4)'
+      );
+      expect(document.documentElement.style.getPropertyValue('--brand-hover')).toBe(
+        'rgba(255, 0, 255, 0.85)'
+      );
     });
 
     it('correctly converts colors with various values', () => {
@@ -122,17 +144,27 @@ describe('theme.js utilities', () => {
 
       // Should be back to default
       expect(document.documentElement.style.getPropertyValue('--brand')).toBe('#10b981');
-      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe('rgba(16, 185, 129, 0.1)');
+      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe(
+        'rgba(16, 185, 129, 0.1)'
+      );
     });
 
     it('resets all opacity variants to default', () => {
       applyBrandTheme('#ff0000');
       resetBrandTheme();
 
-      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe('rgba(16, 185, 129, 0.1)');
-      expect(document.documentElement.style.getPropertyValue('--brand-20')).toBe('rgba(16, 185, 129, 0.2)');
-      expect(document.documentElement.style.getPropertyValue('--brand-40')).toBe('rgba(16, 185, 129, 0.4)');
-      expect(document.documentElement.style.getPropertyValue('--brand-hover')).toBe('rgba(16, 185, 129, 0.85)');
+      expect(document.documentElement.style.getPropertyValue('--brand-10')).toBe(
+        'rgba(16, 185, 129, 0.1)'
+      );
+      expect(document.documentElement.style.getPropertyValue('--brand-20')).toBe(
+        'rgba(16, 185, 129, 0.2)'
+      );
+      expect(document.documentElement.style.getPropertyValue('--brand-40')).toBe(
+        'rgba(16, 185, 129, 0.4)'
+      );
+      expect(document.documentElement.style.getPropertyValue('--brand-hover')).toBe(
+        'rgba(16, 185, 129, 0.85)'
+      );
     });
   });
 
@@ -159,7 +191,9 @@ describe('theme.js utilities', () => {
       applyBrandTheme('#0066cc');
 
       expect(document.documentElement.style.getPropertyValue('--brand')).toBe(customProps.brand);
-      expect(document.documentElement.style.getPropertyValue('--brand-hover')).toBe(customProps.brandHover);
+      expect(document.documentElement.style.getPropertyValue('--brand-hover')).toBe(
+        customProps.brandHover
+      );
     });
   });
 });

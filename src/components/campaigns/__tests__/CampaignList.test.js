@@ -31,7 +31,7 @@ jest.mock('../../common/LoadingSpinner.jsx', () => ({
 
 jest.mock('../../common/EmptyState.jsx', () => ({
   __esModule: true,
-  default: ({ title, description, icon: Icon }) => (
+  default: ({ title, description, icon: _Icon }) => (
     <div data-testid="empty-state">
       <p>{title}</p>
       <p>{description}</p>
@@ -167,7 +167,7 @@ describe('CampaignList', () => {
   it('applies accent styling to effective rates card', () => {
     render(<CampaignList campaigns={mockCampaigns} />);
     const cards = screen.getAllByTestId('card');
-    const accentCard = cards.find(c => c.getAttribute('data-accent') === 'true');
+    const accentCard = cards.find((c) => c.getAttribute('data-accent') === 'true');
     expect(accentCard).toBeDefined();
   });
 });

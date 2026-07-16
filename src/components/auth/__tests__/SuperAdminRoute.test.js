@@ -55,7 +55,14 @@ describe('SuperAdminRoute', () => {
       <MemoryRouter initialEntries={['/superadmin/institutions']}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/superadmin/institutions" element={<SuperAdminRoute><SuperAdminContent /></SuperAdminRoute>} />
+          <Route
+            path="/superadmin/institutions"
+            element={
+              <SuperAdminRoute>
+                <SuperAdminContent />
+              </SuperAdminRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -74,7 +81,14 @@ describe('SuperAdminRoute', () => {
       <MemoryRouter initialEntries={['/superadmin/institutions']}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/superadmin/institutions" element={<SuperAdminRoute><SuperAdminContent /></SuperAdminRoute>} />
+          <Route
+            path="/superadmin/institutions"
+            element={
+              <SuperAdminRoute>
+                <SuperAdminContent />
+              </SuperAdminRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -97,7 +111,14 @@ describe('SuperAdminRoute', () => {
       <MemoryRouter initialEntries={['/superadmin/institutions']}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/superadmin/institutions" element={<SuperAdminRoute><SuperAdminContent /></SuperAdminRoute>} />
+          <Route
+            path="/superadmin/institutions"
+            element={
+              <SuperAdminRoute>
+                <SuperAdminContent />
+              </SuperAdminRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -133,7 +154,14 @@ describe('SuperAdminRoute', () => {
       <MemoryRouter initialEntries={['/superadmin/institutions']}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/superadmin/institutions" element={<SuperAdminRoute><SuperAdminContent /></SuperAdminRoute>} />
+          <Route
+            path="/superadmin/institutions"
+            element={
+              <SuperAdminRoute>
+                <SuperAdminContent />
+              </SuperAdminRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -151,7 +179,14 @@ describe('SuperAdminRoute', () => {
       <MemoryRouter initialEntries={['/superadmin/institutions']}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/superadmin/institutions" element={<SuperAdminRoute><SuperAdminContent /></SuperAdminRoute>} />
+          <Route
+            path="/superadmin/institutions"
+            element={
+              <SuperAdminRoute>
+                <SuperAdminContent />
+              </SuperAdminRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );
@@ -170,7 +205,14 @@ describe('SuperAdminRoute', () => {
       <MemoryRouter initialEntries={['/superadmin/institutions']}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/superadmin/institutions" element={<SuperAdminRoute><SuperAdminContent /></SuperAdminRoute>} />
+          <Route
+            path="/superadmin/institutions"
+            element={
+              <SuperAdminRoute>
+                <SuperAdminContent />
+              </SuperAdminRoute>
+            }
+          />
         </Routes>
       </MemoryRouter>
     );

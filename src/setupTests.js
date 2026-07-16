@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import '@testing-library/jest-dom';
 
 // Polyfill TextEncoder/TextDecoder for React Router v7 compatibility

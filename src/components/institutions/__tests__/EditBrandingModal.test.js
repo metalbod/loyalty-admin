@@ -20,37 +20,78 @@ jest.mock('../../common/Button.jsx', () => ({
 jest.mock('lucide-react', () => ({ Save: () => null, Upload: () => null, Trash2: () => null }));
 
 jest.mock('../../../hooks/useAsyncAction.js', () => ({
-  useAsyncAction: jest.fn(() => ({ run: jest.fn(), isSubmitting: false, error: null, reset: jest.fn() })),
+  useAsyncAction: jest.fn(() => ({
+    run: jest.fn(),
+    isSubmitting: false,
+    error: null,
+    reset: jest.fn(),
+  })),
 }));
 
 describe('EditBrandingModal', () => {
-  const mockInstitution = { institutionId: 'inst-1', name: 'Acme', logoDataUrl: '', primaryColor: '#0066cc' };
+  const mockInstitution = {
+    institutionId: 'inst-1',
+    name: 'Acme',
+    logoDataUrl: '',
+    primaryColor: '#0066cc',
+  };
   const mockOnSave = jest.fn(() => Promise.resolve());
   const mockOnClose = jest.fn();
 
   it('renders when open', () => {
-    render(<EditBrandingModal isOpen={true} onClose={mockOnClose} institution={mockInstitution} onSave={mockOnSave} />);
+    render(
+      <EditBrandingModal
+        isOpen={true}
+        onClose={mockOnClose}
+        institution={mockInstitution}
+        onSave={mockOnSave}
+      />
+    );
     expect(screen.getByTestId('modal')).toBeInTheDocument();
   });
 
   it('does not render when closed', () => {
-    render(<EditBrandingModal isOpen={false} onClose={mockOnClose} institution={mockInstitution} onSave={mockOnSave} />);
+    render(
+      <EditBrandingModal
+        isOpen={false}
+        onClose={mockOnClose}
+        institution={mockInstitution}
+        onSave={mockOnSave}
+      />
+    );
     expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
   });
 
   it('renders with institution provided', () => {
-    render(<EditBrandingModal isOpen={true} onClose={mockOnClose} institution={mockInstitution} onSave={mockOnSave} />);
+    render(
+      <EditBrandingModal
+        isOpen={true}
+        onClose={mockOnClose}
+        institution={mockInstitution}
+        onSave={mockOnSave}
+      />
+    );
     expect(screen.getByTestId('modal')).toBeInTheDocument();
   });
 
   it('handles modal state changes', () => {
     const { rerender } = render(
-      <EditBrandingModal isOpen={true} onClose={mockOnClose} institution={mockInstitution} onSave={mockOnSave} />
+      <EditBrandingModal
+        isOpen={true}
+        onClose={mockOnClose}
+        institution={mockInstitution}
+        onSave={mockOnSave}
+      />
     );
     expect(screen.getByTestId('modal')).toBeInTheDocument();
 
     rerender(
-      <EditBrandingModal isOpen={false} onClose={mockOnClose} institution={mockInstitution} onSave={mockOnSave} />
+      <EditBrandingModal
+        isOpen={false}
+        onClose={mockOnClose}
+        institution={mockInstitution}
+        onSave={mockOnSave}
+      />
     );
     expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
   });

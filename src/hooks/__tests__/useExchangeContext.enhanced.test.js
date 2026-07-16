@@ -106,7 +106,7 @@ describe('useExchangeContext - Enhanced', () => {
   it('sets loading state during provider fetch', async () => {
     const { fetchExchangeProviders } = require('../../api/client');
     fetchExchangeProviders.mockImplementation(
-      () => new Promise(resolve => setTimeout(() => resolve([]), 100))
+      () => new Promise((resolve) => setTimeout(() => resolve([]), 100))
     );
 
     const wrapper = ({ children }) => (
@@ -128,9 +128,7 @@ describe('useExchangeContext - Enhanced', () => {
   });
 
   it('adds exchange provider and sorts by displayName', async () => {
-    const existingProviders = [
-      { providerId: '1', displayName: 'Provider Z', active: true },
-    ];
+    const existingProviders = [{ providerId: '1', displayName: 'Provider Z', active: true }];
     const newProvider = {
       providerId: '2',
       displayName: 'Provider A',
@@ -283,7 +281,7 @@ describe('useExchangeContext - Enhanced', () => {
   it('sets loading state during requests fetch', async () => {
     const { fetchExchangeRequests } = require('../../api/client');
     fetchExchangeRequests.mockImplementation(
-      () => new Promise(resolve => setTimeout(() => resolve({ content: [], page: {} }), 100))
+      () => new Promise((resolve) => setTimeout(() => resolve({ content: [], page: {} }), 100))
     );
 
     const wrapper = ({ children }) => (

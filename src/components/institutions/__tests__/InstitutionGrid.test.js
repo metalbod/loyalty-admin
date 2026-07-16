@@ -4,11 +4,14 @@ import InstitutionGrid from '../InstitutionGrid.jsx';
 
 jest.mock('../InstitutionCard.jsx', () => ({
   __esModule: true,
-  default: ({ institution, onToggleStatus, onEditBranding, onEditDetails, onEditFeatures, isUpdating }) => (
-    <div data-testid={`institution-card-${institution.institutionId}`}>
-      {institution.name}
-    </div>
-  ),
+  default: ({
+    institution,
+    onToggleStatus,
+    onEditBranding,
+    onEditDetails,
+    onEditFeatures,
+    isUpdating,
+  }) => <div data-testid={`institution-card-${institution.institutionId}`}>{institution.name}</div>,
 }));
 
 jest.mock('../../common/LoadingSpinner.jsx', () => ({
@@ -60,16 +63,12 @@ describe('InstitutionGrid', () => {
   });
 
   it('renders loading spinner when loading with no institutions', () => {
-    render(
-      <InstitutionGrid institutions={[]} isLoading={true} {...mockCallbacks} />
-    );
+    render(<InstitutionGrid institutions={[]} isLoading={true} {...mockCallbacks} />);
     expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
   });
 
   it('renders empty state when no institutions exist', () => {
-    render(
-      <InstitutionGrid institutions={[]} isLoading={false} {...mockCallbacks} />
-    );
+    render(<InstitutionGrid institutions={[]} isLoading={false} {...mockCallbacks} />);
     expect(screen.getByTestId('empty-state')).toBeInTheDocument();
   });
 

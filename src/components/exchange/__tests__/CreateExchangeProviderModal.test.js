@@ -5,15 +5,14 @@ import CreateExchangeProviderModal from '../CreateExchangeProviderModal.jsx';
 
 jest.mock('../../common/Modal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen, onClose, title, subtitle, children }) => (
+  default: ({ isOpen, onClose, title, subtitle, children }) =>
     isOpen ? (
       <div data-testid="modal">
         <h2>{title}</h2>
         <p>{subtitle}</p>
         {children}
       </div>
-    ) : null
-  ),
+    ) : null,
 }));
 
 jest.mock('../../common/Input.jsx', () => ({

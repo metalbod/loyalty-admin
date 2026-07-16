@@ -14,9 +14,7 @@ jest.mock('../../common/Card.jsx', () => ({
 
 jest.mock('../../common/Badge.jsx', () => ({
   __esModule: true,
-  default: ({ children, variant }) => (
-    <div data-testid={`badge-${variant}`}>{children}</div>
-  ),
+  default: ({ children, variant }) => <div data-testid={`badge-${variant}`}>{children}</div>,
 }));
 
 jest.mock('../../common/Button.jsx', () => ({

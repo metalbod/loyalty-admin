@@ -27,16 +27,14 @@ jest.mock('../../components/exchange/ExchangeProviderGrid.jsx', () => ({
 
 jest.mock('../../components/exchange/CreateExchangeProviderModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen }) => (
-    isOpen ? <div data-testid="create-provider-modal">Create Modal</div> : null
-  ),
+  default: ({ isOpen }) =>
+    isOpen ? <div data-testid="create-provider-modal">Create Modal</div> : null,
 }));
 
 jest.mock('../../components/exchange/EditExchangeProviderModal.jsx', () => ({
   __esModule: true,
-  default: ({ isOpen }) => (
-    isOpen ? <div data-testid="edit-provider-modal">Edit Modal</div> : null
-  ),
+  default: ({ isOpen }) =>
+    isOpen ? <div data-testid="edit-provider-modal">Edit Modal</div> : null,
 }));
 
 jest.mock('../../components/exchange/ExchangeRequestsTable.jsx', () => ({

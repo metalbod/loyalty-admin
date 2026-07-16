@@ -62,8 +62,8 @@ export function CreatePartnerServiceAccountModal({ isOpen, onClose, partner = nu
         <div className="space-y-4">
           <p className="text-sm text-slate-600">
             Service account <span className="font-semibold text-slate-900">{created.email}</span>{' '}
-            created. Share the password you chose directly with the integration owner - it isn't
-            stored anywhere else.
+            created. Share the password you chose directly with the integration owner - it
+            isn&apos;t stored anywhere else.
           </p>
           <div className="flex justify-end">
             <Button type="button" onClick={handleClose}>

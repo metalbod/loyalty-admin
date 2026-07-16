@@ -74,9 +74,7 @@ describe('LiveTransactionsView', () => {
 
   it('renders page description', () => {
     render(<LiveTransactionsView />);
-    expect(
-      screen.getByText(/Real-time snapshot of point movement/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Real-time snapshot of point movement/i)).toBeInTheDocument();
   });
 
   it('renders metrics grid', () => {

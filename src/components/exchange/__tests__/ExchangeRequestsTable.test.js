@@ -23,7 +23,9 @@ jest.mock('../../common/Badge.jsx', () => ({
 jest.mock('../../common/Pagination.jsx', () => ({
   __esModule: true,
   default: ({ page, totalPages, onPageChange, isLoading }) => (
-    <div data-testid="pagination">{page + 1} / {totalPages}</div>
+    <div data-testid="pagination">
+      {page + 1} / {totalPages}
+    </div>
   ),
 }));
 

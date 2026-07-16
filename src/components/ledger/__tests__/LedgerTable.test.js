@@ -30,7 +30,9 @@ jest.mock('../../common/Pagination.jsx', () => ({
   __esModule: true,
   default: ({ page, totalPages, onPageChange }) => (
     <div data-testid="pagination">
-      <p>Page {page + 1} of {totalPages}</p>
+      <p>
+        Page {page + 1} of {totalPages}
+      </p>
     </div>
   ),
 }));

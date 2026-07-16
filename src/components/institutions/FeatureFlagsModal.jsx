@@ -5,17 +5,25 @@ import Modal from '../common/Modal.jsx';
 import * as api from '../../api/client';
 
 const FEATURE_LABELS = {
-  PARTNERS: { title: 'Partners', description: 'Channel partner management and partner-scoped rates.' },
-  POINTS_EXCHANGE: { title: 'Points Exchange', description: 'Redeeming points to/from an external loyalty provider.' },
+  PARTNERS: {
+    title: 'Partners',
+    description: 'Channel partner management and partner-scoped rates.',
+  },
+  POINTS_EXCHANGE: {
+    title: 'Points Exchange',
+    description: 'Redeeming points to/from an external loyalty provider.',
+  },
   CAMPAIGNS: { title: 'Campaigns', description: 'Promotional earn/burn rate multipliers.' },
   AUTOMATIC_TIER_PROMOTION: {
     title: 'Automatic Tier Promotion',
-    description: 'Auto-promotes a wallet when its EARN activity crosses a tier rule\'s threshold. Manual '
-      + 'tier changes on a wallet always stay available regardless of this setting.',
+    description:
+      "Auto-promotes a wallet when its EARN activity crosses a tier rule's threshold. Manual " +
+      'tier changes on a wallet always stay available regardless of this setting.',
   },
   GIFT_REWARDS: {
     title: 'Gift Rewards',
-    description: 'Allow users to earn and redeem gifts with configurable validity periods and auto-expiry.',
+    description:
+      'Allow users to earn and redeem gifts with configurable validity periods and auto-expiry.',
   },
 };
 
@@ -37,7 +45,13 @@ function FlagRow({ flag, onToggle, isSubmitting }) {
             : 'border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'
         }`}
       >
-        {isSubmitting ? <Loader2 size={14} className="animate-spin" /> : flag.enabled ? 'Enabled' : 'Disabled'}
+        {isSubmitting ? (
+          <Loader2 size={14} className="animate-spin" />
+        ) : flag.enabled ? (
+          'Enabled'
+        ) : (
+          'Disabled'
+        )}
       </button>
     </div>
   );
@@ -75,10 +89,20 @@ export function FeatureFlagsModal({ isOpen, onClose, flags, onToggle }) {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Feature Flags" subtitle="Enable or disable features for this institution.">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Feature Flags"
+      subtitle="Enable or disable features for this institution."
+    >
       <div className="space-y-2">
         {flags.map((flag) => (
-          <FlagRow key={flag.featureKey} flag={flag} onToggle={handleToggle} isSubmitting={isSubmitting} />
+          <FlagRow
+            key={flag.featureKey}
+            flag={flag}
+            onToggle={handleToggle}
+            isSubmitting={isSubmitting}
+          />
         ))}
       </div>
       {error && <p className="mt-4 text-xs text-rose-600">{error}</p>}

@@ -20,7 +20,12 @@ jest.mock('../../common/Button.jsx', () => ({
 jest.mock('lucide-react', () => ({ PlusCircle: () => null }));
 
 jest.mock('../../../hooks/useAsyncAction.js', () => ({
-  useAsyncAction: jest.fn(() => ({ run: jest.fn(), isSubmitting: false, error: null, reset: jest.fn() })),
+  useAsyncAction: jest.fn(() => ({
+    run: jest.fn(),
+    isSubmitting: false,
+    error: null,
+    reset: jest.fn(),
+  })),
 }));
 
 describe('CreateInstitutionModal', () => {
@@ -49,7 +54,9 @@ describe('CreateInstitutionModal', () => {
     );
     expect(screen.getByTestId('modal')).toBeInTheDocument();
 
-    rerender(<CreateInstitutionModal isOpen={false} onClose={mockOnClose} onCreate={mockOnCreate} />);
+    rerender(
+      <CreateInstitutionModal isOpen={false} onClose={mockOnClose} onCreate={mockOnCreate} />
+    );
     expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
   });
 });

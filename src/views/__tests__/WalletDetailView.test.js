@@ -63,9 +63,7 @@ jest.mock('../../components/common/Card.jsx', () => ({
 
 jest.mock('../../components/common/Button.jsx', () => ({
   __esModule: true,
-  default: ({ children, onClick }) => (
-    <button onClick={onClick}>{children}</button>
-  ),
+  default: ({ children, onClick }) => <button onClick={onClick}>{children}</button>,
 }));
 
 jest.mock('../../components/common/LoadingSpinner.jsx', () => ({
@@ -270,9 +268,7 @@ describe('WalletDetailView', () => {
   it('refreshes wallet on profile change', async () => {
     const mockRefreshProfiles = jest.fn();
     useProfileContext.mockReturnValue({
-      profiles: [
-        { profileId: 'gold', profileName: 'Gold' },
-      ],
+      profiles: [{ profileId: 'gold', profileName: 'Gold' }],
       refreshProfiles: mockRefreshProfiles,
     });
 

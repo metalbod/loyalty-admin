@@ -101,7 +101,7 @@ describe('usePartnerContext - Enhanced', () => {
   it('sets loading state during partner fetch', async () => {
     const { fetchPartners } = require('../../api/client');
     fetchPartners.mockImplementation(
-      () => new Promise(resolve => setTimeout(() => resolve([]), 100))
+      () => new Promise((resolve) => setTimeout(() => resolve([]), 100))
     );
 
     const wrapper = ({ children }) => (
@@ -256,7 +256,9 @@ describe('usePartnerContext - Enhanced', () => {
 
     let account;
     await act(async () => {
-      account = await result.current.createPartnerServiceAccount('1', { accountName: 'Service Account 1' });
+      account = await result.current.createPartnerServiceAccount('1', {
+        accountName: 'Service Account 1',
+      });
     });
 
     expect(account).toEqual(serviceAccount);
@@ -374,9 +376,7 @@ describe('usePartnerContext - Enhanced', () => {
     const partner2 = { partnerId: '2', partnerName: 'Partner B', status: 'ACTIVE' };
 
     const { createPartner } = require('../../api/client');
-    createPartner
-      .mockResolvedValueOnce(partner1)
-      .mockResolvedValueOnce(partner2);
+    createPartner.mockResolvedValueOnce(partner1).mockResolvedValueOnce(partner2);
 
     const wrapper = ({ children }) => (
       <AuthProvider>
