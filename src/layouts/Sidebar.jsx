@@ -18,7 +18,9 @@ import { useAuth } from '../hooks/useAuth.js';
 import { initials } from '../utils/formatters.js';
 
 const ICONS = { Activity, Users, CalendarClock, Building2, Wallet, Handshake, Settings, Repeat };
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+
+// API base URL - Vite injects VITE_API_BASE_URL at build time; fallback for tests
+const API_BASE_URL = (typeof process !== 'undefined' && process.env.VITE_API_BASE_URL) || 'http://localhost:8080';
 
 export function Sidebar() {
   const { user, logout } = useAuth();

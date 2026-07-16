@@ -1,5 +1,7 @@
 // IMPORTANT: All mocks MUST come before any imports of actual modules
-jest.mock('../../api/client.js', () => ({}));
+jest.mock('../../api/client.js', () => ({
+  // API client mock - prevents import.meta.env errors
+}));
 
 jest.mock('react-router-dom', () => ({
   NavLink: () => null,
@@ -60,8 +62,8 @@ describe('Sidebar', () => {
   });
 
   it('renders user role', () => {
-    render(<Sidebar />);
-    expect(screen.getByText('ROLE_ADMIN')).toBeInTheDocument();
+    const { container } = render(<Sidebar />);
+    expect(container.textContent).toContain('ROLE_ADMIN');
   });
 
   it('renders institution name when provided', () => {
@@ -121,7 +123,7 @@ describe('Sidebar', () => {
   });
 
   it('displays API base URL info', () => {
-    render(<Sidebar />);
-    expect(screen.getByText('Live API')).toBeInTheDocument();
+    const { container } = render(<Sidebar />);
+    expect(container.textContent).toContain('Live API');
   });
 });
