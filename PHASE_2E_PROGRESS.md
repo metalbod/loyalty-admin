@@ -151,20 +151,26 @@
 
 ---
 
-## Remaining Work (Sprint 4-5)
+## Sprint 4 Progress (In Progress)
 
-### Sprint 4: API Client & Context Tests (Estimated 30-40 tests)
-- [ ] API client tests (queryInstitutions, updateInstitution, etc.)
-- [ ] Auth context tests
+### Completed
+- [x] useAdminContext tests (9 tests) ✅
+- [ ] API client tests (import.meta compatibility issue - deferred to Sprint 5)
+- [ ] Auth context integration tests
 - [ ] Loyalty context tests
-- [ ] Custom hooks tests (useAsyncAction, etc.)
+- Current: 853 total tests passing
+
+### Remaining Sprint 4 Work
+- [ ] Auth context tests (~8 tests)
+- [ ] LoyaltyContext tests (~8 tests)
+- [ ] Additional hook tests (~8 tests)
 - Target: 880+ total tests, reach ~55%+ coverage
 
 ### Sprint 5: Integration & Type Safety (Estimated 30-50 tests)
 - [ ] Integration tests for critical flows
+- [ ] API client with proper Jest configuration
 - [ ] JSDoc type safety validation
 - [ ] Edge case coverage
-- [ ] Performance benchmark tests
 - Target: 910+ total tests, reach **60%+ coverage** ✨
 
 ### Summary of Completed Work
