@@ -31,7 +31,7 @@ jobs:
           node-version: '18.20.8'
           cache: 'npm'
       - run: npm ci
-      - run: npm test -- --coverage --watchAll=false
+      - run: npm test -- --watchAll=false
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
